@@ -6,7 +6,7 @@ html:not(.no-scanlines):not(.force-no-scanlines) body::before {
 	top: 0;
 	width: calc(100% + 32px);
 	height: calc(100% + 32px);
-	background-image: url(/res/img/scanlines.png);
+	background-image: url(/stuff/scanlines.png);
 	background-position: 0 0;
 	background-repeat: repeat;
 	z-index: 10000000;
@@ -23,7 +23,7 @@ html:not(.no-scanlines):not(.force-no-scanlines) body::after {
 	top: 0;
 	width: calc(100% + 32px);
 	height: calc(100% + 32px);
-	background-image: url(/res/img/scanlines.png);
+	background-image: url(/stuff/scanlines.png);
 	background-position: 0 0;
 	background-repeat: repeat;
 	z-index: 10000000;
