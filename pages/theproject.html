@@ -209,21 +209,26 @@
       }
     </style>
     <script>
-      document.addEventListener("DOMContentLoaded", function(event) {
-        document.getElementById("loading-box-icon-spin").src = "/res/img/loading-box-icon-finish.png";
-        document.getElementById("loading-box-text").innerHTML = "Loaded.";
-        document.getElementById("loading-box").className = "finished";
-        setTimeout(function() {
-          document.getElementById("loading-box-icon-spin").src = "/res/img/loading-box-icon-spin.png";
-          document.getElementById("loading-box-text").innerHTML = "Loading...";
-        }, 500);
-      });
-      window.onbeforeunload = function() {
-        document.getElementById("loading-box-icon-spin").src = "/res/img/loading-box-icon-spin.png";
-        document.getElementById("loading-box-text").innerHTML = "Loading...";
-        document.getElementById("loading-box").classList.remove("finished");
-        fadeAway(200);
-      }
+	    var bgm1 = new Audio('https://classic.systemspace.network/res/audio/bgm/superbgm.ogg');
+	bgm1.play();
+	    
+	var noise = new Howl({
+		src: "https://classic.systemspace.network/res/audio/ambience/7.ogg",
+		loop: true,
+		volume: "0.8"
+		});
+
+	var bgm = new Howl({
+		src: "https://classic.systemspace.network/res/audio/bgm/superbgm.ogg",
+		volume: 0.5,
+		autoplay: true
+		});
+
+	var intro = new Howl({
+		src: "https://classic.systemspace.network/res/audio/sfx/welcome.ogg",
+		volume: 0.7,
+		loop: false
+		});
     </script>
     <noscript>
       <style>
