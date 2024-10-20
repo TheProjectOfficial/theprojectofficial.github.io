@@ -91,10 +91,22 @@
     </style>
     <script>
 
-    var bgm = new Howl({
-	  src: "https://classic.systemspace.network/res/audio/bgm/superbgm.ogg",
+	var noise = new Howl({
+		src: "/res/audio/ambience/7.ogg",
+		loop: true,
+		volume: "0.8"
+		});
+
+	var bgm = new Howl({
+		src: "/res/audio/bgm/superbgm.ogg",
 		volume: 0.5,
 		loop: true
+		});
+
+	var intro = new Howl({
+		src: "/res/audio/sfx/welcome.ogg",
+		volume: 0.7,
+		loop: false
 		});
       
       $(document).ready(function() {
