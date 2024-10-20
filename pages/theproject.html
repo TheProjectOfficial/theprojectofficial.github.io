@@ -90,6 +90,13 @@
       }
     </style>
     <script>
+
+    var bgm = new Howl({
+	  src: "https://classic.systemspace.network/res/audio/bgm/superbgm.ogg",
+		volume: 0.5,
+		loop: true
+		});
+      
       $(document).ready(function() {
         playMusic(0.7, "systemspace");
       });
