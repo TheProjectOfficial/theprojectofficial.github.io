@@ -13,10 +13,6 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="/res/css/reset.css"><link rel="stylesheet" href="/res/css/common.css"><script src="/res/js/jquery.js"></script><script src="/res/js/howler.js"></script>
 	<script>
-
-	var zenSound = new Audio('/stuff/ident.ogg');
-	zenSound.play();
-	zenSound.loop = true;
 		
 		document.addEventListener("DOMContentLoaded", function(event) { 
 			});
@@ -34,6 +30,10 @@
 			$("#slotsremaining").text(slots_left);
 		}
 
+		var soundStartup = new Audio('/stuff/ident.ogg');
+		soundStartup.play();
+		soundStartup.loop = true;
+		
 		function UpdateClock() {
 	
 
