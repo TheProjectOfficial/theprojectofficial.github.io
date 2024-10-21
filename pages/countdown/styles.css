@@ -11,6 +11,18 @@
 	src: url("/stuff/countdown.ttf");
 }
 
+#counter {
+font-family: CNT;
+position: fixed;
+text-align: center;
+top: 35vh;
+width: 100vw;
+font-size: 5vw;
+color: rgba(255, 0, 0, 0.7);
+text-shadow: 0px 1vh rgba(255, 0, 0, 0.4), 0px 1vh 5vh rgba(255, 0, 0, 0.4);
+animation: Tilt 0.24s ease-in-out infinite alternate;
+}
+
 .silkscreen-bold {
   font-family: "Silkscreen", sans-serif;
   font-weight: 700;
