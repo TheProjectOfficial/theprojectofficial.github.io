@@ -4,7 +4,7 @@
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <title>THE PROJECT / UNLOCK</title>
-  <meta name="description" content="Unlink the world. Unlock the rest.">
+  <meta name="description" content="Unlock The Project. Unlock the rest.">
   <link rel="apple-touch-icon" sizes="180x180" href="https://new.systemspace.network/res/icons/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="https://new.systemspace.network/res/icons/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="https://new.systemspace.network/res/icons/favicon-16x16.png">
@@ -21,6 +21,10 @@
   <script src="30minTSUKI_files/jumpstart.js"></script>
   <script src="30minTSUKI_files/cookies.js"></script>
   <script>
+
+    var loopSound = new Audio('/stuff/nnloop.ogg');
+    loopSound.play();
+    loopSound.loop = true;  
     var countDownDate = new Date("Nov 25, 2024 20:00").getTime();
     // Update the count down every 1 second
     var x = setInterval(function() {
@@ -90,9 +94,6 @@
       ThrowawayStaller();
 
 	    
-var loop = new Audio('/stuff/nnloop.ogg');
-loop.play();
-loop.loop = true;
 	    
       tokei();
       setInterval(tokei, 9);
