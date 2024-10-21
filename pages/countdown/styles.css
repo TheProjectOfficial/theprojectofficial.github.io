@@ -6,6 +6,11 @@
   font-style: normal;
 }
 
+@font-face {
+	font-family: "CNT";
+	src: url("/stuff/countdown.ttf");
+}
+
 .silkscreen-bold {
   font-family: "Silkscreen", sans-serif;
   font-weight: 700;
@@ -17,11 +22,11 @@ body {
 }
 
 p {
-  color: white;
-  font-family: silkscreen;
+  color: red;
+  font-family: CNT;
 }
 
 h1 {
-  color: white;
-  font-family: silkscreen;
+  color: red;
+  font-family: CNT;
 }
