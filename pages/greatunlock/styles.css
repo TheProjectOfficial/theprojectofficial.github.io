@@ -422,6 +422,13 @@ p {
 font‐family: abr;
 }
 
+h1 {
+font‐family: abr;
+}
+h3 {
+font‐family: abr;
+}
+
 section h1.statistic {
 	font-size: 4em;
 	border-bottom: none;
