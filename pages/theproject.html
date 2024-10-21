@@ -92,30 +92,20 @@
     </style>
     <script>
 
-	    
 	var noise = new Howl({
-		src: "https://classic.systemspace.network/res/audio/ambience/7.ogg",
-		loop: true,
-		volume: "0.8"
-		});
+	src: "/res/audio/ambience/7.ogg",
+	loop: true,
+	volume: "0.8"
+	});
 
-	var bgm = new Howl({
-		src: "https://classic.systemspace.network/res/audio/bgm/superbgm.ogg",
-		volume: 0.5,
-		autoplay: true
-		loop: true
-		});
-
-	var intro = new Howl({
-		src: "https://classic.systemspace.network/res/audio/sfx/welcome.ogg",
-		volume: 0.7,
-		loop: false
-		});
-
-	    bgm.play
+        var bgm = new Howl({
+	src: "/res/audio/bgm/superbgm.ogg",
+	volume: 0.5,
+	loop: true
+	});
       
       $(document).ready(function() {
-        playMusic(0.7, "bgm");
+        playMusic(0.7, "systemspace");
       });
     </script>
   </head>
