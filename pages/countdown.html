@@ -15,6 +15,15 @@ p {
 <p id="demo"></p>
 
 <script>
+
+var intro = new Audio('/stuff/nnintro.ogg');
+intro.play();
+intro.loop = true;
+
+var loop = new Audio('/stuff/nnloop.ogg');
+loop.play();
+loop.loop = true;
+  
 // Set the date we're counting down to
 var countDownDate = new Date("Nov 25, 2024 20:00:00").getTime();
 
