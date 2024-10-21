@@ -21,7 +21,7 @@
   <script src="30minTSUKI_files/jumpstart.js"></script>
   <script src="30minTSUKI_files/cookies.js"></script>
   <script>
-    var countDownDate = new Date("Oct 21, 2024 20:40").getTime();
+    var countDownDate = new Date("Nov 25, 2024 20:00").getTime();
     // Update the count down every 1 second
     var x = setInterval(function() {
       // Get today's date and time
@@ -34,8 +34,8 @@
       var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       var seconds = Math.floor((distance % (1000 * 60)) / 1000);
       // Display the result in the element with id="demo"
-      document.getElementById("demo").innerHTML = days + "d " + hours + "h " +
-        minutes + "m " + seconds + "s ";
+      document.getElementById("demo").innerHTML = days + ": " + hours + ": " +
+        minutes + ": " + seconds + ": ";
       // If the count down is finished, write some text
       if (distance < 0) {
         clearInterval(x);
