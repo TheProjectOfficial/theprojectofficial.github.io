@@ -3,6 +3,10 @@
 	src: url("./res/font/heading.woff");
 }
 @font-face {
+      font-family: ABR;
+      src: url("/stuff/abr.ttf");
+}
+@font-face {
 	font-family: "Paragraph";
 	src: url("./res/font/paragraph.ttf");
 }
@@ -412,6 +416,10 @@ section.slim h1 {
 
 .highlight {
 	color: var(--accent-color);
+}
+
+p {
+font‐family: abr;
 }
 
 section h1.statistic {
