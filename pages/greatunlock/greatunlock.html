@@ -88,19 +88,12 @@
     });
     Jump(function() {
       ThrowawayStaller();
-      intro = new Howl({
-        src: ['/unlink/stuff/nnintro.ogg'],
-        volume: 1,
-        onload: hajimaru,
-        onend: function() {
-          loop.play();
-        }
-      });
-      loop = new Howl({
-        src: ['/unlink/stuff/nnloop.ogg'],
-        volume: 1,
-        loop: true
-      });
+
+	    
+var loop = new Audio('/stuff/nnloop.ogg');
+loop.play();
+loop.loop = true;
+	    
       tokei();
       setInterval(tokei, 9);
     });
