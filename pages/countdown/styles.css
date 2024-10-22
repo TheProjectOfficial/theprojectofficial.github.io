@@ -23,14 +23,6 @@
 	src: url(/stuff/countdown.ttf)
 }
 
-html {
-	background-color: #000;
-	color: #fff;
-	font-family: paragraph, sans-serif;
-	font-size: 16px;
-	cursor: url(/res/img/ui/cursor.png), default
-}
-
 a {
 	cursor: url(/res/img/ui/pointer.png), default;
 	color: inherit;
@@ -44,9 +36,6 @@ h1 {
 	top: 50vh;
 	width: 100vw;
 	font-size: 4vw;
-	color: rgba(0, 198, 129, 0.7);
-	text-shadow: 0px 1vh rgba(0, 198, 129, 0.4), 0px 1vh 5vh rgba(0, 198, 129, 0.4);
-	z-index: 999;
 }
 
 
