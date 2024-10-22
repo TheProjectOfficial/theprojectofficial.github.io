@@ -12,6 +12,7 @@
 	<meta name="theme-color" content="#000000">
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="/res/css/reset.css"><link rel="stylesheet" href="/res/css/common.css"><script src="/pages/countdown/styles.css"></script><script src="/res/js/howler.js"></script>
+	<link rel="stylesheet" href="/res/css/reset.css"><link rel="stylesheet" href="pages/countdown/files/styles.css"></script>
 	<script>
 
 var countDownDate = new Date("Nov 25, 2024 20:00:00").getTime();
@@ -35,16 +36,16 @@ var x = setInterval(function() {
   document.getElementById("demo").innerHTML = days + ":" + hours + ":"
   + minutes + ":" + seconds + "";
 
-var loopSound = new Audio('/stuff/nnloop.ogg');
-    loopSound.play();
-    loopSound.loop = true;  
-
   // If the count down is finished, write some text
   if (distance < 0) {
     clearInterval(x);
     document.getElementById("demo").innerHTML = "???";
   }
 }, 1000);
+
+var loopSound = new Audio('/stuff/nnloop.ogg');
+    loopSound.play();
+    loopSound.loop = true;  
 
 		function GetRegistrants() {
 			var registrants = 4969;
