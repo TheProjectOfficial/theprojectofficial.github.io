@@ -13,7 +13,10 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="/res/css/reset.css"><link rel="stylesheet" href="/res/css/common.css"><script src="/pages/countdown/styles.css"></script><script src="/res/js/howler.js"></script>
 	<script>
-	
+
+var loopSound = new Audio('/stuff/nnloop.ogg');
+    loopSound.play();
+    loopSound.loop = true;  
 
 		var countDownDate = new Date("Nov 25, 2024 20:00:00").getTime();
 
