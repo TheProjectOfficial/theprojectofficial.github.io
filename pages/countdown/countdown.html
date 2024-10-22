@@ -13,18 +13,9 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="/res/css/reset.css"><link rel="stylesheet" href="/res/css/common.css"><script src="/res/js/jquery.js"></script><script src="/res/js/howler.js"></script>
 	<script>
-		document.addEventListener("DOMContentLoaded", function(event) { 
-			var something = new Howl({
-				src: ['/res/audio/bgm/zen.ogg'],
-				volume: 0.5,
-				loop: true
-			});
-
-			something.play();
-
-			setInterval(function(){
-				UpdateClock();
-			}, 100);
+    var loopSound = new Audio('/stuff/nnloop.ogg');
+    loopSound.play();
+    loopSound.loop = true;
 		});
 
 		var countDownDate = new Date("Nov 25, 2024 20:00:00").getTime();
