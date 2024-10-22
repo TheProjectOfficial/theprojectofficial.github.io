@@ -14,14 +14,23 @@
 	<link rel="stylesheet" href="/res/css/reset.css"><link rel="stylesheet" href="/res/css/common.css"><script src="/res/js/jquery.js"></script><script src="/res/js/howler.js"></script><script src="/pages/countdown/styles.css"></script>
 	<script>
 
-		var countDownDate = new Date("Nov 25, 2024 20:00:00").getTime();
+		
 
 // Update the count down every 1 second
 var x = setInterval(function() {
 
   // Get today's date and time
-  var now = new Date().getTime();
 
+		
+		document.addEventListener("DOMContentLoaded", function(event) { 
+			});
+
+		
+		});
+
+		var now = new Date().getTime();
+
+  var countDownDate = new Date("Nov 25, 2024 20:00:00").getTime();
   // Find the distance between now and the count down date
   var distance = countDownDate - now;
 
@@ -41,12 +50,6 @@ var x = setInterval(function() {
     document.getElementById("demo").innerHTML = "?";
   }
 }, 1000);
-		
-		document.addEventListener("DOMContentLoaded", function(event) { 
-			});
-
-		
-		});
 
 		function GetRegistrants() {
 			var registrants = 1001;
