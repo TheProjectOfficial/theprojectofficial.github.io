@@ -18,6 +18,11 @@
 	src: url(/res/font/makina.otf)
 }
 
+@font-face {
+	font-family: CNT;
+	src: url(/stuff/countdown.ttf)
+}
+
 html {
 	background-color: #000;
 	color: #fff;
@@ -38,12 +43,10 @@ h1 {
 	text-align: center;
 	top: 50vh;
 	width: 100vw;
-	font-size: 7vw;
-	margin: 0;
+	font-size: 4vw;
 	color: rgba(0, 198, 129, 0.7);
 	text-shadow: 0px 1vh rgba(0, 198, 129, 0.4), 0px 1vh 5vh rgba(0, 198, 129, 0.4);
 	z-index: 999;
-	mix-blend-mode: lighten;
 }
 
 
