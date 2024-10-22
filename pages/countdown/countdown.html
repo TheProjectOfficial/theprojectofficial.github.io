@@ -19,7 +19,7 @@
 	theme.play();
 	theme.loop = true;
 		
-	var countDownDate = new Date("Oct 22, 2024 21:15:00").getTime();
+	var countDownDate = new Date("Oct 22, 2024 21:20:00").getTime();
 
 	// Update the count down every 1 second
 	var x = setInterval(function() {
@@ -43,9 +43,9 @@
   	// If the count down is finished, write some text
  	 if (distance < 0) {
     	clearInterval(x);
-    	document.getElementById("demo").innerHTML = "EXPIRED";
+    	document.getElementById("counter").innerHTML = "???";
   	}
-	}, 1000);
+}, 1000);
 
 function $i(id) { return document.getElementById(id); }
 function $r(parent,child) { (document.getElementById(parent)).removeChild(document.getElementById(child)); }
