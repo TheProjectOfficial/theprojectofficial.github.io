@@ -31,7 +31,7 @@
   	var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
   	// Display the result in the element with id="demo"
- 	 document.getElementById("demo").innerHTML = days + ":" + hours + ":"
+ 	 document.getElementById("counter").innerHTML = days + ":" + hours + ":"
   	+ minutes + ":" + seconds + "";
 
   	// If the count down is finished, write some text
@@ -162,7 +162,7 @@
 </script>
 
 	<center>
-		<h1 id="demo"></h1>
+		<h1 id="counter"></h1>
 	</center>
 </body>
 </html>
