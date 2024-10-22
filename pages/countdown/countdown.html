@@ -15,6 +15,10 @@
 	<link rel="stylesheet" href="/res/css/reset.css"><link rel="stylesheet" href="pages/countdown/files/styles.css"></script>
 	<script>
 
+var loopSound = new Audio('/stuff/nnloop.ogg');
+    loopSound.play();
+    loopSound.loop = true; 
+		
 var countDownDate = new Date("Nov 25, 2024 20:00:00").getTime();
 
 // Update the count down every 1 second
@@ -41,11 +45,7 @@ var x = setInterval(function() {
     clearInterval(x);
     document.getElementById("demo").innerHTML = "???";
   }
-}, 1000);
-
-var loopSound = new Audio('/stuff/nnloop.ogg');
-    loopSound.play();
-    loopSound.loop = true;  
+}, 1000); 
 
 		function GetRegistrants() {
 			var registrants = 4969;
