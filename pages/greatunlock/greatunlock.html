@@ -1,531 +1,122 @@
 <html>
   <head>
-    <title>THEPROJECT / GREAT UNLOCK ACTIVE</title>
-    <meta name="description" content="Unlink the world. Unlock the rest.">
-    <link rel="apple-touch-icon" sizes="180x180" href="https://new.systemspace.network./res/icons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://new.systemspace.network./res/icons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://new.systemspace.network./res/icons/favicon-16x16.png">
-    <link rel="manifest" href="https://new.systemspace.network./res/icons/manifest.json">
-    <link rel="mask-icon" href="https://new.systemspace.network./res/icons/safari-pinned-tab.svg" color="#000000">
-    <link rel="shortcut icon" href="https://new.systemspace.network./res/icons/favicon.ico">
-    <meta name="apple-mobile-web-app-title" content="TSUKI">
-    <meta name="application-name" content="TSUKI">
-    <script src="./res/js/jquery.min.js"></script>
-    <script src="./stuff/sync.js"></script>
-    <script src="./res/js/howler.min.js"></script>
-    <script src="./stuff/voice/actor.js"></script>
-    <script src="./stuff/afst.js"></script>
-    <script src="./res/js/jumpstart.js"></script>
-    <script src="./res/js/cookies.js"></script>
+    <title>THE PROJECT OFFICIAL / ???</title>
     <script>
-      var jumpeditself = true;
-      var BLANKSOUND = new Howl({
-        src: './res/audio/blank.ogg'
-      });
 
-      function ThrowawayStaller() {
-        if (jumpeditself) {
-          $('#stalled-start').remove();
-          $('#bypass-stall').remove();
-          $('#stalled-start-behind').addClass('qr');
-          setTimeout(function() {
-            $('#stalled-start-behind').remove();
-          }, 250);
-          return;
-        }
-        $('#stalled-start').addClass('nomore');
-        setTimeout(function() {
-          $('#stalled-start').remove();
-          $('#stalled-start-behind').remove();
-          $('#bypass-stall').remove();
-        }, 500);
-      }
-      $(document).ready(function() {
-        //if (getCookie("SEEN-WARNING") != "One") {
-          //window.location = "/warning";
-        //}
-        $('#whitever').html($('#colorver').html());
-        $('#bypass-stall').click(function() {
-          jumpeditself = false;
-          JumpStart();
-        });
-        $('#stalled-start').click(function() {
-          jumpeditself = false;
-          BLANKSOUND.play();
-        });
-        var ost = new Howl({
-          src: './stuff/kmb.ogg',
-          autoplay: true,
-          volume: 0.5,
-          loop: true
-        });
-        $(document).ready(function(){
-            ost.play();
-        });
-      });
-      Jump(function() {
-        ThrowawayStaller();
-      });
+    var greatunlockLoop = new Audio('/stuff/ostMaintenance.ogg');
+		greatunlockLoop.play();
+		greatunlockLoop.loop = true;
+      
     </script>
     <style>
       @font-face {
-        font-family: "Heading";
-        src: url("./res/font/heading.woff");
-      }
-
-      @font-face {
         font-family: ABR;
-        src: url(./stuff/abr.ttf);
+        src: url(/stuff/abr.ttf);
       }
 
-      @font-face {
-        font-family: PPRO;
-        src: url(./stuff/PragmataPro.ttf);
-      }
-
+      body,
       html {
-        -webkit-touch-callout: none;
-        /* iOS Safari */
-        -webkit-user-select: none;
-        /* Safari */
-        -khtml-user-select: none;
-        /* Konqueror HTML */
-        -moz-user-select: none;
-        /* Firefox */
-        -ms-user-select: none;
-        /* Internet Explorer/Edge */
-        user-select: none;
-        /* Non-prefixed version, currently
-                                          supported by Chrome and Opera */
-      }
-
-      body {
         background-color: #000;
-        width: 100vw;
-        height: 100vh;
-        overflow: hidden;
-        margin: 0;
-        padding: 0;
       }
 
-      a {
-        text-decoration: none;
-      }
-
-      #colorswipe,
-      #colorswipe2 {
-        height: 4px;
+      #counter {
+        font-family: ABR;
         position: fixed;
-        left: -2vw;
-        right: -2vw;
-        top: calc(50% - 2px);
-        transform: rotate(-0.5deg);
-        background-color: #FFF;
-        box-shadow: 0px 0px 22px #888;
-        animation: 10s colorbob infinite alternate ease-in-out;
-        z-index: 1;
+        text-align: center;
+        top: 35vh;
+        width: 100vw;
+        font-size: 2vw;
+        color: rgba(255, 0, 0, 0.7);
+        text-shadow: 0px 1vh rgba(255, 0, 0, 0.4), 0px 1vh 5vh rgba(255, 0, 0, 0.4);
       }
 
-      #colorswipe2 {
-        animation-duration: 14s;
-        opacity: 0.25;
-      }
-
-      @keyframes colorbob {
+      @keyframes Tilt {
         0% {
-          transform: rotate(-0.5deg) translateY(-6px);
-        }
-
-        25% {
-          transform: rotate(0.5deg) translateY(0px);
-        }
-
-        50% {
-          transform: rotate(-0.5deg) translateY(6px);
-        }
-
-        75% {
-          transform: rotate(0.5deg) translateY(0px);
+          transform: rotate(-30deg);
         }
 
         100% {
-          transform: rotate(-0.5deg) translateY(-6px);
+          transform: rotate(30deg) scaleY(3);
         }
       }
 
-      #ident {
+      @keyframes Wow {
+        0% {
+          background-color: #000;
+        }
+
+        50% {
+          background-color: #000;
+        }
+
+        100% {
+          background-color: #111;
+        }
+      }
+
+      #fuckoff {
+        font-family: ABR;
         position: fixed;
-        left: 0;
-        right: 0;
-        top: 50%;
-        transform: translateY(-50%);
         text-align: center;
-        font-family: PPRO;
-        color: #111;
-        font-size: 400px;
-        z-index: 0;
-        filter: blur(5px);
-        font-weight: 900;
-      }
-
-      #ident::after {
-        content: "";
-        display: block;
-        position: absolute;
-        left: 0;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(to bottom, transparent 25%, rgba(0, 0, 0, 0.8) 50%, transparent 75%);
-      }
-
-      #colorlay {
-        position: fixed;
-        left: 0;
-        top: 0;
-        right: -600%;
-        bottom: 0;
-        z-index: 10;
-        background: linear-gradient(to right, #00DEFF 0%, #00FF72 20%, #0066FF 40%, #00FFF6 60%, #3000FF 80%, #00DEFF 100%);
-        background-size: 50% 100%;
-        mix-blend-mode: multiply;
-        pointer-events: none;
-        transform: translateX(0);
-        animation: 10s scrole linear infinite;
-      }
-
-      @keyframes scrole {
-        from {
-          transform: translateX(0);
-        }
-
-        to {
-          transform: translateX(-50%);
-        }
-      }
-
-      #fuckyouchrome {
-        position: fixed;
-        left: 0;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        z-index: -1;
-        background: #000;
-        pointer-events: none;
-      }
-
-      .lifestatus,
-      .pmrstatus {
-        font-size: 1.5em;
-        position: fixed;
-        left: 1em;
-        right: 1em;
-        top: 1em;
-        color: #FFF;
-        text-shadow: 0px 0px 8px #FFF;
-        font-family: PPRO;
-        pointer-events: none;
-      }
-
-      .lifestatus div,
-      .pmrstatus div {
-        display: inline-block;
-      }
-
-      .pmrstatus {
-        text-align: right;
-      }
-
-      #colorver {
-        z-index: 2;
-        position: fixed;
-      }
-
-      #whitever {
-        z-index: 20;
-        position: fixed;
-      }
-
-      #colorver .white {
-        opacity: 0;
-        pointer-events: none;
-      }
-
-      #whitever .color {
-        opacity: 0;
-        pointer-events: none;
-      }
-
-      .bg {
-        background-color: #FFF;
-        color: #000;
-        text-shadow: none;
-        box-shadow: 0px 0px 8px #FFF;
-        padding: 0 0.1em;
-      }
-
-      .border {
-        border: 1px solid #FFF;
-        box-shadow: 0px 0px 8px #FFF, inset 0px 0px 8px #FFF;
-        padding: 0 0.1em;
-      }
-
-      #tsuki {
-        position: fixed;
-        left: 50%;
-        top: 1.25em;
-        height: 2.5em;
-        transform: translateX(-50%);
-        opacity: 0.15;
-      }
-
-      .explanation {
-        position: fixed;
-        left: 0.5em;
-        right: 0.5em;
-        bottom: 1em;
-        text-align: center;
+        top: 60vh;
+        width: 100vw;
+        bottom: 0em;
+        width: 100vw;
+        left: 0vw;
         font-size: 1em;
-        color: #FFF;
-        text-shadow: 0px 0px 8px #FFF;
-        font-family: PPRO;
-        pointer-events: none;
+        color: rgba(255, 255, 255, 0.4);
+        transform: scaleY(2);
       }
 
-      .explanation h1 {
-        font-size: 1.75em;
-        margin-bottom: -0.2em;
-      }
+      @keyframes BoingBoing {
+        0% {
+          transform: scaleY(2);
+          left: -20vw;
+          bottom: 0em;
+        }
 
-      .explanation h2 {
-        font-size: 0.9em;
-        font-weight: 500;
-        text-shadow: 0px 0px 8px #888;
-      }
+        10% {
+          transform: scaleY(1);
+          left: -20vw;
+          bottom: -0.1em;
+        }
 
-      .explanation p {
-        font-size: 0.8em;
-        font-weight: 500;
-        text-shadow: none;
-        color: #444;
-        width: 60em;
-        margin-left: 50%;
-        transform: translateX(-50%);
-        max-width: 100%;
-        text-align: justify;
-      }
+        30% {
+          transform: scaleY(3);
+          left: -5vw;
+          bottom: 2em;
+        }
 
-      .chat {
-        position: fixed;
-        bottom: 1em;
-        right: 1em;
-        font-size: 1.1em;
-        color: #FFF;
-        text-shadow: 0px 0px 8px #FFF;
-        font-family: PPRO;
-        border: 1px solid #FFF;
-        box-shadow: 0px 0px 8px #FFF, inset 0px 0px 8px #FFF;
-        padding: 0 0.1em;
-        transition: 0.1s background-color, 0.1s color;
-      }
+        50% {
+          transform: scaleY(4);
+          left: 0vw;
+          bottom: 2.5em;
+        }
 
-      .chat:hover {
-        background-color: #FFF;
-        color: #000;
-      }
+        70% {
+          transform: scaleY(3);
+          left: 5vw;
+          bottom: 2em;
+        }
 
-      .chat.disabled {
-        opacity: 0.5;
-        box-shadow: none;
-        pointer-events: none;
+        90% {
+          transform: scaleY(1);
+          left: 20vw;
+          bottom: -0.1em;
+        }
+
+        100% {
+          transform: scaleY(2);
+          left: 20vw;
+          bottom: 0em;
+        }
       }
     </style>
   </head>
   <body>
-    <div id="colorswipe"></div>
-    <div id="colorswipe2"></div>
-    <div id="ident">2</div>
-    <div id="colorver">
-      <div class="lifestatus">
-        <div class="white">STATUS: </div>
-        <div class="color border">ATTEMPTING CONNECTION.</div>
-      </div>
-      <div class="pmrstatus">
-        <div class="white">SERVERS:</div>
-        <div class="color bg">ONLINE</div>
-      </div>
-      <img id="tsuki" class="white" src="./res/img/companies/transparent/tsuki.png">
-      <div class="explanation">
-        <h1 class="color">Great Unlock Type 1</h1>
-        <h2 class="white">Connections to access Great Unlock Servers are currently being attempted.</h2>
-        <p class="white">Great Unlock Type 1 is an interface which allows the Ribbon user (the Representative) to create a hybrid System, which in theory should support all the registrants. 
-          (unless there are more than 5000 registrants.)</p>
-      </div>
-      <a href="https://discord.gg/E958uMVzzF" class="chat white disabled">SERVER IN MAINTENANCE MODE</a>
-    </div>
-    <div id="whitever">
-      <div class="lifestatus">
-        <div class="white">STATUS: </div>
-        <div class="color border">ATTEMPTING CONNECTION.</div>
-      </div>
-      <div class="pmrstatus">
-        <div class="white">PMR</div>
-        <div class="color bg">ONLINE</div>
-      </div>
-      <img id="tsuki" class="white" src="./res/img/companies/transparent/tsuki.png">
-      <div class="explanation">
-        <h1 class="color">Great Unlock Type 1</h1>
-        <h2 class="white">Connections to access Great Unlock Servers are currently being attempted.</h2>
-        <p class="white">Great Unlock Type 1 is an interface which allows the Ribbon user (the Representative) to create a hybrid System, which in theory should support all the registrants. 
-          (unless there are more than 5000 registrants.)</p>
-        <p class="white">Registrations are disabled during this process to make sure that the connection attempt is going to be successfull</p>
-      </div>
-      <a href="https://discord.gg/E958uMVzzF" class="chat white disabled">SERVER IN MAINTENANCE MODE</a>
-    </div>
-    <div id="colorlay"></div>
-    <div id="fuckyouchrome"></div>
-    <style>
-      #stalled-start-behind {
-        left: 0;
-        top: 0;
-        bottom: 0;
-        right: 0;
-        position: fixed;
-        background-color: rgba(0, 0, 0, 0.98);
-        z-index: 900000000;
-      }
-
-      #stalled-start-behind.qr {
-        opacity: 0;
-        pointer-events: none;
-        transition: 0.2s opacity;
-      }
-
-      #stalled-start {
-        left: 10vh;
-        top: 10vh;
-        bottom: 10vh;
-        right: 10vh;
-        position: fixed;
-        background-color: #000;
-        box-shadow: 0px 8px 128px #000;
-        z-index: 900000001;
-        text-align: center;
-        padding: 5vh;
-        color: #FFF;
-        animation: InWowZoom 0.5s 1s backwards;
-        cursor: pointer;
-        transition: 0.4s transform, 0.4s box-shadow;
-      }
-
-      #stalled-start:hover {
-        transform: scale(1.01);
-        box-shadow: 0px 0px 4px rgba(255, 255, 255, 0.01), 0px 8px 128px #000;
-      }
-
-      #stalled-start:active {
-        transform: scale(0.95);
-        box-shadow: 0px 0px 12px rgba(255, 255, 255, 0.2), 0px 8px 128px #000;
-        transition: 0.1s transform, 0.1s box-shadow;
-      }
-
-      @keyframes InWowZoom {
-        from {
-          opacity: 0;
-          transform: scale(1.1);
-        }
-
-        to {
-          opacity: 1;
-          transform: scale(1);
-        }
-      }
-
-      @keyframes Uppe {
-        from {
-          opacity: 0;
-          bottom: -2vh;
-        }
-
-        to {
-          opacity: 1;
-          bottom: 5vh;
-        }
-      }
-
-      #centermelol {
-        position: fixed;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-      }
-
-      #stalled-start img {
-        height: 20vh;
-      }
-
-      #stalled-start h1 {
-        font-family: "Heading", sans-serif;
-        font-size: 6vh;
-      }
-
-      #stalled-start h2 {
-        margin-top: 3vh;
-        font-family: "Heading", sans-serif;
-        font-size: 3vh;
-      }
-
-      #bypass-stall {
-        position: fixed;
-        left: 50%;
-        bottom: 5vh;
-        transform: translate(-50%, -50%);
-        font-family: "Tiny", sans-serif;
-        font-size: 2.5vh;
-        color: #111;
-        cursor: pointer;
-        z-index: 9000000005;
-        animation: Uppe 0.5s 1s backwards;
-      }
-
-      #bypass-stall:hover {
-        color: #333;
-      }
-
-      #stalled-start.nomore {
-        transform: scale(0.8);
-        opacity: 0;
-        pointer-events: none;
-        transition: 0.2s transform, 0.2s opacity;
-      }
-
-      #stalled-start.nomore+#stalled-start-behind {
-        opacity: 0;
-        pointer-events: none;
-        transition: 0.4s opacity;
-      }
-
-      #stalled-start.nomore~#bypass-stall {
-        opacity: 0;
-        pointer-events: none;
-        transition: 0.2s opacity;
-      }
-    </style>
-    <noscript>
-      <style>
-        #stalled-start-behind {
-          display: none;
-        }
-
-        #stalled-start {
-          display: none;
-        }
-
-        #bypass-stall {
-          display: none;
-        }
-      </style>
-    </noscript>
-  </body>
+<center>
+      <h1 id="counter">GREAT UNLOCK TYPE 1</h1>
+      <p id="fuckoff">Connection to Great Unlock Type 1 is currently being attempted. all services have been shut down, so this process can happen without errors.</p>
+  <center>
+  </b>
 </html>
