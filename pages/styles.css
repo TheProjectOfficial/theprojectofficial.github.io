@@ -480,9 +480,11 @@ hr {
 
 p {
     font-family: "Paragraph"; 
+	color: #FFF;
 }
 h1 {
-    font-family: "gaiatype"; 
+    font-family: "gaiatype";
+color: #FFF;
 }
 
 input {
