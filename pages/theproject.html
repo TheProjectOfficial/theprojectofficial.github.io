@@ -91,6 +91,7 @@
       }
     </style>
     <script>
+
 function $i(id) { return document.getElementById(id); }
 function $r(parent,child) { (document.getElementById(parent)).removeChild(document.getElementById(child)); }
 function $t(name) { return document.getElementsByTagName(name); }
@@ -274,8 +275,13 @@ function resize()
 	init();
 	}
 
-		
-	</script>
+document.onmousemove=move;
+document.onkeypress=key_manager;
+document.onkeyup=release;
+document.onmousewheel=mouse_wheel; if(window.addEventListener) window.addEventListener('DOMMouseScroll',mouse_wheel,false);
+
+	    
+    </script>
 	<style>
 .scanlines {
     overflow: hidden;
