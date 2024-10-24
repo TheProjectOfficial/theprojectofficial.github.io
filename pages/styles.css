@@ -11,8 +11,8 @@
 	src: url(https://new.systemspace.network/res/font/tiny.woff);
 }
 @font-face {
-	font-family: "7seg";
-	src: url(https://new.systemspace.network/res/font/7seg.ttf);
+	font-family: "gaiatype";
+	src: url(/stuff/gaiatype.ttf);
 }
 @font-face {
 	font-family: "MS Mincho";
@@ -35,8 +35,8 @@
 	src: url(https://new.systemspace.network/res/font/countdown.ttf);
 }
 @font-face {
-	font-family: "RO";
-	src: url(https://new.systemspace.network/res/font/ro.ttf);
+	font-family: "Paragraph";
+	src: url(/stuff/paragraph.ttf);
 }
 
 .clip-svg {
@@ -546,6 +546,13 @@ hr {
 	border: none;
 }
 
+p {
+    font-family: "Paragraph"; 
+}
+h1 {
+    font-family: "gaiatype"; 
+}
+
 input {
 	background-color: #000;
 	font-family: "MS Gothic", sans-serif;
@@ -586,7 +593,7 @@ textarea.big {
 .button {
 	background-color: #000;
 	display: inline-block;
-	font-family: "MS Gothic", sans-serif;
+	font-family: "Paragraph", sans-serif;
 	font-size: 1em;
 	color: #FFF;
 	border: 1px solid #FFF;
