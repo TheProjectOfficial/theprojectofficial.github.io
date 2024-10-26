@@ -93,6 +93,15 @@ a {
   text-decoration: none;
 }
 
+p {
+  font-family: Paragraph;
+  text-shadow: 0px 0px 16px #AAF;
+}
+h1 {
+  font-family: "gaiatype", sans-serif;
+  text-shadow: 0px 0px 16px #AAF;
+}
+
 .link {
   border-bottom: 1px dotted;
 }
