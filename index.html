@@ -19,9 +19,13 @@
 	startThemeSound.play();
 	startThemeSound.loop = false;
 
+	startThemeSound.addEventListener("ended", function(event) {
+
 	var loopThemeSound = new Audio('/stuff/something4.ogg');
 	loopThemeSound.play();
 	loopThemeSound.loop = true;
+		
+	});
 		
 	var countDownDate = new Date("Oct 27, 2024 15:00:00").getTime();
 
