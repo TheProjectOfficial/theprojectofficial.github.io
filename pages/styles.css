@@ -1,10 +1,10 @@
 @font-face {
-  font-family: "Heading";
-  src: url(/res/font/heading.woff);
+  font-family: "gaiatype";
+  src: url(stuff/gaiatype.ttf);
 }
 @font-face {
   font-family: "Paragraph";
-  src: url(/res/font/paragraph.ttf);
+  src: url(/stuff/parapgraph.ttf);
 }
 @font-face {
   font-family: "Tiny";
