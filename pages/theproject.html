@@ -119,14 +119,6 @@
       z-index: 1000;
     }
 
-    p {
-      font-family: Paragraph;
-      text-shadow: 0px 0px 16px #AAF;
-    }
-    h1 {
-      font-family: "gaiatype", sans-serif;
-      text-shadow: 0px 0px 16px #AAF;
-    }
 
 
     #content h1 {
@@ -151,19 +143,10 @@
     }
   </style>
   <script>
-    $(document).ready(function() {
-      music_volume = 1;
-      sfx_volume = 1;
-      setSfxVolume(1);
-      if (getCookie("pref-MUSVOL") != "0") {
-        playMusic(1, "404");
-      }
-      if (getCookie("pref-ANIM") == "none") {
-        $("html").addClass("no-anim");
-        $("html").addClass("no-scanlines");
-      }
-    });
-  </script>
+	  var trusedaudioplayerfrfr = new Audio('/stuff/currentlyconnecting.ogg');
+	  trusedaudioplayerfrfr.play();
+	  trusedaudioplayerfrfr.loop = true;
+    </script>
 </head>
 
 <body>
@@ -289,7 +272,7 @@
     <p>There was an internal server error inside our database, resulting in a crash, this will be fixed as soon as possible</p>
     <p id="secondary">COPYRIGHT THEPROJECT 2024-2025 (HTS)</p>
   </div>
-  <img id="logo" src="/stuff/theprojectloader.png/" />
+  <img id="logo" src="/stuff/theprojectloader.png"/>
 </body>
 
 </html>
