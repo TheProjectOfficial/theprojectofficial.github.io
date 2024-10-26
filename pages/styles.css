@@ -6,38 +6,6 @@
   font-family: "Paragraph";
   src: url(/stuff/parapgraph.ttf);
 }
-@font-face {
-  font-family: "Tiny";
-  src: url(/res/font/tiny.woff);
-}
-@font-face {
-  font-family: "7seg";
-  src: url(/res/font/7seg.ttf);
-}
-@font-face {
-  font-family: "MS Mincho";
-  src: url(/res/font/mincho.ttf);
-}
-@font-face {
-  font-family: "MS Gothic";
-  src: url(/res/font/gothic.ttf);
-}
-@font-face {
-  font-family: "A";
-  src: url(/res/font/A.otf);
-}
-@font-face {
-  font-family: "S";
-  src: url(/res/font/S.ttf);
-}
-@font-face {
-  font-family: "CNT";
-  src: url(/res/font/countdown.ttf);
-}
-@font-face {
-  font-family: "RO";
-  src: url(/res/font/ro.ttf);
-}
 
 .clip-svg {
   opacity: 0;
