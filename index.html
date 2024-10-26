@@ -13,19 +13,7 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="/res/css/reset.css"><link rel="stylesheet" href="/res/css/common.css"><script src="/res/js/jquery.js"></script><script src="/res/js/howler.js"></script>
 	<script>
-        	var welcomeCorrupted = new Audio('/stuff/welcome-something.ogg');
-		welcomeCorrupted.play();
-		welcomeCorrupted.loop = false;
-
-		welcomeCorrupted.addEventListener("ended", function(event) {
-			
-		var mainLoop = new Audio('/stuff/something4.ogg');
-		mainLoop.play();
-		mainLoop.loop = true;
-		});
-	
-
-		var countDownDate = new Date("Oct 27, 2030 18:00:00").getTime();
+				var countDownDate = new Date("Oct 27, 2030 18:00:00").getTime();
 
 		// Update the count down every 1 second
 		var x = setInterval(function() {
@@ -49,8 +37,18 @@
     		clearInterval(x);
     		document.getElementById("demo").innerHTML = "???";
  		}
-			
 	       }, 1000);
+		
+        	var welcomeCorrupted = new Audio('/stuff/welcome-something.ogg');
+		welcomeCorrupted.play();
+		welcomeCorrupted.loop = false;
+
+		welcomeCorrupted.addEventListener("ended", function(event) {
+			
+		var mainLoop = new Audio('/stuff/something4.ogg');
+		mainLoop.play();
+		mainLoop.loop = true;
+		});
 	</script>
 	<style>
 		@font-face {
