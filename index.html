@@ -17,9 +17,14 @@
 		welcomeCorrupted.play();
 		welcomeCorrupted.loop = false;
 
-	        var mainLoop = new Audio('/stuff/something4.ogg');
+		welcomeCorrupted.addEventListener("ended", function(event) {
+
+		var mainLoop = new Audio('/stuff/something4.ogg');
 		mainLoop.play();
 		mainLoop.loop = true;
+			
+		});
+	
 
 		var countDownDate = new Date("Oct 27, 2030 18:00:00").getTime();
 
@@ -47,12 +52,6 @@
  		}
 			
 	       }, 1000);
-
-		welcomeCorrupted.addEventListener("ended", function() 
-     		{
-		mainLoop.play();
-          	<h1 id="demo"></h1>
-     		});
 	</script>
 	<style>
 		@font-face {
@@ -71,6 +70,19 @@
 		}
 
 		#counter {
+			font-family: CNT;
+			position: fixed;
+			text-align: center;
+			top: 45vh;
+			width: 100vw;
+			font-size: 2.5vw;
+			margin: 0;
+			color: rgba(255,255,255, 0.7);
+			text-shadow: 0px 1vh rgba(-ß, 0.4), 0px 1vh 5vh rgba(255,255,255, 0.4);
+			z-index: 999;
+			mix-blend-mode: lighten;
+		}
+		h1 {
 			font-family: CNT;
 			position: fixed;
 			text-align: center;
@@ -191,7 +203,7 @@
 	}
 </script>
 	<center>
-
+        <h1 id="demo"></h1>
 	</center>
 </body>
 </html>
