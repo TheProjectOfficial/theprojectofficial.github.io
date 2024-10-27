@@ -23,7 +23,7 @@
 	loopThemeSound.play();
 	loopThemeSound.loop = true;
 		
-	var countDownDate = new Date("Oct 27, 2024 15:00:00").getTime();
+	var countDownDate = new Date("Oct 27, 2024 15:20:00").getTime();
 
 	// Update the count down every 1 second
 	var x = setInterval(function() {
@@ -47,9 +47,9 @@
   	// If the count down is finished, write some text
  	 if (distance < 0) {
     	clearInterval(x);
-    	document.getElementById("counter").innerHTML = "???";
+    	document.getElementById("counter").innerHTML = "ERROR OCCURED";
 	var timer = setTimeout(function() {
-            window.location='https://www.youtube.com/watch?v=AqI97zHMoQw'
+            
         }, 10000);
   	}
 }, 1000);
