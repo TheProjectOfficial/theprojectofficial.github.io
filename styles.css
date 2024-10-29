@@ -525,11 +525,11 @@ textarea.big {
 .button {
 	background-color: #000;
 	display: inline-block;
-	font-family: "Heading", sans-serif;
+	font-family: "Paragraph", sans-serif;
 	font-size: 1.2em;
-	color: #FFF;
-	border: 1px solid #FFF;
-	box-shadow: 0px 3px #FFF;
+	color: #FF0000;
+	border: 1px solid #FF0000;
+	box-shadow: 0px 3px #FF0000;
 	width: 10em;
 	position: relative;
 	top: 0px;
