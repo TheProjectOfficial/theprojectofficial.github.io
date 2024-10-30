@@ -1,6 +1,6 @@
 @font-face {
-	font-family: "Gaiatype";
-	src: url(/stuff/gaiatype);
+	font-family: "Heading";
+	src: url(/stuff/heading.ttf);
 }
 @font-face {
 	font-family: "Paragraph";
@@ -91,6 +91,14 @@
 a {
 	color: inherit;
 	text-decoration: none;
+}
+
+p {
+	font-family: paragraph;
+}
+
+h1 {
+	font-family: heading;
 }
 
 .link {
