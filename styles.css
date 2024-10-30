@@ -8,35 +8,35 @@
 }
 @font-face {
 	font-family: "Tiny";
-	src: url(/res/font/tiny.woff);
+	src: url(https://new.systemspace.network/res/font/tiny.woff);
 }
 @font-face {
 	font-family: "7seg";
-	src: url(/res/font/7seg.ttf);
+	src: url(https://new.systemspace.network/res/font/7seg.ttf);
 }
 @font-face {
 	font-family: "MS Mincho";
-	src: url(/res/font/mincho.ttf);
+	src: url(https://new.systemspace.network/res/font/mincho.ttf);
 }
 @font-face {
 	font-family: "MS Gothic";
-	src: url(/res/font/gothic.ttf);
+	src: url(https://new.systemspace.network/res/font/gothic.ttf);
 }
 @font-face {
 	font-family: "A";
-	src: url(/res/font/A.otf);
+	src: url(https://new.systemspace.network/res/font/A.otf);
 }
 @font-face {
 	font-family: "S";
-	src: url(/res/font/S.ttf);
+	src: url(https://new.systemspace.network/res/font/S.ttf);
 }
 @font-face {
 	font-family: "CNT";
-	src: url(/res/font/countdown.ttf);
+	src: url(https://new.systemspace.network/res/font/countdown.ttf);
 }
 @font-face {
 	font-family: "RO";
-	src: url(/res/font/ro.ttf);
+	src: url(https://new.systemspace.network/res/font/ro.ttf);
 }
 
 .clip-svg {
@@ -91,14 +91,6 @@
 a {
 	color: inherit;
 	text-decoration: none;
-}
-
-h1 {
-  font-family: "Paragraph";
-}
-
-p {
-  font-family: "Paragraph";
 }
 
 .link {
@@ -162,6 +154,75 @@ body {
 #header-shadow {
 	filter: drop-shadow(0px 1px #FFDF9B);
 }
+
+
+/* Stars 
+------------------------------------- */
+
+#space, .stars {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.stars {
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, #eee, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 40px 70px, #fff, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 50px 160px, #ddd, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 90px 40px, #fff, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 130px 80px, #fff, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 160px 120px, #ddd, rgba(0,0,0,0));
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  animation: zoom 5s infinite;
+  opacity: 0;
+}
+
+.stars:nth-child(1) {
+  background-position: 50% 50%;
+  animation-delay: 0s;
+}
+.stars:nth-child(2) {
+  background-position: 20% 60%;
+  animation-delay: 1s;
+}
+.stars:nth-child(3) {
+  background-position: -20% -30%;
+  animation-delay: 2s;
+}
+.stars:nth-child(4) {
+  background-position: 40% -80%;
+  animation-delay: 3s;
+}
+.stars:nth-child(5) {
+  background-position: -20% 30%;
+  animation-delay: 4s;
+}
+
+@keyframes zoom {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+    animation-timing-function: ease-in;
+  } 
+  85% {
+    opacity: 1;
+    transform: scale(2.8);
+    animation-timing-function: linear;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(3.5);
+  }
+}
+
+/* Demo syles 
+------------------------------------- */
+
 
 #bg-dots {
 	background-image: url(/res/img/bg/dots.png);
@@ -240,7 +301,7 @@ section::after {
 
 section h1 {
 	font-size: 2em;
-	font-family: "Heading", sans-serif;
+	font-family: "Paragraph", sans-serif;
 	text-align: center;
 	border-bottom: 1px solid;
 	margin-left: -0.5em;
@@ -252,7 +313,7 @@ section h1 {
 
 section h3 {
 	font-size: 1.4em;
-	font-family: "Tiny", sans-serif;
+	font-family: "Paragraph", sans-serif;
 	text-align: center;
 }
 
@@ -264,7 +325,7 @@ section.slim {
 
 section.slim h1 {
 	font-size: 2em;
-	font-family: "Heading", sans-serif;
+	font-family: "Paragraph", sans-serif;
 	text-align: left;
 	border-bottom: 1px solid;
 	margin-left: 0em;
@@ -281,7 +342,7 @@ section.slim h1 {
 	color: var(--section-color);
 	text-align: center;
 
-	font-family: "Tiny", sans-serif;
+	font-family: "Paragraph", sans-serif;
 }
 
 .link>section span {
@@ -431,27 +492,27 @@ section h1.statistic {
 }
 
 section p.statistic-label {
-	font-family: "Tiny", sans-serif;
+	font-family: "MS Gothic", sans-serif;
 	font-size: 2em;
 	text-align: center;
 	margin-bottom: -0.6em;
 }
 
 section h1.statistic.timer {
-	font-family: "7seg";
+	font-family: "MS Gothic";
 	letter-spacing: 0.05em;
 	margin-bottom: -0.35em;
 }
 
 section h1.statistic.timer .label {
 	font-size: 0.5em;
-	font-family: "Tiny", sans-serif;
+	font-family: "MS Gothic", sans-serif;
 	letter-spacing: 0;
 }
 
 section p.statistic-addendum {
 	font-size: 1em;
-	font-family: "Tiny";
+	font-family: "MS Gothic";
 	text-align: center;
 	margin: 0;
 	margin-top: 1em;
@@ -487,7 +548,7 @@ hr {
 
 input {
 	background-color: #000;
-	font-family: "Heading", sans-serif;
+	font-family: "MS Gothic", sans-serif;
 	font-size: 1.2em;
 	color: #FFF;
 	border: 1px solid #FFF;
@@ -525,11 +586,11 @@ textarea.big {
 .button {
 	background-color: #000;
 	display: inline-block;
-	font-family: "Paragraph", sans-serif;
-	font-size: 1.2em;
-	color: #FF0000;
-	border: 1px solid #FF0000;
-	box-shadow: 0px 3px #FF0000;
+	font-family: "MS Gothic", sans-serif;
+	font-size: 1em;
+	color: #FFF;
+	border: 1px solid #FFF;
+	box-shadow: 0px 3px #FFF;
 	width: 10em;
 	position: relative;
 	top: 0px;
@@ -568,18 +629,6 @@ textarea.big {
 	font-size: 2em;
 	width: 100%;
 }
-
- #content {
-			color: #AAA;
-			opacity: 0.8;
-			width: 30em;
-			max-width: calc(100%  - 2em);
-			padding-left: 5vw;
-			padding-top: 5vw;
-			position: relative;
-			z-index: 1000;
-			font-family: "MS Gothic", sans-serif;
-		}
 
 .button.sized {
 	font-size: 2em;
@@ -701,6 +750,71 @@ textarea.big {
 	color: #FFF;
 }
 
+#simple_content h1 {
+	font-size: 3em;
+	font-family: "Heading", sans-serif;
+}
+
+#simple_content h2 {
+	font-size: 1.8em;
+	font-family: "Heading", sans-serif;
+}
+
+.message-box {
+	display: inline-block;
+	color: #FFF;
+	padding: 0.5em;
+	border: 1px solid #FFF;
+}
+
+.message-box.negative {
+	background-color: var(--negative-color);
+	border: 1px solid var(--negative-color);
+	color: #000;
+}
+
+/* Scanlines */
+body:before {
+	content: "";
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+	z-index: 1000;
+	background-image: url(https://classic.systemspace.network/res/img/ui/static/overlay.png);
+	background-repeat: all;
+	background-position: 0px 0px;
+	animation-name: Static;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+	animation-timing-function: steps(4);
+	box-shadow: inset 0px 0px 10em rgba(0,0,0,0.4);
+}
+
+body:after {
+	content: "";
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+	z-index: 1000;
+	background-image: url(https://classic.systemspace.network/res/img/ui/static/overlay2.png);
+	background-repeat: all;
+	background-position: 0px 0px;
+	animation-name: Static;
+	animation-duration: 0.8s;
+	animation-iteration-count: infinite;
+	animation-timing-function: steps(4);
+}
+
+@keyframes Static {
+	0% { background-position: 0px 0px; }
+	100% { background-position: 0px 4px; }
+}
 html, body {
 	cursor: url(https://new.systemspace.network/res/cursor/default.png), default;
 }
@@ -749,111 +863,10 @@ a {
 	cursor: url(https://new.systemspace.network/res/cursor/downdown.png), pointer;
 }
 
-canvas {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-}
-
 .cur-out {
 	cursor: url(https://new.systemspace.network/res/cursor/out.png), pointer;
 }
 
 .cur-dataverse, .dataverse-link {
 	cursor: url(https://new.systemspace.network/res/cursor/dataverse.png), pointer;
-}
-
-#simple_content h1 {
-	font-size: 3em;
-	font-family: "Heading", sans-serif;
-}
-
-#simple_content h2 {
-	font-size: 1.8em;
-	font-family: "Heading", sans-serif;
-}
-
-html:not(.no-scanlines):not(.force-no-scanlines) body::before {
-	content: "";
-	display: block;
-	position: fixed;
-	left: 0;
-	top: 0;
-	width: calc(100% + 32px);
-	height: calc(100% + 32px);
-	background-image: url(https://new.systemspace.network/res/img/scanlines.png);
-	background-position: 0 0;
-	background-repeat: repeat;
-	z-index: 10000000;
-	animation: ScanlineAnimationLeft 2s linear infinite;
-	pointer-events: none;
-	opacity: 0.5;
-}
-
-html:not(.no-scanlines):not(.force-no-scanlines) body::after {
-	content: "";
-	display: block;
-	position: fixed;
-	left: -32px;
-	top: 0;
-	width: calc(100% + 32px);
-	height: calc(100% + 32px);
-	background-image: url(https://new.systemspace.network/res/img/scanlines.png);
-	background-position: 0 0;
-	background-repeat: repeat;
-	z-index: 10000000;
-	animation: ScanlineAnimationRight 0.4s linear infinite;
-	pointer-events: none;
-	opacity: 0.5;
-}
-
-@keyframes ScanlineAnimationLeft {
-	0% {
-		transform: translateX(0px) translateY(0px);
-	}
-	100% {
-		transform: translateX(-32px) translateY(-32px);
-	}
-}
-
-@keyframes ScanlineAnimationRight {
-	0% {
-		transform: translateX(0px) translateY(0px);
-	}
-	100% {
-		transform: translateX(32px) translateY(-32px);
-	}
-}
-
-::-webkit-scrollbar {
-    width: 4px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-    background: #000;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-    background: #111;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-    background: #FFF;
-}
-
-
-.message-box {
-	display: inline-block;
-	color: #FFF;
-	padding: 0.5em;
-	border: 1px solid #FFF;
-}
-
-.message-box.negative {
-	background-color: var(--negative-color);
-	border: 1px solid var(--negative-color);
-	color: #000;
 }
