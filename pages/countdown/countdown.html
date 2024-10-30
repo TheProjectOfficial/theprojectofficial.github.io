@@ -1,265 +1,53 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
-	<title>???</title>
-	<link rel="apple-touch-icon" sizes="180x180" href="/res/img/icons/apple-touch-icon.png">
-	<link rel="icon" type="image/png" href="/res/img/icons/favicon-32x32.png" sizes="32x32">
-	<link rel="icon" type="image/png" href="/res/img/icons/favicon-16x16.png" sizes="16x16">
-	<link rel="manifest" href="/res/manifest.json">
-	<link rel="mask-icon" href="/res/img/icons/safari-pinned-tab.svg" color="#000000">
-	<link rel="shortcut icon" href="/res/img/icons/favicon.ico">
-	<meta name="msapplication-config" content="/res/browserconfig.xml">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="theme-color" content="#000000">
-	<meta charset="UTF-8">
-	<link rel="stylesheet" href="/res/css/reset.css"><link rel="stylesheet" href="/res/css/common.css"><script src="/res/js/jquery.js"></script><script src="/res/js/howler.js"></script>
-	<link rel="stylesheet" href="/pages/countdown/files/scanlines.js"></script>
-	<script>
+<head>
 
-	var welcomeStart = new Audio('/stuff/welcome‐something.ogg');
-	welcomeStart.play();
-	welcomeStart.loop = true;
-
-	var mainLoopSound = new Audio('/stuff/something4.ogg');
-	mainLoopSound.play();
-	mainLoopSound.loop = true;
-		
-	var countDownDate = new Date("Oct 27, 2024 15:00:00").getTime();
-
-	// Update the count down every 1 second
-	var x = setInterval(function() {
-
-  	// Get today's date and time
-  	var now = new Date().getTime();
-
-  	// Find the distance between now and the count down date
-  	var distance = countDownDate - now;
-
-  	// Time calculations for days, hours, minutes and seconds
-  	var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  	var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  	var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  	var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-  	// Display the result in the element with id="demo"
- 	 document.getElementById("counter").innerHTML = days + ":" + hours + ":"
-  	+ minutes + ":" + seconds + "";
-
-  	// If the count down is finished, write some text
- 	 if (distance < 0) {
-    	clearInterval(x);
-    	document.getElementById("counter").innerHTML = "???";
-	var timer = setTimeout(function() {
-            window.location='https://www.youtube.com/watch?v=AqI97zHMoQw'
-        }, 10000);
-  	}
-}, 1000);
-
-	</script>
-	<style>
-.scanlines {
-    overflow: hidden;
-    position: relative;
+ 
+<link rel="stylesheet" href="/pages/countdown/styles.css">
+  
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+p {
+  text-align: center;
+  font-size: 60px;
+  margin-top: 0px;
 }
-.scanlines:before,
-.scanlines:after {
-    display: block;
-    pointer-events: none;
-    content: "";
-    position: absolute;
-}
-.scanlines:before {
-    width: 100%;
-    height: 2px;
-    z-index: 2147483649;
-    background: rgba(0, 0, 0, 0.3);
-    opacity: 0.75;
-    animation: scanline 6s linear infinite;
-}
-.scanlines:after {
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 2147483648;
-    background: linear-gradient(
-        to bottom,
-        transparent 50%,
-        rgba(0, 0, 0, 0.3) 51%
-    );
-    background-size: 100% 4px;
-    animation: scanlines 1s steps(60) infinite;
-}
-
-/* ANIMATE UNIQUE SCANLINE */
-@keyframes scanline {
-    0% {
-        transform: translate3d(0, 200000%, 0);
-    }
-}
-@keyframes scanlines {
-    0% {
-        background-position: 0 50%;
-    }
-}
-div {
-    margin: 0;
-    padding: 0;
-}
-div.scanlines {
-    position: absolute;
-}
-body {
-    position: relative;
-    background: #1b1b1b;
-}
-
-		
-		@font-face {
-			font-family: CNT;
-			src: url(/stuff/countdown.ttf);
-		}
-		@font-face {
-			font-family: ABR;
-			src: url(/stuff/abr.ttf);
-		}
-		@font-face {
-			font-family: GaiaFont;
-			src: url(/stuff/gaiatype.ttf);
-		}
-		@font-face {
-			font-family: Paragraph;
-			src: url(/stuff/paragraph.ttf);
-		}
-
-		body, html {
-			background-color: #000;
-			color: #fff;
-			width: 100%;
-			height: 100%;
-			margin: 0;
-			padding: 0;
-			overflow: hidden;
-		}
-
-		
-
-		#demo {
-			font-family: CNT;
-			position: fixed;
-			text-align: center;
-			top: 45vh;
-			width: 100vw;
-			font-size: 7vw;
-			margin: 0;
-			color: rgba(255, 0, 0, 0.7);
-			text-shadow: 0px 1vh rgba(255,139,142, 0.4), 0px 1vh 5vh rgba(255,139,142, 0.4);
-			z-index: 999;
-			mix-blend-mode: lighten;
-		}
-			#fuckyouParaGrap {
-			font-family: paragraph;
-			position: fixed;
-			text-align: center;
-			top: 40vh;
-			width: 100vw;
-			font-size: 1.5vw;
-			margin: 0;
-			color: rgba(0, 198, 129, 0.7);
-			text-shadow: 0px 0vh rgba(0, 198, 129, 0.4), 0px 0vh 0vh rgba(0, 198, 129, 0.4);
-			z-index: 999;
-			mix-blend-mode: lighten;
-		}
-
-		#ms {
-			display: inline-block;
-			width: 4em;
-			font-size: 0.5em;
-		}
-
-		#wallpaper {
-			position: fixed;
-			left: 0;
-			top: 0;
-			width: 100%;
-			height: 100%;
-			mix-blend-mode: screen;
-			opacity: 0.05;
-		}
-	</style>
+</style>
 </head>
 <body>
-	<div id="contentloader">
-	<img id="loadtsuki" src="/res/img/loader/loadtsuki.png"/>
-	<img id="loadspin" src="/res/img/loader/loadspin.png"/>
-</div>
-<style>
-	#contentloader {
-		position: fixed;
-		left: 0;
-		top: 0;
-		width: 100%;
-		height: 100%;
-		background-color: #000;
-		z-index: 10000;
-		transition: 0.2s;
-	}
 
-	#loadtsuki {
-		position: absolute;
-		left: calc(50% - 48px);
-		top: calc(50% - 48px);
-	}
+<h1 id="demo"></h1>
 
-	#loadspin {
-		position: absolute;
-		left: calc(50% - 46px);
-		top: calc(50% - 47px);
-		animation: LoaderSpin 2s infinite linear;
-	}
-
-	@keyframes LoaderSpin {
-		0% {
-			transform: rotate(0deg);
-		}
-		100% {
-			transform: rotate(360deg);
-		}
-	}
-
-	.destroyedloader {
-		opacity: 0;
-		pointer-events: none;
-		transition: 0.5s !important;	
-	}
-
-	.destroyedloader #loadtsuki {
-		top: calc(50% - 100px);
-		transition: 0.5s ease-in !important;
-	}
-
-	.destroyedloader #loadspin {
-		top: calc(50% - 100px);
-		transition: 0.5s ease-in !important;
-	}
-</style>
 <script>
-	window.addEventListener("load", function(event) {
-		document.getElementById("contentloader").className = "destroyedloader";
-		document.getElementById("loadspin").src = "/res/img/loader/loadfinish.png";
-	});
-	
-	window.onbeforeunload = function() {
-		document.getElementById("contentloader").classList.remove("destroyedloader");
-		document.getElementById("loadspin").src = "/res/img/loader/loadspin.png";
-	}
+// Set the date we're counting down to
+var countDownDate = new Date("Jan 5, 2030 15:37:25").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Display the result in the element with id="demo"
+  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+
+  // If the count down is finished, write some text
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("demo").innerHTML = "???";
+  }
+}, 1000);
 </script>
 
-<body onload="start()" onresize="resize()" onorientationchange="resize()" onmousedown="context.fillStyle='rgba(0,0,0,'+opacity+')'" onmouseup="context.fillStyle='rgb(0,0,0)'">
-<canvas id="starfield" style="background-color:#000000"></canvas>
-</body>
-	
-	<center>
-		<h1 id="demo"></h1>
-	</center>
 </body>
 </html>
