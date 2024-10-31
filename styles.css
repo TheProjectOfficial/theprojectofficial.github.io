@@ -870,3 +870,23 @@ a {
 .cur-dataverse, .dataverse-link {
 	cursor: url(https://new.systemspace.network/res/cursor/dataverse.png), pointer;
 }
+
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #000;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #111;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #FFF;
+}
+
