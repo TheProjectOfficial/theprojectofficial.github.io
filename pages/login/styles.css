@@ -589,6 +589,7 @@ h1 {
 	font-family: "MS Gothic", sans-serif;
 	font-size: 2em;
 	color: #FFF;
+	top: 10;
 	width: 30em;
 
 }
@@ -598,6 +599,7 @@ p {
 	font-family: "MS Gothic", sans-serif;
 	font-size: 1em;
 	color: #FFF;
+	top: 10;
 	width: 30em;
 
 
