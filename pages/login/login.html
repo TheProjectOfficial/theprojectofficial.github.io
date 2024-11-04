@@ -5,12 +5,13 @@
 </head>
 
 <script>
-var loginaudiorip = new Audio('/stuff/loginwired.ogg');
-	  loginaudiorip.play();
-	  loginaudiorip.loop = false;
-	var loopaudio = new Audio('/stuff/login-loop.ogg');
-	  loopaudio.play();
-	  loopaudio.loop = true;
+var loginaudiorip = new Audio('/stuff/loginwired.wav');
+loginaudiorip.play();
+loginaudiorip.loop = false;
+	
+var loopaudio = new Audio('/stuff/login-loop.ogg');
+loopaudio.play();
+loopaudio.loop = true;
   
 function validateForm() {
   var x = document.forms["myForm"]["fname"].value;
