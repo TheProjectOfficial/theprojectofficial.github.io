@@ -9,9 +9,20 @@
 </head>
 <script>
 
-var loginaudio = new Audio('/stuff/loginpage.wav');
-loginaudio.play();
-loginaudio.loop = true;
+var audio1 = document.getElementById("another_audio");
+audio1.onended = function() {
+	
+var audio2 = document.getElementById("background_audio");
+audio2.play();
+};
+
+<audio id="background_audio">
+  <source src="/stuff/loginstart.ogg" type="audio/mpeg">
+</audio>
+
+<audio autoplay id="another_audio">
+  <source src="/stuff/loginloop.ogg" type="audio/mpeg">
+</audio>
 
 </script>
     
@@ -33,4 +44,5 @@ loginaudio.loop = true;
         </form>
     </div>
 </body>
+
 </html>
