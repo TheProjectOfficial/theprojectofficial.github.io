@@ -172,3 +172,13 @@ body:after {
 	0% { background-position: 0px 0px; }
 	100% { background-position: 0px 4px; }
 }
+
+.overno {
+	color: #888 !important;
+	pointer-events: none
+}
+
+.overno:hover {
+	background-color: #888 !important;
+	color: #000 !important
+}
