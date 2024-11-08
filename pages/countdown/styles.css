@@ -651,7 +651,7 @@ p {
     border: none;
     border-radius: 3px;
 
-    animation: pulse 2s infinite alternate;
+    animation: pulse 0.5s infinite alternate;
 }
 h5 {
     width: 100%;
