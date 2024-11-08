@@ -736,14 +736,19 @@ input {
 	width: 100em;
 }
 
+input.placeholder {
+text-align: center;
+}
+
+
 input.big {
 	font-size: 2em;
-	width: 20em;
+	width: 100em;
 	text-align: center;
 }
 
 input.eid {
-	width: 18em;
+	width: 100em;
 }
 
 .fw {
