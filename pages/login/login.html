@@ -1,26 +1,13 @@
-<head>
-  <title>HOSHI / LOGIN</title>
-  <link rel="stylesheet" href="/pages/login/stylesRetro.css">
-</head>
-
-<script>
-
-    var loginsoundretroshit = new Audio('/stuff/auth.ogg');
-	  loginsoundretroshit.play();
-	  loginsoundretroshit.loop = true;
-	
-</script>
-
 <form action="action_page.php" method="post">
   <div class="container">
-    <div class="header"><span>/HOSHI/ SYSTEM LOGIN</span></div>
-    <label for="uname"><b>NUMBER</b></label>
-    <input type="text" placeholder="Enter Register Number" name="uname" required>
+    <div class="header"><span>SYSTEM LOGIN</span></div>
+    <label for="uname"><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="uname" required>
 
-    <label for="psw"><b>EID</b></label>
-    <input type="password" placeholder="Enter EID" name="psw" required>
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="psw" required>
 
-    <button class="btnSubmit" type="submit">Log in</button>
+    <button class="btnSubmit" type="submit">Login</button>
     <div class="footer" />
   </div>
 </form>
