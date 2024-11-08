@@ -1,133 +1,177 @@
-/* Define keyframe animation for the matrix background */
-@keyframes matrixBackground {
-    0% {
-        background-position: 0 0;
-    }
-    100% {
-        background-position: 100% 100%;
-    }
-}
+@import url("https://fonts.cdnfonts.com/css/pixel12x10");
+$screen-background: rgba(2, 255, 2, 0.5);
 
-/* General styles for the entire page */
-body {
-    font-family: 'VT323', monospace; /* Set the font family */
-    color: #2b0004; /* Set the text color */
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    overflow: hidden;
-    background-color: #000; /* Set the background color */
-    /* Create a background with gradient lines */
-    background-image: linear-gradient(rgba(43, 0, 4, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(43, 0, 4, 0.1) 1px, transparent 1px);
-    background-size: 30px 30px;
-    /* Apply the matrix background animation */
-    animation: matrixBackground 20s linear infinite;
-}
-
-/* Container for the login form */
-.container {
-    text-align: center;
-}
-
-/* Styles for the login form */
-.login-form {
-    background-color: rgba(0, 0, 0, 0.8); /* Set the background color with transparency */
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(43, 0, 4, 0.5); /* Add a shadow effect */
-    width: 300px;
-    /* Apply fade-in animation */
-    animation: fadeIn 1s ease;
-}
-
-/* Define the fade-in animation */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-/* Title styles */
-.matrix-title {
-    font-size: 30px; /* Set the font size */
-    margin-bottom: 20px;
-}
-
-/* Form group styles */
-.form-group {
-    margin-bottom: 20px;
-    /* Apply slide-in animation */
-    animation: slideIn 1s ease;
-}
-
-/* Define the slide-in animation */
-@keyframes slideIn {
-    from {
-        transform: translateY(-20px);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-/* Label styles */
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-/* Input field styles */
-.form-group input {
-    width: 96%; /* Set the width to fill the container */
-    padding: 10px; /* Add padding */
-    border: 1px solid #2b0004; /* Add border */
-    border-radius: 3px; /* Add border radius */
-    background-color: rgba(0, 0, 0, 0.5); /* Set background color with transparency */
-    color: #2b0004; /* Set text color */
-    font-size: 16px; /* Set font size */
-    transition: border-color 0.3s ease; /* Add transition effect for border color */
-}
-
-/* Input field focus styles */
-.form-group input:focus {
-    border-color: #2b0004; /* Change border color on focus */
-}
-
-/* Button styles */
-button {
+input {
+  color: white;
+  font-family: "Pixel12x10Mono", sans-serif;
+  font-size: 20px;
+  text-shadow: 0px 0px 5px #fff;
+  margin: 15px 0;
+  &:focus-visible {
+    outline: none;
+  }
+  &:focus {
+    background-color: red;
+  }
+  &:after {
+    content: "";
+    width: 5px;
+    height: 100%;
+    background-color: white;
+    color: white;
+  }
+  &[type="text"] {
     width: 100%;
-    padding: 10px;
-    background-color: #2b0004;
-    color: #000;
-    border: none;
-    border-radius: 3px;
+    height: 50px;
+    padding: 12px 20px;
+    display: inline-block;
+    border: 1px solid #fff;
+    box-sizing: border-box;
+    color: white;
+    background-color: black;
+  }
+
+  &[type="password"] {
+    width: 100%;
+    height: 50px;
+    padding: 12px 20px;
+    display: inline-block;
+    border: 1px solid #fff;
+    box-sizing: border-box;
+    color: white;
+    background-color: black;
+    text-security: square;
+  }
+}
+
+body {
+  height: 100vh;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset 0 0 100px 10px #ffffff0d;
+  filter: blur(0.1px);
+  // flicker
+  &:after {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: transparentize($screen-background, 0.9);
+    opacity: 0;
+    z-index: 2;
+    pointer-events: none;
+  }
+  // scanlines
+  &:before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(
+        transparentize($screen-background, 1) 50%,
+        transparentize(darken($screen-background, 10), 0.75) 50%
+      ),
+      linear-gradient(
+        90deg,
+        transparentize(#ff0000, 0.94),
+        transparentize(#00ff00, 0.98),
+        transparentize(#0000ff, 0.94)
+      );
+    z-index: 2;
+    background-size: 100% 2px, 3px 100%;
+    pointer-events: none;
+  }
+}
+
+.container {
+  max-width: 30rem;
+  max-height: fit-content;
+  color: white;
+  font-family: "Pixel12x10Mono", sans-serif;
+  position: relative;
+  animation: initialize 1000ms;
+}
+
+.header {
+  color: white;
+  display: flex;
+  align-items: above;
+  justify-content: center;
+  font-family: "Pixel12x10Mono", sans-serif;
+  border: 2px white;
+  border-style: solid solid hidden solid;
+  position: relative;
+  padding-bottom: 20px;
+  transform: scale(1.2);
+
+  > span {
+    background-color: black;
+    position: absolute;
+    top: -15px;
+    padding: 6px 11px;
+  }
+}
+
+.footer {
+  color: white;
+  font-family: "Pixel12x10Mono", sans-serif;
+  border: 2px white;
+  border-style: hidden solid solid solid;
+  padding-top: 20px;
+  transform: scale(1.2);
+}
+
+.btnSubmit {
+  transition: all 400ms;
+  width: 100%;
+  height: 50px;
+  background-color: #000000ff;
+  position: relative;
+  box-shadow: inset 0 0 0 0px #ffffff;
+  margin: 20px 0;
+
+  &:hover {
+    transition: all 200ms;
+    background-color: #fff;
+    color: black;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+
+    &:bsdefore {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  color: white;
+  font-family: "Pixel12x10Mono", sans-serif;
+  font-size: 20px;
+  text-shadow: 0px 0px 5px #fff;
 }
 
-/* Button hover styles */
-button:hover {
-    background-color: #FFF;
-    /* Add pulse animation on hover */
-    animation: pulse 0.5s infinite alternate;
+@keyframes initialize {
+  from {
+    max-width: 0;
+  }
 }
-
-/* Define the pulse animation */
-@keyframes pulse {
-    0% {
-        transform: scale(1);
-    }
-    100% {
-        transform: scale(1.05);
-    }
+@keyframes cursor {
+  from {
+    color: black;
+  }
+  to {
+    color: white;
+  }
 }
 
 /* Scanlines */
@@ -181,4 +225,26 @@ body:after {
 .overno:hover {
 	background-color: #888 !important;
 	color: #000 !important
+}
+*::-moz-selection {
+	color: #000;
+	background-color: #fff
+}
+
+*::selection {
+	color: #000;
+	background-color: #fff
+}
+html {
+	background-color: #000;
+	color: #fff;
+	font-family: paragraph, sans-serif;
+	font-size: 16px;
+	cursor: url(https://classic.systemspace.network/res/img/ui/cursor.png), default
+}
+
+a {
+	cursor: url(https://classic.systemspace.network/res/img/ui/pointer.png), default;
+	color: inherit;
+	text-decoration: none
 }
