@@ -13,6 +13,11 @@ input {
   &:focus {
     background-color: red;
   }
+
+input.placeholder {
+    text-align: center;
+}
+	
   &:after {
     content: "";
     width: 5px;
