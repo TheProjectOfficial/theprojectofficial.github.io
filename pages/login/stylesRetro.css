@@ -733,7 +733,7 @@ input {
 	font-size: 1.2em;
 	color: #FFF;
 	border: 1px solid #FFF;
-	width: 100em;
+	width: 100%;
 }
 
 input.placeholder {
@@ -743,12 +743,12 @@ text-align: center;
 
 input.big {
 	font-size: 2em;
-	width: 100em;
+	width: 30em;
 	text-align: center;
 }
 
 input.eid {
-	width: 100em;
+	width: 18em;
 }
 
 .fw {
