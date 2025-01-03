@@ -55,6 +55,35 @@
 			pointer-events: none;
 		}
   
+  /* Starfield container */
+    .starfield {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: black;
+      overflow: hidden;
+      pointer-events: none; /* Prevent interaction with stars */
+      z-index: -1; /* Ensure the stars are behind other content */
+    }
+
+    /* Individual stars */
+    .star {
+      position: absolute;
+      border-radius: 50%;
+      background-color: white;
+      opacity: 0.8;
+    }
+  
+      /* Content styling */
+    .center {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      color: white;
+    }
+  
 </style>
 </head>
   
@@ -69,6 +98,8 @@
 -->
   
 <center>
+  
+   <div class="starfield" id="starfield"></div>
 
   <h2 style="color:gray">🎉HAPPY NEW YEAR EVERYONE!🎉
   </h2>
@@ -106,41 +137,99 @@
 </div>
 </center>
 <script>
-  
-   // Get the audio element by its ID
-        //var audio = document.getElementById("myAudio");
+// Function to generate random stars
+    function createStars() {
+      const starfield = document.getElementById('starfield');
+      const numberOfStars = 300; // Number of stars
 
-        // Set the volume (0.0 to 1.0 range)
-        //audio.volume = 0.5; // This sets the volume to 30%
-  
-// Set the date we're counting down to
-var countDownDate = new Date("June 25, 2025 20:00:00").getTime();
+      for (let i = 0; i < numberOfStars; i++) {
+        const star = document.createElement('div');
+        star.classList.add('star');
 
-// Update the count down every 1 second
-var x = setInterval(function() {
+        // Set random size for each star (between 1px and 3px)
+        const size = Math.random() * 2 + 1;
+        star.style.width = `${size}px`;
+        star.style.height = `${size}px`;
 
-  // Get today's date and time
-  var now = new Date().getTime();
+        // Set random position for each star
+        const xPos = Math.random() * window.innerWidth;
+        const yPos = Math.random() * window.innerHeight;
+        star.style.left = `${xPos}px`;
+        star.style.top = `${yPos}px`;
 
-  // Find the distance between now and the count down date
-  var distance = countDownDate - now;
+        // Set random speed for each star by adjusting animation duration
+        const speed = Math.random() * 0.2 + 0.05;
 
-  // Time calculations for days, hours, minutes and seconds
-  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        // Randomize direction for each star (both horizontal and vertical)
+        const directionX = (Math.random() * 2 - 1) * speed; // Random direction (-1 to 1)
+        const directionY = (Math.random() * 2 - 1) * speed; // Random direction (-1 to 1)
 
-  // Display the result in the element with id="demo"
-  document.getElementById("demo").innerHTML = days + ":" + hours + ":"
-  + minutes + ":" + seconds + "";
+        // Store direction data in the star's dataset
+        star.dataset.directionX = directionX;
+        star.dataset.directionY = directionY;
 
-  // If the count down is finished, write some text
-  if (distance < 0) {
-    clearInterval(x);
-    document.getElementById("demo").innerHTML = "???";
-  }
-}, 1000);
+        // Append star to the starfield container
+        starfield.appendChild(star);
+      }
+    }
+
+    // Repeatedly animate stars by updating their position in JavaScript
+    function animateStars() {
+      const stars = document.querySelectorAll('.star');
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+
+      stars.forEach(star => {
+        // Get the current position of the star
+        const xPos = parseFloat(star.style.left);
+        const yPos = parseFloat(star.style.top);
+
+        // Get the random movement directions for each star
+        const directionX = parseFloat(star.dataset.directionX);
+        const directionY = parseFloat(star.dataset.directionY);
+
+        // Update the position of the star
+        let newX = xPos + directionX;
+        let newY = yPos + directionY;
+
+        // Ensure stars wrap around when they move off-screen (loop effect)
+        if (newX < 0) newX = width; // Wrap around horizontally
+        if (newX > width) newX = 0;
+        if (newY < 0) newY = height; // Wrap around vertically
+        if (newY > height) newY = 0;
+
+        // Apply new position
+        star.style.left = `${newX}px`;
+        star.style.top = `${newY}px`;
+      });
+
+      // Keep the animation running
+      requestAnimationFrame(animateStars);
+    }
+
+    // Generate the stars on page load
+    createStars();
+    animateStars();
+    
+    // Countdown script
+    var countDownDate = new Date("June 25, 2025 20:00:00").getTime();
+
+    var x = setInterval(function() {
+      var now = new Date().getTime();
+      var distance = countDownDate - now;
+
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("demo").innerHTML = days + ":" + hours + ":" + minutes + ":" + seconds + "";
+
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("demo").innerHTML = "???";
+      }
+    }, 1000);
  
 	  var countdownAudioTypeshii = new Audio('/stuff/shiki.mp3');
 	  countdownAudioTypeshii.play();
