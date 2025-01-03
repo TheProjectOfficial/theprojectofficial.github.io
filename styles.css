@@ -166,3 +166,34 @@ a {
 ::-webkit-scrollbar-thumb:hover {
     background: #FFF;
 }
+
+#twinkling_stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Behind other content */
+    pointer-events: none;
+    background: #000 url(https://new.systemspace.network/res/img/stars.png) repeat top center;
+    mix-blend-mode: lighten;
+    backface-visibility: hidden;
+}
+
+#twinkling_stars::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent url(https://new.systemspace.network/res/img/twinkling.png) repeat top center;
+    animation: 200s move-twink-back linear infinite;
+    mix-blend-mode: darken;
+    pointer-events: none;
+}
+
+@keyframes move-twink-back {
+    from { background-position: 0 0; }
+    to { background-position: -10000px 5000px; }
+}
