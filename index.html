@@ -238,3 +238,302 @@
 
 
 </html>
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ 
+<link rel="stylesheet" href="styles.css">
+  
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+  @keyframes move-twink-back {
+		    from {background-position:0 0;}
+		    to {background-position:-10000px 5000px;}
+		}
+
+		.no-anim #twinkling_stars {
+			display: none;
+		}
+
+		#twinkling_stars {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			display: block;
+
+			background: #000 url(https://new.systemspace.network/res/img/stars.png) repeat top center;
+			z-index: 0;
+
+			mix-blend-mode: lighten;
+			backface-visibility: hidden;
+			-webkit-backface-visibility: hidden;
+
+			pointer-events: none;
+		}
+
+		#twinkling_stars::after {
+			content: "";
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			display: block;
+
+			background:transparent url(https://new.systemspace.network/res/img/twinkling.png) repeat top center;
+			z-index:1;
+			animation: 200s move-twink-back linear infinite;
+
+			mix-blend-mode: darken;
+			backface-visibility: hidden;
+			-webkit-backface-visibility: hidden;
+
+			pointer-events: none;
+		}
+  
+  /* Starfield container */
+    .starfield {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: black;
+      overflow: hidden;
+      pointer-events: none; /* Prevent interaction with stars */
+      z-index: -1; /* Ensure the stars are behind other content */
+    }
+
+    /* Individual stars */
+    .star {
+      position: absolute;
+      border-radius: 50%;
+      background-color: white;
+      opacity: 0.8;
+    }
+  
+      /* Content styling */
+    .center {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      color: white;
+    }
+  
+      /* Flare Effect Styles */
+    #flare {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 1); /* Full opacity white */
+      border-radius: 50%;
+      animation: flare-animation 2s ease-out forwards;
+      pointer-events: none; /* Prevent flare from blocking interaction */
+      z-index: 10; /* Ensure it's above other elements */
+    }
+
+    /* Flare Animation */
+    @keyframes flare-animation {
+      0% {
+        transform: scale(1); /* Start at normal size */
+        opacity: 1; /* Fully opaque white */
+      }
+      100% {
+        transform: scale(5); /* Grow the flare */
+        opacity: 0; /* Fade to transparent */
+      }
+    }
+
+    /* Content styling */
+    .center {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      color: white;
+    }
+
+    /* Starfield container */
+    .starfield {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: black;
+      overflow: hidden;
+      pointer-events: none; /* Prevent interaction with stars */
+      z-index: -1; /* Ensure the stars are behind other content */
+    }
+
+    /* Individual stars */
+    .star {
+      position: absolute;
+      border-radius: 50%;
+      background-color: white;
+      opacity: 0.8;
+    }
+  
+</style>
+</head>
+  
+  
+<body>
+  
+        <!-- Audio element placed here -->
+    <!--<audio id="myAudio" autoplay>
+        //<source src="stuff/shiki.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+-->
+  
+  
+  <!-- Flare element added -->
+  <div id="flare"></div>
+  
+<center>
+  
+   <div class="starfield" id="starfield"></div>
+
+  <h2 style="color:gray">🎉HAPPY NEW YEAR EVERYONE!🎉
+  </h2>
+  
+  <img src="https://web.archive.org/web/20170707210936im_/https://chat.systemspace.link/fail.png" style="max-height: 12em;">
+
+  <h1>Corruption of current aurora use</h1>
+  <p>Due to auroraric standarts, and Connet betraying everybody, all aurora going through systems have been cut off, this means that we have to wait atleast 200 days before we try to connect to this kind of aurora again, now without Connet.</p>
+  <p>We have decided to take on the role of Connet, because we believe, that its our fault, and we would like to make up for it be rebooting all aurora when the time is right.
+  </p>
+  
+  <img src="https://github.com/novowarecheats/EclipxClicker-Source-Code/blob/main/trustbroken.png?raw=true" style="max-height: 10em;">
+  
+  <h3 style="color:red">We are now the official broadcaster of Aurora. Anything from Connet cannot be trusted anymore.
+  </h3>
+  
+   <p>any information, we find out will be broadcasted through this domain, there are other broadcasts too, this one here is the most official.</p>
+  <p>We also cant restart it now, since that would mean, that there is a 90% chance of auroraric destruction, also simply said, auroras energy gets destroyed, basically meaning that we, and all other systems using aurora, would collapse and get purged. to avoid this, we have to wait atleast 200 days until we retry to connect the aurora.</p>
+  <p><em>Im sorry for the circumstances. </em></p>
+  <p><em> ~ HoshiRep</em></p>
+   
+  <div class="center">
+
+    <h3 style="color:gray">[2024/12/29 16:00 EU] 
+  </h3>
+    <h3 style="color:gray;">Executer Aurora branch codes have been instructed to release at the purge date.</h3>
+
+    <p style="color:gray;">on the 25th of July, 2025</p>
+    <h1 style="position: fixed; top: 50; width:100%; text-align: center" id="demo"></h1>
+
+    <p style="color:gray;">Until we attempt to connect all aurora to all systems including ours.</p>
+    
+    
+
+</div>
+</center>
+<script>
+// Function to generate random stars
+    function createStars() {
+      const starfield = document.getElementById('starfield');
+      const numberOfStars = 300; // Number of stars
+
+      for (let i = 0; i < numberOfStars; i++) {
+        const star = document.createElement('div');
+        star.classList.add('star');
+
+        // Set random size for each star (between 1px and 3px)
+        const size = Math.random() * 2 + 1;
+        star.style.width = `${size}px`;
+        star.style.height = `${size}px`;
+
+        // Set random position for each star
+        const xPos = Math.random() * window.innerWidth;
+        const yPos = Math.random() * window.innerHeight;
+        star.style.left = `${xPos}px`;
+        star.style.top = `${yPos}px`;
+
+        // Set random speed for each star by adjusting animation duration
+        const speed = Math.random() * 0.2 + 0.05;
+
+        // Randomize direction for each star (both horizontal and vertical)
+        const directionX = (Math.random() * 2 - 1) * speed; // Random direction (-1 to 1)
+        const directionY = (Math.random() * 2 - 1) * speed; // Random direction (-1 to 1)
+
+        // Store direction data in the star's dataset
+        star.dataset.directionX = directionX;
+        star.dataset.directionY = directionY;
+
+        // Append star to the starfield container
+        starfield.appendChild(star);
+      }
+    }
+
+    // Repeatedly animate stars by updating their position in JavaScript
+    function animateStars() {
+      const stars = document.querySelectorAll('.star');
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+
+      stars.forEach(star => {
+        // Get the current position of the star
+        const xPos = parseFloat(star.style.left);
+        const yPos = parseFloat(star.style.top);
+
+        // Get the random movement directions for each star
+        const directionX = parseFloat(star.dataset.directionX);
+        const directionY = parseFloat(star.dataset.directionY);
+
+        // Update the position of the star
+        let newX = xPos + directionX;
+        let newY = yPos + directionY;
+
+        // Ensure stars wrap around when they move off-screen (loop effect)
+        if (newX < 0) newX = width; // Wrap around horizontally
+        if (newX > width) newX = 0;
+        if (newY < 0) newY = height; // Wrap around vertically
+        if (newY > height) newY = 0;
+
+        // Apply new position
+        star.style.left = `${newX}px`;
+        star.style.top = `${newY}px`;
+      });
+
+      // Keep the animation running
+      requestAnimationFrame(animateStars);
+    }
+
+    // Generate the stars on page load
+    createStars();
+    animateStars();
+    
+    // Countdown script
+    var countDownDate = new Date("June 25, 2025 20:00:00").getTime();
+
+    var x = setInterval(function() {
+      var now = new Date().getTime();
+      var distance = countDownDate - now;
+
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("demo").innerHTML = days + ":" + hours + ":" + minutes + ":" + seconds + "";
+
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("demo").innerHTML = "???";
+      }
+    }, 1000);
+ 
+	  var countdownAudioTypeshii = new Audio('/stuff/shiki.mp3');
+	  countdownAudioTypeshii.play();
+	  countdownAudioTypeshii.loop = true;
+</script>
+
+
+</html>
