@@ -68,6 +68,37 @@
       z-index: -1; /* Ensure the stars are behind other content */
     }
 
+	/* Flare Effect Styles */
+    #flare {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 50%;
+      animation: flare-animation 2s ease-out forwards;
+      opacity: 0;
+      pointer-events: none; /* Prevent flare from blocking interaction */
+      z-index: 10; /* Ensure it's above other elements */
+    }
+
+    /* Flare Animation */
+    @keyframes flare-animation {
+      0% {
+        transform: scale(1);
+        opacity: 0.8;
+      }
+      50% {
+        transform: scale(1.5);
+        opacity: 0.5;
+      }
+      100% {
+        transform: scale(5);
+        opacity: 0;
+      }
+    }
+
     /* Individual stars */
     .star {
       position: absolute;
