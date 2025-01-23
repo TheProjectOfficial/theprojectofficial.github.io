@@ -376,8 +376,7 @@ body, html {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  z-index: 100;
+
 }
 
 #flare-back {
@@ -438,7 +437,7 @@ body, html {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+ 
   z-index: 100;
 }
 
@@ -464,7 +463,7 @@ body, html {
 }
 
 #intro-text {
-  position: relative;
+  
   text-align: center;
   color: #fff;
   font-size: 2rem;
