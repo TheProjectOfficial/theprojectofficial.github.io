@@ -1,61 +1,121 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+  <link rel="stylesheet" href="styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
- 
-<link rel="stylesheet" href="styles.css">
-  
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
+  <style>
+    @keyframes move-twink-back {
+      from {background-position:0 0;}
+      to {background-position:-10000px 5000px;}
+    }
 
-  @keyframes move-twink-back {
-		    from {background-position:0 0;}
-		    to {background-position:-10000px 5000px;}
-		}
+    .no-anim #twinkling_stars {
+      display: none;
+    }
 
-		.no-anim #twinkling_stars {
-			display: none;
-		}
+    #twinkling_stars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
 
-		#twinkling_stars {
-			position: fixed;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			display: block;
+      background: #000 url(https://new.systemspace.network/res/img/stars.png) repeat top center;
+      z-index: 0;
 
-			background: #000 url(https://new.systemspace.network/res/img/stars.png) repeat top center;
-			z-index: 0;
+      mix-blend-mode: lighten;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
 
-			mix-blend-mode: lighten;
-			backface-visibility: hidden;
-			-webkit-backface-visibility: hidden;
+      pointer-events: none;
+    }
 
-			pointer-events: none;
-		}
+    #twinkling_stars::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
 
-		#twinkling_stars::after {
-			content: "";
-			position: fixed;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			display: block;
+      background: transparent url(https://new.systemspace.network/res/img/twinkling.png) repeat top center;
+      z-index: 1;
+      animation: 200s move-twink-back linear infinite;
 
-			background:transparent url(https://new.systemspace.network/res/img/twinkling.png) repeat top center;
-			z-index:1;
-			animation: 200s move-twink-back linear infinite;
+      mix-blend-mode: darken;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
 
-			mix-blend-mode: darken;
-			backface-visibility: hidden;
-			-webkit-backface-visibility: hidden;
+      pointer-events: none;
+    }
 
-			pointer-events: none;
-		}
-  
-  /* Starfield container */
+    /* Intro Text Animation */
+    #intro {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 3rem;
+      color: white;
+      font-weight: bold;
+      letter-spacing: 2px;
+      z-index: 11;
+      animation: fadeOut 3s forwards 3s; /* Fades out after 3 seconds */
+    }
+
+    #intro span {
+      
+      opacity: 0;
+      animation: fadeInLetter 3s ease-in-out forwards;
+    }
+
+    /* Animating each letter */
+    #intro span:nth-child(1) { animation-delay: 0s; }
+    #intro span:nth-child(2) { animation-delay: 0.2s; }
+    #intro span:nth-child(3) { animation-delay: 0.4s; }
+    #intro span:nth-child(4) { animation-delay: 0.6s; }
+    #intro span:nth-child(5) { animation-delay: 0.8s; }
+
+    @keyframes fadeInLetter {
+      0% {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeOut {
+      0% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    /* Fade in the rest of the content */
+    #content {
+      display: none;
+      animation: fadeInContent 1s ease-in-out forwards;
+    }
+
+    @keyframes fadeInContent {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Other existing styles */
     .starfield {
       position: absolute;
       top: 0;
@@ -64,209 +124,148 @@
       height: 100%;
       background: black;
       overflow: hidden;
-      pointer-events: none; /* Prevent interaction with stars */
-      z-index: -1; /* Ensure the stars are behind other content */
+      pointer-events: none;
+      z-index: -1;
     }
 
-	/* Flare Effect Styles */
-    #flare {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(255, 255, 255, 0.8);
-      border-radius: 50%;
-      animation: flare-animation 2s ease-out forwards;
-      opacity: 0;
-      pointer-events: none; /* Prevent flare from blocking interaction */
-      z-index: 10; /* Ensure it's above other elements */
-    }
-
-    /* Flare Animation */
-    @keyframes flare-animation {
-      0% {
-        transform: scale(1);
-        opacity: 0.8;
-      }
-      50% {
-        transform: scale(1.5);
-        opacity: 0.5;
-      }
-      100% {
-        transform: scale(5);
-        opacity: 0;
-      }
-    }
-
-    /* Individual stars */
-    .star {
-      position: absolute;
-      border-radius: 50%;
-      background-color: white;
-      opacity: 0.8;
-    }
-  
-      /* Content styling */
     .center {
       position: relative;
       z-index: 1;
       text-align: center;
       color: white;
     }
-  
-</style>
+  </style>
 </head>
-  
-  
+
 <body>
-  
-        <!-- Audio element placed here -->
-    <!--<audio id="myAudio" autoplay>
-        //<source src="stuff/shiki.mp3" type="audio/mp3">
-        Your browser does not support the audio element.
-    </audio>
--->
+  <!-- Animated Intro -->
+  <div id="intro">
+    <span>Welcome</head>
+    <span></head>
+    <span>to</head>
+    <span></head>
+    <span>The Hoshi Project</head>
+    
+  </div>
 
-	 <!-- Flare element added -->
-  <div id="flare"></div>
-  
+  <!-- Main Content -->
+  <div id="content">
+    <div class="starfield" id="starfield"></div>
 <center>
-  
-   <div class="starfield" id="starfield"></div>
-
-  
   <img src="https://web.archive.org/web/20170707210936im_/https://chat.systemspace.link/fail.png" style="max-height: 12em;">
 
   <h1>Corruption of current aurora use</h1>
   <p>Due to auroraric standarts, and Connet betraying everybody, all aurora going through systems have been cut off, this means that we have to wait atleast 200 days before we try to connect to this kind of aurora again, now without Connet.</p>
-  <p>We have decided to take on the role of Connet, because we believe, that its our fault, and we would like to make up for it be rebooting all aurora when the time is right.
-  </p>
-  
+  <p>We have decided to take on the role of Connet, because we believe, that its our fault, and we would like to make up for it be rebooting all aurora when the time is right.</p>
+
   <img src="https://github.com/novowarecheats/EclipxClicker-Source-Code/blob/main/trustbroken.png?raw=true" style="max-height: 10em;">
-  
-  <h3 style="color:red">We are now the official broadcaster of Aurora. Anything from Connet cannot be trusted anymore.
-  </h3>
-  
-   <p>any information, we find out will be broadcasted through this domain, there are other broadcasts too, this one here is the most official.</p>
-  <p>We also cant restart it now, since that would mean, that there is a 90% chance of auroraric destruction, also simply said, auroras energy gets destroyed, basically meaning that we, and all other systems using aurora, would collapse and get purged. to avoid this, we have to wait atleast 200 days until we retry to connect the aurora.</p>
-  <p><em>Im sorry for the circumstances. </em></p>
-  <p><em> ~ HoshiRep</em></p>
-   
+
+  <h3 style="color:red">We are now the official broadcaster of Aurora. Anything from Connet cannot be trusted anymore.</h3>
+  <p>Any information, we find out will be broadcasted through this domain, there are other broadcasts too, this one here is the most official.</p>
+  <p>We also can't restart it now, since that would mean that there is a 90% chance of auroraric destruction, also simply said, aurora's energy gets destroyed, basically meaning that we, and all other systems using aurora, would collapse and get purged. To avoid this, we have to wait at least 200 days until we retry to connect the aurora.</p>
+  <p><em>I'm sorry for the circumstances.</em></p>
+  <p><em>~ HoshiRep</em></p>
+
   <div class="center">
-
-    <h3 style="color:gray">[2024/12/29 16:00 EU] 
-  </h3>
+    <h3 style="color:gray">[2024/12/29 16:00 EU]</h3>
     <h3 style="color:gray;">Executer Aurora branch codes have been instructed to release at the purge date.</h3>
-
     <p style="color:gray;">on the 25th of July, 2025</p>
     <h1 style="position: fixed; top: 50; width:100%; text-align: center" id="demo"></h1>
-
     <p style="color:gray;">Until we attempt to connect all aurora to all systems including ours.</p>
-    
-    
-
-</div>
+  </div>
 </center>
-<script>
-// Function to generate random stars
+  </div>
+
+  <script>
+    // Wait 3 seconds to reveal main content
+    setTimeout(() => {
+      document.getElementById('content').style.display = 'block';
+      document.getElementById('intro').style.display = 'none';
+    }, 3000);
+
+    // Existing star animation script
     function createStars() {
       const starfield = document.getElementById('starfield');
-      const numberOfStars = 300; // Number of stars
+      const numberOfStars = 300;
 
       for (let i = 0; i < numberOfStars; i++) {
         const star = document.createElement('div');
         star.classList.add('star');
 
-        // Set random size for each star (between 1px and 3px)
         const size = Math.random() * 2 + 1;
         star.style.width = `${size}px`;
         star.style.height = `${size}px`;
 
-        // Set random position for each star
         const xPos = Math.random() * window.innerWidth;
         const yPos = Math.random() * window.innerHeight;
         star.style.left = `${xPos}px`;
         star.style.top = `${yPos}px`;
 
-        // Set random speed for each star by adjusting animation duration
         const speed = Math.random() * 0.2 + 0.05;
+        const directionX = (Math.random() * 2 - 1) * speed;
+        const directionY = (Math.random() * 2 - 1) * speed;
 
-        // Randomize direction for each star (both horizontal and vertical)
-        const directionX = (Math.random() * 2 - 1) * speed; // Random direction (-1 to 1)
-        const directionY = (Math.random() * 2 - 1) * speed; // Random direction (-1 to 1)
-
-        // Store direction data in the star's dataset
         star.dataset.directionX = directionX;
         star.dataset.directionY = directionY;
 
-        // Append star to the starfield container
         starfield.appendChild(star);
       }
     }
 
-    // Repeatedly animate stars by updating their position in JavaScript
     function animateStars() {
       const stars = document.querySelectorAll('.star');
       const width = window.innerWidth;
       const height = window.innerHeight;
 
       stars.forEach(star => {
-        // Get the current position of the star
         const xPos = parseFloat(star.style.left);
         const yPos = parseFloat(star.style.top);
 
-        // Get the random movement directions for each star
         const directionX = parseFloat(star.dataset.directionX);
         const directionY = parseFloat(star.dataset.directionY);
 
-        // Update the position of the star
         let newX = xPos + directionX;
         let newY = yPos + directionY;
 
-        // Ensure stars wrap around when they move off-screen (loop effect)
-        if (newX < 0) newX = width; // Wrap around horizontally
+        if (newX < 0) newX = width;
         if (newX > width) newX = 0;
-        if (newY < 0) newY = height; // Wrap around vertically
+        if (newY < 0) newY = height;
         if (newY > height) newY = 0;
 
-        // Apply new position
         star.style.left = `${newX}px`;
         star.style.top = `${newY}px`;
       });
 
-      // Keep the animation running
       requestAnimationFrame(animateStars);
     }
 
-    // Generate the stars on page load
     createStars();
     animateStars();
     
-    // Countdown script
-    var countDownDate = new Date("June 25, 2025 20:00:00").getTime();
 
-    var x = setInterval(function() {
-      var now = new Date().getTime();
-      var distance = countDownDate - now;
+  var countDownDate = new Date("June 25, 2025 20:00:00").getTime();
 
-      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  var x = setInterval(function () {
+    var now = new Date().getTime();
+    var distance = countDownDate - now;
 
-      document.getElementById("demo").innerHTML = days + ":" + hours + ":" + minutes + ":" + seconds + "";
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      if (distance < 0) {
-        clearInterval(x);
-        document.getElementById("demo").innerHTML = "???";
-      }
-    }, 1000);
- 
-	  var countdownAudioTypeshii = new Audio('/stuff/shiki.mp3');
-	  countdownAudioTypeshii.play();
-	  countdownAudioTypeshii.loop = true;
-</script>
+    document.getElementById("demo").innerHTML =
+      days + ":" + hours + ":" + minutes + ":" + seconds + "";
 
+    if (distance < 0) {
+      clearInterval(x);
+      document.getElementById("demo").innerHTML = "???";
+    }
+  }, 1000);
 
+  var countdownAudioTypeshii = new Audio('/stuff/shiki.mp3');
+  countdownAudioTypeshii.play();
+  countdownAudioTypeshii.loop = true;   
+  </script>
+</body>
 </html>
