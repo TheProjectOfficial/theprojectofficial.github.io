@@ -1,64 +1,64 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        @keyframes move-twink-back {
+            from {background-position:0 0;}
+            to {background-position:-10000px 5000px;}
+        }
 
- 
-<link rel="stylesheet" href="styles.css">
-  
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
+        html, body {
+            height: 100%;
+            overflow-y: auto;
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: white;
+        }
 
-  @keyframes move-twink-back {
-		    from {background-position:0 0;}
-		    to {background-position:-10000px 5000px;}
-		}
+        .no-anim #twinkling_stars {
+            display: none;
+        }
 
-		.no-anim #twinkling_stars {
-			display: none;
-		}
+        #twinkling_stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            background: #000 url(https://new.systemspace.network/res/img/stars.png) repeat top center;
+            z-index: 0;
+            mix-blend-mode: lighten;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            pointer-events: none;
+        }
 
-		#twinkling_stars {
-			position: fixed;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			display: block;
+        #twinkling_stars::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            background:transparent url(https://new.systemspace.network/res/img/twinkling.png) repeat top center;
+            z-index: 1;
+            animation: 200s move-twink-back linear infinite;
+            mix-blend-mode: darken;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            pointer-events: none;
+        }
 
-			background: #000 url(https://new.systemspace.network/res/img/stars.png) repeat top center;
-			z-index: 0;
-
-			mix-blend-mode: lighten;
-			backface-visibility: hidden;
-			-webkit-backface-visibility: hidden;
-
-			pointer-events: none;
-		}
-
-		#twinkling_stars::after {
-			content: "";
-			position: fixed;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			display: block;
-
-			background:transparent url(https://new.systemspace.network/res/img/twinkling.png) repeat top center;
-			z-index:1;
-			animation: 200s move-twink-back linear infinite;
-
-			mix-blend-mode: darken;
-			backface-visibility: hidden;
-			-webkit-backface-visibility: hidden;
-
-			pointer-events: none;
-		}
-  
-</style>
+        .center {
+            padding-bottom: 100px;
+        }
+    </style>
 </head>
-  
-  
 <body>
   
         <!-- Audio element placed here -->
@@ -105,48 +105,25 @@
     
 
 </div>
-</center>
-<script>
-  
-   // Get the audio element by its ID
-        //var audio = document.getElementById("myAudio");
-
-        // Set the volume (0.0 to 1.0 range)
-        //audio.volume = 0.5; // This sets the volume to 30%
-  
-// Set the date we're counting down to
-var countDownDate = new Date("April 25, 2025 20:00:00").getTime();
-
-// Update the count down every 1 second
-var x = setInterval(function() {
-
-  // Get today's date and time
-  var now = new Date().getTime();
-
-  // Find the distance between now and the count down date
-  var distance = countDownDate - now;
-
-  // Time calculations for days, hours, minutes and seconds
-  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-  // Display the result in the element with id="demo"
-  document.getElementById("demo").innerHTML = days + ":" + hours + ":"
-  + minutes + ":" + seconds + "";
-
-  // If the count down is finished, write some text
-  if (distance < 0) {
-    clearInterval(x);
-    document.getElementById("demo").innerHTML = "???";
-  }
-}, 1000);
- 
-	  var countdownAudioTypeshii = new Audio('/stuff/shiki.mp3');
-	  countdownAudioTypeshii.play();
-	  countdownAudioTypeshii.loop = true;
-</script>
-
-
+    </center>
+    <script>
+        var countDownDate = new Date("April 25, 2025 20:00:00").getTime();
+        var x = setInterval(function() {
+            var now = new Date().getTime();
+            var distance = countDownDate - now;
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            document.getElementById("demo").innerHTML = days + ":" + hours + ":" + minutes + ":" + seconds;
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("demo").innerHTML = "???";
+            }
+        }, 1000);
+        var countdownAudioTypeshii = new Audio('/stuff/shiki.mp3');
+        countdownAudioTypeshii.play();
+        countdownAudioTypeshii.loop = true;
+    </script>
+</body>
 </html>
