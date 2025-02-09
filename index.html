@@ -138,15 +138,6 @@
 </head>
 
 <body>
-  <!-- Animated Intro -->
-  <div id="intro">
-    <span>Welcome</head>
-    <span></head>
-    <span>to</head>
-    <span></head>
-    <span>The Hoshi Project</head>
-    
-  </div>
 
   <!-- Main Content -->
   <div id="content">
@@ -170,7 +161,7 @@
     <h3 style="color:gray">[2024/12/29 16:00 EU]</h3>
     <h3 style="color:gray;">Executer Aurora branch codes have been instructed to release at the purge date.</h3>
     <p style="color:gray;">on the 25th of July, 2025</p>
-    <h1 style="position: fixed; top: 50; width:100%; text-align: center" id="demo"></h1>
+    <h1 style=" top: 50; width:100%; text-align: center" id="demo"></h1>
     <p style="color:gray;">Until we attempt to connect all aurora to all systems including ours.</p>
   </div>
 </center>
@@ -183,23 +174,9 @@
 
   // Ensure main audio loops
   mainAudio.loop = true;
-
-  // Play intro audio on page load
-  introAudio.play();
-
-  // Wait 3 seconds to reveal main content and switch audio
-  setTimeout(() => {
-    // Stop the intro audio
-    introAudio.pause();
-    introAudio.currentTime = 0;
-
-    // Start the main audio
-    mainAudio.play();
-
-    // Show main content and hide intro
-    document.getElementById('content').style.display = 'block';
-    document.getElementById('intro').style.display = 'none';
-  }, 3000);
+    
+  // Start the main audio
+  mainAudio.play();
 
   // Existing star animation script
   function createStars() {
