@@ -1,44 +1,215 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-    <style>
-        body {
-            background-color: black;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            color: white;
-            font-family: Arial, sans-serif;
-        }
-        img {
-            max-width: 80%;
-            max-height: 80%;
-        }
-        p {
-            margin-top: 20px;
-            font-size: 18px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HOSHI / THANK YOU</title>
+  <link rel="stylesheet" href="https://theprojectofficial.github.io/new/bootstrap/min.css">
+  <link rel="stylesheet" href="https://theprojectofficial.github.io/new/bootstrap/cursor.css">
+
+  <link rel="icon" type="image/png" href="https://theprojectofficial.github.io/new/hoshi-round-favicon.png">
+
+  <!-- Add this line to include jQuery from CDN -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <style>
+    /* Fade in the whole body on load */
+    body {
+      opacity: 0;
+      animation: fadeInBody 1s forwards;
+      margin: 0;
+      background: #000;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      color: #fff;
+    }
+    @keyframes fadeInBody {
+      to { opacity: 1; }
+    }
+    /* Hide main content initially */
+    #mainContent {
+      display: none;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    /* Countdown styles */
+    #countdown {
+      font-family: CNT;
+      font-size: 3em;
+      margin: 0;
+      color: rgba(255,255,255,0.3) !important;
+      text-shadow: 0 0 3px rgba(255,255,255,0.3);
+      position: fixed;
+      left: 16px;
+      top: 16px;
+    }
+    #countdown-below {
+      font-family: Heading;
+      font-size: 1.5em;
+      margin: 0;
+      color: rgba(128,128,128,0.3) !important;
+      text-shadow: 0 0 3px rgba(128,128,128,0.3);
+      position: fixed;
+      left: 16px;
+      top: 80px;
+    }
+    /* Random image styles */
+    img {
+      max-width: 60%;
+      max-height: 60%;
+      border-radius: 2px;
+      transition: opacity 0.5s ease-in-out;
+    }
+    #randomImage {
+      max-width: 60%;
+      max-height: 60%;
+      border-radius: 2px;
+      transition: opacity 0.5s ease-in-out;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    /* Enhanced fade text styles with improved rendering */
+    .fade-text {
+      font-size: 3em;
+      font-weight: 300;
+      letter-spacing: 1px;
+      font-family: "Heading";
+      color: #fff;
+      line-height: 1.2;
+      position: absolute;
+      top: 50%; 
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      transition: opacity 1s ease-in-out;  
+      white-space: nowrap;
+    }
+    /* Container for the text sequence to be full screen */
+    #textContainer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      z-index: 1000;
+      transition: opacity 1s ease-in-out;
+    }
+  </style>
 </head>
- <script>
-      const audio1 = new Audio("https://classic.systemspace.network/res/audio/bgm/something.ogg");
-      const ambience = new Audio("https://classic.systemspace.network/res/audio/ambience/5.ogg");
+<body>
+
+  <!-- Text sequence container -->
+  <div id="textContainer">
+    <div id="st1" style="font-size: 23px;" class="fade-text">Thanks to all wonderful People who helped me create this awesome project!</div>
+    <div id="st2" style="font-size: 23px;" class="fade-text">In less then two month, Aurora will be reconnected.</div>
+    <div id="st3" style="font-size: 23px;" class="fade-text">until then, i wish you all the best &lt;3.</div>
+  </div>
+
+  <!-- Main content (hidden initially) -->
+  <div id="mainContent">
+    <div id="countdown"></div>
+    <h1 id="countdown-below">Less then two months, we will be back!</h1>
+  
+    <img id="randomImage" src="https://theprojectofficial.github.io/new/bootstrap/hoshitmer.png" alt="lain-is-a-bear">
+
+    <!-- Audio elements -->
+    <audio id="warningAudio" src="WILL BE ADDED BEFORE AURORARIC RESET DW"></audio>
+    <audio id="endAudio" src="WILL BE ADDED BEFORE AURORARIC RESET DW"></audio>
+  
+    <!-- Audio switching script -->
+    <script>
+      const audio1 = new Audio("https://classic.systemspace.network/res/audio/bgm/koronba-intro.ogg");
+      const audio2 = new Audio("https://classic.systemspace.network/res/audio/bgm/koronba.ogg");
+      const thankyou = new Audio("https://new.systemspace.network/res/audio/music/thankyou.ogg");
 
       audio1.volume = 0.5;
-      ambience.volume = 0.5;
+      audio2.volume = 0.5;
+      thankyou.volume = 0.5;
+      thankyou.loop = true;
 
       document.addEventListener("click", function () {
-        audio1.play();
-        ambience.play();
+        thankyou.play();
       }, { once: true });
     </script>
-<body>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuRuF-x7tuyf2YMzrSadstzhybkXgebSyScA&s" alt="THIS IS NOT REAL, YOU ARE GOING TO DIE.">
+  
+    <!-- Countdown script -->
+    <script>
+      function startCountdown(targetDate) {
+        let warningPlayed = false;
+        function updateCountdown() {
+          const now = new Date().getTime();
+          const timeRemaining = targetDate - now;
+  
+          if (timeRemaining <= 0) {
+            document.getElementById("countdown").innerHTML = "00:00:00:000";
+            document.getElementById("endAudio").play();
+            clearInterval(interval);
+            setTimeout(() => {
+              window.location.href = "You thought this early already, huh";
+            }, 2000);
+            return;
+          }
+  
+          const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+          const milliseconds = timeRemaining % 1000;
+  
+          if (timeRemaining <= 9000 && !warningPlayed) {
+            document.getElementById("warningAudio").play();
+            warningPlayed = true;
+          }
+  
+          document.getElementById("countdown").innerHTML =
+            `${String(days).padStart(2, '0')}d ${String(hours).padStart(2, '0')}h ${String(minutes).padStart(2, '0')}m ${String(seconds).padStart(2, '0')}s ${String(milliseconds).padStart(3, '0')}ms`;
+        }
+        const interval = setInterval(updateCountdown, 1);
+        updateCountdown();
+      }
+      const targetDate = new Date("2025-04-25T20:00:00Z").getTime();
+      startCountdown(targetDate);
+    </script>
+  
+    <!-- Random image script -->
+    <script>
+    </script>
+  </div> <!-- End of mainContent -->
+
+  <!-- Fade text sequence script -->
+  <script>
+    function fadeTextSequence() {
+      const texts = ["st1", "st2", "st3"];
+      let delay = 0;
+      texts.forEach((id, index) => {
+        // Fade in text
+        setTimeout(() => {
+          document.getElementById(id).style.opacity = "1";
+        }, delay);
+        // Fade out after 3 seconds visible
+        setTimeout(() => {
+          document.getElementById(id).style.opacity = "0";
+        }, delay + 3000);
+        delay += 4000;
+      });
+      // Fade out textContainer smoothly
+      setTimeout(() => {
+        document.getElementById("textContainer").style.opacity = "0";
+      }, delay - 500);
+  
+      // After fade out, remove textContainer, reveal main content with fade in
+      setTimeout(() => {
+        document.getElementById("textContainer").style.display = "none";
+        const mainContent = document.getElementById("mainContent");
+        mainContent.style.display = "block";
+        setTimeout(() => {
+          mainContent.style.opacity = "1";
+        }, 50);
+      }, delay + 1000);
+    }
+    fadeTextSequence();
+  </script>
 </body>
 </html>
