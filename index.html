@@ -11,7 +11,16 @@
 
   <!-- Add this line to include jQuery from CDN -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
 
+  <script>
+
+    var audio1 = new Howl({
+        src: ['https://theprojectofficial.github.io/new/audio/thankyou.ogg'],
+        volume: 0.7 // Remove the trailing comma
+    });
+
+  </script>
   <style>
     /* Fade in the whole body on load */
     body {
@@ -115,24 +124,8 @@
     <img id="randomImage" src="https://theprojectofficial.github.io/new/bootstrap/hoshitmer.png" alt="lain-is-a-bear">
 
     <!-- Audio elements -->
-    <audio id="warningAudio" src="WILL BE ADDED BEFORE AURORARIC RESET DW"></audio>
-    <audio id="endAudio" src="WILL BE ADDED BEFORE AURORARIC RESET DW"></audio>
-  
-    <!-- Audio switching script -->
-    <script>
-      const audio1 = new Audio("https://classic.systemspace.network/res/audio/bgm/koronba-intro.ogg");
-      const audio2 = new Audio("https://classic.systemspace.network/res/audio/bgm/koronba.ogg");
-      const thankyou = new Audio("https://new.systemspace.network/res/audio/music/thankyou.ogg");
-
-      audio1.volume = 0.5;
-      audio2.volume = 0.5;
-      thankyou.volume = 0.5;
-      thankyou.loop = true;
-
-      document.addEventListener("click", function () {
-        thankyou.play();
-      }, { once: true });
-    </script>
+    <audio id="warningAudio" src="WILL BE ADDED"></audio>
+    <audio id="endAudio" src="WILL BE ADDED"></audio>
   
     <!-- Countdown script -->
     <script>
