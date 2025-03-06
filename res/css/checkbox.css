@@ -1,0 +1,73 @@
+/* Style for the checkbox container */
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    cursor: url("https://new.systemspace.network/res/cursor/confirm.png"), default;
+  }
+  
+  /* Hide the default checkbox */
+  .checkbox {
+    display: none;
+  }
+  
+  /* Custom checkbox style */
+  .checkmark {
+    width: 20px;
+    height: 20px;
+    border: 2px solid white;
+    background-color: transparent;
+    margin-right: 10px;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+  
+  /* Text style */
+  .label-text {
+    color: white;
+    font-family: "Paragraph";
+  }
+  
+  /* When checkbox is checked, modify checkmark appearance */
+  .checkbox:checked + .checkmark {
+    background-color: black;
+    border: 2px solid white;
+  }
+  
+  /* Creating the X animation */
+  .checkbox:checked + .checkmark::before,
+  .checkbox:checked + .checkmark::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: white;
+    top: 50%;
+    left: 50%;
+    transform-origin: center;
+    transition: all 0.4s ease;
+  }
+  
+  /* Before pseudo-element (horizontal line) */
+  .checkbox:checked + .checkmark::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+    animation: expand-x 0.4s forwards;
+  }
+  
+  /* After pseudo-element (vertical line) */
+  .checkbox:checked + .checkmark::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+    animation: expand-x 0.4s 0.2s forwards; /* Delay for the second line */
+  }
+  
+  /* Animation for the X expanding */
+  @keyframes expand-x {
+    from {
+      width: 0;
+    }
+    to {
+      width: 16px;
+    }
+  }
+  

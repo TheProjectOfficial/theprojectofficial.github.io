@@ -1,0 +1,310 @@
+body {
+    color: #ccc;
+}
+
+:root {
+	--main-color: #FFDF9B;
+	--accent-color: #FF9B9B;
+	--inverse-color: #518EE2;
+	--positive-color: #61DE61;
+	--negative-color: #FF9B9B;
+}
+
+#flyer {
+    width: 100%;
+    height: 0px;
+    background-color: #000;
+    background-image: url("https://classic.systemspace.network/res/img/bg/home.png");
+    background-attachment: fixed;
+    background-position: center;
+    transition: height 5s, opacity 5s;
+}
+
+
+#wallpaper {
+    width: 100%;
+    height: 70vh;
+    background-color: #000;
+    background-image: url("https://classic.systemspace.network/res/img/bg/home.png");
+    background-attachment: fixed;
+    background-position: center;
+}
+
+#wallpaper #lain {
+    position: absolute;
+    top: calc(70vh - 456px);
+    left: 10vw;
+    transition: top 0s;
+}
+
+#wallpaper h1 {
+    position: absolute;
+    left: calc(10vw + 450px);
+    top: calc(70vh - 380px);
+    font-family: Heading;
+    font-size: 3vw;
+    text-shadow: 3px 6px #000, 0px -1px #000, 0px 1px #000, -1px 0px #000, 1px 0px #000, -1px -1px #000, 1px 1px #000, -1px 1px #000, 1px -1px #000;
+    transition: top 0s;
+}
+
+header {
+    filter: drop-shadow(-1px 0px #FFF) drop-shadow(0px 1px #FFF) drop-shadow(1px 0px #FFF);
+    z-index: 1000000;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    transition: 0.5s top;
+}
+
+header.hidden {
+    top: -10em;
+}
+header.anim-fast {
+    top: -10em;
+    transition: none;
+}
+header.anim-slow {
+    transition: 1s top;
+}
+
+#header-announcement {
+    background-color: #000;
+    background-image: url("https://new.systemspace.network/res/img/bg/announcement.png");
+    background-position: top;
+    background-size: cover;
+    box-shadow: inset 0px -16px 16px #000;
+    width: 100%;
+    text-align: center;
+    font-family: "Heading", sans-serif;
+    letter-spacing: -0.2em;
+    font-size: 2em;
+    color: #AFF;
+    text-shadow: 0px 0px 16px #AFF;
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
+    overflow: hidden;
+    max-height: 2em;
+    transition: 0.3s max-height, 0.3s padding-top, 0.3s padding-bottom;
+    position: relative;
+}
+
+#header-announcement.danger {
+    background-color: #200;
+    background-image: url("https://new.systemspace.network/res/img/bg/announcement-danger.png");
+    background-position: top;
+    background-size: cover;
+    box-shadow: inset 0px -16px 16px #220400;
+    width: 100%;
+    text-align: center;
+    font-family: "Heading", sans-serif;
+    letter-spacing: -0.2em;
+    font-size: 2em;
+    color: #FA8;
+    text-shadow: 0px 0px 16px #FA8;
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
+    overflow: hidden;
+    max-height: 2em;
+    transition: 0.3s max-height, 0.3s padding-top, 0.3s padding-bottom;
+    position: relative;
+}
+
+#close-announcement {
+    position: absolute;
+    top: 0.3em;
+    right: 0.6em;
+}
+
+.announcement-hidden #header-announcement {
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+#header-inner {
+    background-color: #000;
+    width: 100%;
+    height: 2em;
+    overflow: hidden;
+    transition: 0.3s height;
+}
+
+.danger #header-inner {
+    background-color: #220400;
+}
+
+.no-marquee #header-inner {
+    height: 0;
+}
+
+#header-knobs {
+    width: 100%;
+}
+
+.header-knob {
+    display: inline-block;
+    float: left;
+    margin-left: 1em;
+}
+
+.header-knob.right-hand {
+    margin-left: 0;
+    float: right;
+}
+
+#header-knobs_tsuki {
+    clip-path: url("#clip-knob_tsuki");
+    background-color: #000;
+    background-image: url("https://new.systemspace.network/res/img/header-knobs_tsuki.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    background-origin: content-box;
+    width: 6vw;
+    height: 2.5vw;
+    padding: 0.25vw;
+    padding-right: 0.7vw;
+    margin-left: 0;
+    min-width: 6em;
+    min-height: 2.5em;
+}
+
+.danger #header-knobs_tsuki {
+    background-color: #220400;
+}
+
+.header-knob-text {
+    clip-path: url("#clip-knob-text");
+    background-color: #000;
+    color: #FFF;
+    font-family: "Tiny", sans-serif;
+    height: 0.8em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    margin-right: 1em;
+}
+
+.danger .header-knob-text {
+    background-color: #220400;
+}
+
+#header-marquee {
+    color: #FFF;
+    width: calc(100% - 1.25em);
+    display: inline-block;
+    padding: 0.4em;
+    font-family: "Heading", sans-serif;
+    font-size: 1.2em;
+    letter-spacing: -4px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+#header-marquee_inner {
+    display: inline-block;
+    animation: HeaderMarqueeIntro 3s linear, HeaderMarqueeAnim 30s 3s linear infinite;
+    margin: 0;
+    padding: 0;
+}
+
+@keyframes HeaderMarqueeIntro {
+    0% { opacity: 0; transform: translateX(3.333%); }
+    100% { opacity: 1; transform: translateX(0%); }
+}
+
+@keyframes HeaderMarqueeAnim {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(calc(-33.333% - 0.3em)); }
+}
+
+.header-marquee-element {
+    position: relative;
+    top: -0.9em;
+}
+
+.header-marquee-element::after {
+    content: "";
+    display: inline-block;
+    background-color: #FFF;
+    width: 1px;
+    height: 1.75em;
+    position: relative;
+    top: 0.4em;
+    margin-left: 1.3em;
+    margin-right: 0.5em;
+    transform: skewX(-15deg);
+}
+
+#header-knobs_maintenance {
+    color: #FF0;
+    background: linear-gradient(to bottom, #000 0%, #F00 100%);
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.danger #header-knobs_maintenance {
+    background: linear-gradient(to bottom, #220400 0%, #F00 100%);
+}
+
+#header-status {
+    --uc: var(--negative-color);
+    color: var(--uc);
+    width: 21vw;
+    margin-right: calc(-21vw - 0.8em);
+    display: inline-block;
+    padding: 0.4em;
+    font-family: "Heading", sans-serif;
+    font-size: 1.2em;
+    letter-spacing: -2px;
+    position: relative;
+    top: -1.45em;
+    background: linear-gradient(to right, rgba(0,0,0,1) 0%,rgba(0,0,0,1) 16%,rgba(0,0,0,0) 33%);
+    z-index: 1;
+    text-shadow: 0px 0px 4px var(--uc);
+}
+
+.danger #header-status {
+    background: linear-gradient(to right, #220400 0%,#220400 16%,rgba(0,0,0,0) 33%);
+}
+
+.hs_rep-unset {
+    --uc: #FF4E00 !important;
+}
+
+.hs_warn {
+    --uc: var(--main-color) !important;
+}
+
+.hs_ok {
+    --uc: var(--positive-color) !important;
+}
+
+#header-status span {
+    font-size: 0.8em;
+    position: relative;
+    top: -1px;
+    margin-right: 0.4em;
+    opacity: 0.5;
+    color: #000 !important;
+    text-shadow: 	-1px -1px var(--uc),
+                     0px -1px var(--uc),
+                     1px -1px var(--uc),
+                     1px  0px var(--uc),
+                     1px  1px var(--uc),
+                     0px  1px var(--uc),
+                    -1px  1px var(--uc),
+                    -1px  0px var(--uc);
+}
+
+.hs_rep-unset span {
+    color: #FF4E00 !important;
+}
+
+.hs_warn span {
+    color: var(--main-color) !important;
+}
+
+.hs_ok span {
+    color: var(--positive-color) !important;
+}

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ICONS -->
+    <link rel="icon" href="../../res/img/icons/hoshi‑round‑favicon.png">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../bootstrap/common.css">
+    <link rel="stylesheet" href="../../res/css/cursor.css">
+    <link rel="stylesheet" href="../../res/css/dialog.css">
+    <link rel="stylesheet" href="../../res/css/scanlines.css">
+    <link rel="stylesheet" href="../../res/css/scrollbars.css">
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/howler"></script>
+    <script src="../../res/js/audio/home.js"></script>
+
+    <title>HOSHI Project Wiki</title>
+
+    <style>
+        /* Remove default margin and padding */
+        html, body {
+            font-family: "Makina";
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        /* Header styling */
+        header {
+            background-image: url(../bootstrap/header.png);
+            background-size: cover;
+            background-position: top;
+            background-repeat: no-repeat;
+            padding: 5vh 0;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            width: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        /* Title */
+        #title {
+            text-align: left;
+            font-family: "Heading";
+            font-size: clamp(2rem, 5vw, 6rem);
+            width: 110%;
+            color: #FFF;
+            transform: rotate(-2deg);
+            text-shadow: 
+                0 0 1vw rgba(0, 0, 0, 0.9),
+                0 0 2vw rgba(0, 0, 0, 0.8);
+        }
+
+        #small {
+            font-family: "Makina";
+            font-size: 60px;
+            color: #FFF;
+            transform: rotate(-2deg);
+            text-shadow: 
+                0 0 1vw rgba(0, 0, 0, 0.9),
+                0 0 2vw rgba(0, 0, 0, 0.8);
+        }
+
+        /* Text */
+        p {
+            font-family: "Paragraph";
+            font-size: 1rem;
+        }
+
+        .links {
+            color: #FF0;
+            text-decoration: underline;
+            position: relative;
+            display: inline-block;
+        }
+
+        .links:hover {
+            color: crimson;
+            text-decoration: underline;
+            position: relative;
+            display: inline-block;
+        }
+
+        .mark {
+            color: #FF0;
+            font-family: Makina;
+            text-decoration: underline;
+            position: relative;
+            display: inline-block;
+        }
+
+        .mark::after {
+            content: attr(data-explanation);
+            position: absolute;
+            left: 50%;
+            bottom: 150%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            white-space: nowrap;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.2s ease-in-out;
+        }
+
+        .mark:hover::after {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        #back {
+            position: absolute;
+            font-family: Heading;
+            background-color: #000;
+            color: #FFF;
+            border: 1px solid;
+            left: 0.5em;
+            top: 0.5em;
+            font-size: 1em;
+            padding: 0.2em;
+            transition: 0.2s left, 0.2s color;
+        }
+
+        #back:hover {
+            left: 0.1em;
+            color: #FF0;
+            cursor: url("https://new.systemspace.network/res/cursor/confirm.png"), pointer;
+        }
+
+        #return {
+            position: absolute;
+            font-family: Makina;
+            background-color: #000;
+            color: #FFF;
+            border: 1px solid;
+            left: 1em;
+            top: 4.2em;
+            font-size: 0.5em;
+            padding: 0.1em;
+            transition: 0.2s left, 0.2s color;
+        }
+
+        #return:hover {
+            left: 0.1em;
+            color: #FF0;
+            cursor: url("https://new.systemspace.network/res/cursor/confirm.png"), pointer;
+        }
+
+        .warning {
+            color: #FFF;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="padded">
+            <h1 id="title">The HOSHI Project Wiki</h1>
+            <p id="small">What is Aurora?</p>
+            <a href="../wiki.html">
+                <button id="return">Return to Index</button>
+            </a>
+            <a href="../../index.html">
+                <button id="back">HOSHI</button>
+            </a>
+        </div>
+    </header>
+
+    <div class="main-content">
+        <div class="padded">
+            <br><br>
+            <div class="content">
+                <h1 style="font-family: Makina; font-size: 30px;">What is Aurora?</h1>
+                <p style="font-family: Makina; font-size: 15px;">I still often get the question of what Aurora actually is, well now there is a whole page about it!</p>
+
+                <p style="font-family: Makina;">Aurora is essentially a <span class="mark" data-explanation="A system that centralizes data and services.">centralized system</span> or infrastructure that acts as a core structure for managing and linking <span class="mark" data-explanation="Stored information used by applications.">data</span> across multiple interconnected systems.</p>
+                
+                <p style="font-family: Makina;">Over time, Aurora has grown in popularity and usage, making it central to more and more processes. This increase in usage brings about higher demands on the system’s resources, which can lead to a significant spike in energy consumption. If these demands are not managed effectively, the system could become unstable, potentially resulting in <span class="mark" data-explanation="A state where data becomes unreadable or damaged.">corruption</span> of data or system errors.</p>
+                
+                <p style="font-family: Makina;">If corruption were to occur, the solution might be to <span class="mark" data-explanation="Wiping all data and restoring the system.">reset</span> the entire system.</p>
+
+                <h3 style="color: gray;"><i>Post made by: HoshiRep, 02.03.2025</i></h3>
+
+                <p style="color: #555; font-family: Makina;"><span class="warning">WARNING:</span> This data was made with the claims of the HOSHI Project Representative and explanations of registrants, if you found and issue please, feel free to contact the Representative: <br><a class="links" href="../../content/hoshi/contact.html">here</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var noise = new Howl({
+                src: ["https://theprojectofficial.github.io/new/audio/wiki.ogg"],
+                loop: true,
+                volume: 0.5,
+                onplayerror: function() {
+                    showErrorMessage("Error: Failed to play intro sound.");
+                }
+            });
+
+            window.addEventListener("load", function() {
+                noise.play();
+            });
+        });
+
+        // Function to display the error message
+        function showErrorMessage(message) {
+            alert(message);  // Shows an alert if autoplay fails
+        }
+    </script>
+
+</body>
+</html>

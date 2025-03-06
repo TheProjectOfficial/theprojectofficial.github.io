@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="content" style="display: none;">
+        <h1>Welcome to the Dashboard!</h1>
+        <p>You are logged in.</p>
+    </div>
+
+    <div id="login-warning">
+        <h1>You must log in to access the dashboard.</h1>
+        <p><a href="index.html">Go to Login Page</a></p>
+    </div>
+
+    <script>
+        // Check if the user is logged in
+        if (localStorage.getItem('loggedIn') === 'true') {
+            // Show the dashboard content
+            document.getElementById('content').style.display = 'block';
+        } else {
+            // Show the login warning
+            document.getElementById('login-warning').style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        #error-message {
+            color: red;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Login</h1>
+    <form id="loginForm">
+        <label for="username">Enter EID:</label>
+        <input type="text" id="username" name="username" required>
+        <button type="submit">Login</button>
+    </form>
+
+    <div id="error-message">Invalid EID. Please try again.</div>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault();  // Prevent form submission to the server
+
+            const enteredString = document.getElementById("username").value;
+
+            // Base64 encoded URL of the JSON file
+            const encodedUrl = 'aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3doaXRlc3BhY2VvZmZpY2lhbC9hd2R3YWRhMmdhd2RuYmhhZHdkbmF3ZGtqbWF3aXVrdWpkYndhZGJhd3cvcmVmcy9oZWFkcy9tYWluL2xvZ2luLmpzb24=';
+
+            // Decode the URL using atob (Base64 decoding)
+            const decodedUrl = atob(encodedUrl);
+
+            // Fetch the JSON file from the decoded URL
+            fetch(decodedUrl)
+                .then(response => response.json())  // Parse the JSON response
+                .then(data => {
+                    const eids = data.eids;  // Get the list of encoded EIDs
+
+                    let validEid = false;
+
+                    // Loop through each EID, decode it and compare with entered string
+                    eids.forEach(eid => {
+                        const decodedEid = atob(eid);  // Decode the EID
+                        if (enteredString === decodedEid) {
+                            validEid = true;
+                        }
+                    });
+
+                    if (validEid) {
+                        alert("EID validated successfully!");
+                        // Store a "logged in" flag in localStorage
+                        localStorage.setItem('loggedIn', 'true');
+                        window.location.href = "authbf2e/dashboard.html";  // Redirect to a protected page
+                    } else {
+                        document.getElementById("error-message").style.display = "block";  // Show error message
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading JSON:', error);
+                    alert("An error occurred. Please try again later.");
+                });
+        });
+    </script>
+
+</body>
+</html>

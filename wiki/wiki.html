@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ICONS -->
+    <link rel="icon" href="../res/img/icons/hoshi‑round‑favicon.png">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="bootstrap/common.css">
+    <link rel="stylesheet" href="../res/css/cursor.css">
+    <link rel="stylesheet" href="../res/css/dialog.css">
+    <link rel="stylesheet" href="../res/css/scanlines.css">
+    <link rel="stylesheet" href="../res/css/scrollbars.css">
+
+    <!-- JavaScript -->
+    <script src="../res/js/audio/home.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/howler"></script>
+
+    <title>HOSHI Project Wiki</title>
+
+    <style>
+        /* Remove default margin and padding */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%; /* Ensure full height for the page */
+        }
+
+        /* Header styling */
+        header {
+            background-image: url(bootstrap/header.png);
+            background-size: cover;
+            background-position: top;
+            background-repeat: no-repeat;
+            background-attachment: scroll; /* Let the background scroll with the page */
+            padding: 5vh 0; /* Reduced padding to avoid excess space */
+            color: white;
+            font-size: 2rem; /* Scales with screen size */
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative; /* Keeps it in normal flow */
+            width: 99.9%; /* Full width */
+            top: 0; /* Position the header at the top */
+            left: 0; /* Align with the left edge */
+            margin: 0; /* Remove margin to avoid space */
+        }
+
+        /* Push content down to avoid overlap */
+        .main-content {
+            margin-top: 0; /* No need for extra margin here */
+        }
+
+        /* Responsive title styling */
+        #title {
+            text-align: left;
+            width: 110%;
+            font-family: "Heading";
+            font-size: clamp(2rem, 5vw, 6rem); /* Scales between 2rem and 6rem */
+            color: #FFF;
+            transform: rotate(-2deg);
+            text-shadow: 
+                0 0 1vw rgba(0, 0, 0, 0.9),
+                0 0 2vw rgba(0, 0, 0, 0.8),
+                0 0 3vw rgba(0, 0, 0, 0.7),
+                0 0 4vw rgba(0, 0, 0, 0.6),
+                0 0 5vw rgba(0, 0, 0, 0.5);
+        }
+
+        #small {
+            font-family: "Makina";
+            text-align: left;
+            font-size: 45px;
+            color: #FFF;
+            transform: rotate(-2deg);
+            text-shadow: 
+                0 0 1vw rgba(0, 0, 0, 0.9),
+                0 0 2vw rgba(0, 0, 0, 0.8),
+                0 0 3vw rgba(0, 0, 0, 0.7),
+                0 0 4vw rgba(0, 0, 0, 0.6),
+                0 0 5vw rgba(0, 0, 0, 0.5);
+        }
+
+        /* General paragraph text */
+        p {
+            font-family: "Paragraph";
+            font-size: 1rem;
+        }
+
+        .highlight {
+            color: #FF0;
+            font-family: Makina;
+            text-decoration: underline;
+        }
+
+        .highlight:hover {
+            font-family: Makina;
+            color: crimson;
+            text-decoration: underline;
+        }
+
+        #back {
+            position: absolute;
+            display: inline-block;
+            font-family: Heading;
+            background-color: #000;
+            color: #FFF;
+            border: 1px solid;
+            box-shadow: 0px 0px 0px 1px #000;
+            left: 0.5em;
+            top: 0.5em;
+            font-size: 1em;
+            padding: 0.2em;
+            padding-bottom: 0;
+            transition: 0.2s left, 0.2s color;
+        }
+
+        #back:hover {
+            left: 0.1em;
+            color: #FF0;
+            cursor: url("https://new.systemspace.network/res/cursor/confirm.png"), default;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="padded">
+            <h1 id="title">The HOSHI Project Wiki</h1>
+        <p id="small">Home Page</p>
+        <a href="../index.html">
+            <button id="back">HOSHI</button>
+        </a>
+        </div>
+    </header>
+
+    <div class="main-content">
+
+        <div class="padded">
+            <br><br>
+            <div class="content">
+                <h1 style="font-family: Makina; font-size: 25px;"><span style="color: crimson;">Warning:</span> The Wiki is still under construction and is not ready to be used. However, you can expect the Wiki page to look like this.</h1>
+                <img src="https://davesamaniego2016.wordpress.com/wp-content/uploads/2016/10/cat-catstruction-play-on-words-construction-cats-favim-com-4174852.jpeg" height="250" width="250" alt="">
+                <br><br>
+                <img src="img/wikihoshi.png" height="100" width="100" alt="">
+                <br>
+                <h1 style="font-family: Makina; font-size: 30px;">Welcome to the Official HOSHI Project Wiki!</h1>
+                <p style="font-family: Makina; font-size: 15px;">Here you can find information about Aurora, Hoshi Representative, the HOSHI Project itself, and more!</p>
+
+                <p style="font-family: Makina;">Links <br><a href="pages/what-is-aurora.html" class="highlight">What is Aurora?</a> <br><a href="pages/how-can-aurora-be-used.html" class="highlight">How can Aurora be used?</a> <br><p style="font-family: Makina;">Official companies</p><a href="pages/haiku-as-a-company.html" class="highlight">Haiku as a Company</a> <br><a href="pages/synapse-as-a-company.html" class="highlight">Synapse as a Company</a> <br><a href="pages/hoshi-as-a-company.html" class="highlight">HOSHI as a Company</a></p>
+
+                <h5 style="color: #333; font-family: Makina;">Wiki last updated on 01.03.2025 by HoshiRep</h5>
+            </div>
+        </div>
+
+    </div>
+</body>
+<script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+		var noise = new Howl({
+			src: ["https://theprojectofficial.github.io/new/audio/wiki.ogg"],
+			loop: true,
+			volume: 0.5,
+			onplayerror: function() {
+				showErrorMessage("Error: Failed to play intro sound.");
+			}
+		});
+		
+		window.addEventListener("load", function(event) {
+			noise.play();
+		});
+	});
+
+	// Function to display the error message
+	function showErrorMessage(message) {
+		var errorMessageDiv = document.getElementById('error-message');
+		var errorText = document.getElementById('error-text');
+		errorText.textContent = message;
+		errorMessageDiv.classList.remove('hidden');
+		errorMessageDiv.style.display = 'block';
+
+		// Close the error message
+		document.getElementById('close-error').addEventListener('click', function() {
+			errorMessageDiv.style.display = 'none';
+		});
+	}
+</script>
+</html>
