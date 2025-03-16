@@ -701,6 +701,7 @@
     <script src="res/js/afst.js"></script>
 
     <script>
+        let oneTwenty = false;
         let sixtyPlayed = false; // Ensure 60-second audio plays only once
         let fiftyPlayed = false;
         let fourtyPlayed = false;
@@ -710,43 +711,42 @@
         let lastSecond = -1; // Track the last second that triggered a countdown number
     
         function playOneTwentyCountdown() {
-            if (sixtyPlayed) return; // Prevent multiple triggers for 60 seconds
-            sixtyPlayed = true;
+            if (oneTwenty) return; 
+            oneTwenty = true;
     
-            let chain = ["number_120", "seconds", "remaining"]; // "Remaining 60 seconds"
+            let chain = ["number_080", "seconds", "remaining"]; 
             chainSfx(chain);
         }
 
-        // Helper function to play "60 seconds remaining"
         function playSixtyCountdown() {
-            if (sixtyPlayed) return; // Prevent multiple triggers for 60 seconds
+            if (sixtyPlayed) return; 
             sixtyPlayed = true;
     
-            let chain = ["number_060", "seconds", "remaining"]; // "Remaining 60 seconds"
+            let chain = ["number_060", "seconds", "remaining"]; 
             chainSfx(chain);
         }
 
         function playFiftyCountdown() {
-            if (fiftyPlayed) return; // Prevent multiple triggers for 60 seconds
+            if (fiftyPlayed) return; 
             fiftyPlayed = true;
     
-            let chain = ["number_050", "seconds", "remaining"]; // "Remaining 60 seconds"
+            let chain = ["number_050", "seconds", "remaining"]; 
             chainSfx(chain);
         }
 
         function playFourtyCountdown() {
-            if (fourtyPlayed) return; // Prevent multiple triggers for 60 seconds
+            if (fourtyPlayed) return; 
             fourtyPlayed = true;
     
-            let chain = ["number_040", "seconds", "remaining"]; // "Remaining 60 seconds"
+            let chain = ["number_040", "seconds", "remaining"]; 
             chainSfx(chain);
         }
 
         function playthirtyCountdown() {
-            if (thirtyPlayed) return; // Prevent multiple triggers for 60 seconds
+            if (thirtyPlayed) return; 
             thirtyPlayed = true;
     
-            let chain = ["number_030", "seconds", "remaining"]; // "Remaining 60 seconds"
+            let chain = ["number_030", "seconds", "remaining"]; 
             chainSfx(chain);
         }
 
