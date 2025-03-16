@@ -906,8 +906,13 @@
             const now = new Date().getTime(); // Get current time
             const timeRemaining = targetDate - now; // Calculate time remaining
 
+            if (timeRemaining <= 80000 && !oneTwenty) {
+                console.log("Triggering 80-seconds countdown audio...");
+                playOneTwentyCountdown();
+            }
+            
             if (timeRemaining <= 60000 && !sixtyPlayed) {
-                console.log("Triggering 60-minute countdown audio...");
+                console.log("Triggering 60-seconds countdown audio...");
                 playSixtyCountdown();
             }
 
