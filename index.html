@@ -1,27 +1,140 @@
-<!-- YALL BETTER ENJOY THIS COUNTDOWN (DOING THE AUDIO WAS SO BUGGY HELP) -->
-<!-- BY HOSHIREP @ HOSHISPACE.LINK -->
-<!-- CREDITS TO SYSTEMSPACE.NETWORK (SYSTEMSPACE.LINK ARCHIVE) I TOOKS SOME RESOURCES LIKE AUDIO ETC FROM THEM. -->
-
+<!--
+    BY HOSHIREP @ HOSHISPACE.LINK 
+    CREDITS TO SYSTEMSPACE.NETWORK (SYSTEMSPACE.LINK ARCHIVE) I TOOKS SOME RESOURCES LIKE AUDIO ETC FROM THEM.
+    YALL BETTER ENJOY THIS COUNTDOWN (DOING THE AUDIO WAS SO BUGGY HELP)
+    (chatgpt was used, dont judge me.)
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://theprojectofficial.github.io/">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="res/js/actor.js"></script>
-    <link rel="icon" href="res/img/hoshi‑round‑favicon.png" type="image/png">
+    <!-- Toastify CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <title>HOSHI</title>
     <script>
-        // Create Howl instances for both audio files
-        var audio1 = new Howl({
-            src: ['https://theprojectofficial.github.io/stuff/nnintro.ogg'],
-            volume: 0.7, // Set volume to 0.7
-            onend: function() {
-                // When audio1 finishes, play audio2
-                audio2.play();
+        function request() {
+            fetch('http://localhost/loader2.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: 'type=unlink'
+        })
+        .then(response => response.json())
+            .then(data => {
+            if (data.success) {
+                console.log("Response returned true.");
+            } else {
+                console.log("FATAL ERROR: Currently TOO EARLY.");
+                triggerError();
+            }
+            });
+        }
+
+        window.onload = function () {
+            request();
+            let colorlay = document.getElementById("colorlay");
+
+            let randomDuration = (Math.random() * 3.5 + 2).toFixed(2); 
+
+            // Apply the random duration
+            colorlay.style.animation = `${randomDuration}s rot linear infinite`;
+        };
+
+        setTimeout(() => {
+            const element = document.querySelector('.startAnimation');
+
+            if (element) {
+                console.log("Element found:", element);
+                
+                // Add animation dynamically
+                element.style.animation = "popUp 0.9s ease-out";
+                console.log("Animation added:", element.style.animation);
+
+                // Listen for when the animation ends
+                element.addEventListener("animationend", () => {
+                    console.log("Animation finished. Setting opacity to 1.");
+                    element.style.opacity = "1";
+                });
+            } else {
+                console.error("Element with class 'startAnimation' not found.");
+            }
+        }, 8500);
+
+        setTimeout(function() {
+            // Get the current time in milliseconds
+            const currentTime = new Date().getTime();
+            const warningSeen = localStorage.getItem("warningSeen");
+            const warningExpiration = localStorage.getItem("warningExpiration");
+
+            // Check if the warning has been seen and whether the expiration time has passed
+            if (!warningSeen || currentTime > warningExpiration) {
+                // If the warning has not been seen or the time has expired, redirect to the warning page
+                window.location.href = "warning.html"; // Replace with the actual warning page URL
+            }
+        }, 5000); 
+
+        // Konami code sequence
+        const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'KeyB', 'KeyA'];
+
+        let konamiIndex = 0;
+
+        // Event listener for keydown events
+        document.addEventListener('keydown', (event) => {
+            // If the key matches the expected key in the Konami code
+            if (event.code === konamiCode[konamiIndex]) {
+                konamiIndex++;
+
+                // If the whole sequence is entered correctly
+                if (konamiIndex === konamiCode.length) {
+                    console.log("Konami Initiated.");
+                    konamiIndex = 0; // Reset to allow for future activations
+                }
+            } else {
+                konamiIndex = 0; // Reset if the wrong key is pressed
             }
         });
+
+        function corruptColor() {
+            // Remove the div with id 'colorlay'
+            var colorlayDiv = document.getElementById("colorlay");
+            if (colorlayDiv) {
+                colorlayDiv.remove();
+            }
+            
+            // Remove the div with class 'overlay'
+            var overlayDiv = document.querySelector(".overlay");
+            if (overlayDiv) {
+                overlayDiv.remove();
+            }
+        }
+
+        setTimeout(function () {
+            $('body').addClass('active');
+        }, 4000);
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.js"></script>
+    <script>
+        function triggerError() {
+            audio1.stop();
+            audio2.stop();
+            Howler.stop();
+            failed.play();
+            //fadeOutElement();
+            Toastify({
+                text: "Fatal Error: Something went wrong! Please try again later.",
+                duration: 2000, 
+                close: false, // Show close button
+                gravity: "center", // Position at the top
+                position: "center", // Position on the right
+                backgroundColor: "#F10", // Red color for fatal errors
+            }).showToast();
+        }
+    </script>
+    <script>
         
         var audio2 = new Howl({
             src: ['https://theprojectofficial.github.io/stuff/nnloop.ogg'],
@@ -40,13 +153,85 @@
             volume: 0.7, // Set volume to 0.7
             loop: false
         });
+
+        var birds = new Howl({
+            src: ['https://theprojectofficial.github.io/stuff/birds.ogg'],
+            volume: 0.7, // Set volume to 0.7
+            loop: false
+        });
+
+        var failed = new Howl({
+            src: ['https://theprojectofficial.github.io/new/audio/bliss.ogg'],
+            volume: 0.7, // Set volume to 0.7
+            loop: false
+        });
+
+        const intense = new Howl({
+            src: ['https://theprojectofficial.github.io/new/audio/intense.ogg'], 
+            volume: 0.8,
+        });
+
+        const clicked = new Howl({
+            src: ['https://theprojectofficial.github.io/stuff/clicked.ogg'], 
+            volume: 1.0,
+        });
+
+        const final = new Howl({
+            src: ['https://theprojectofficial.github.io/new/audio/countdown.wav'], 
+            autoplay: false,
+            loop: false,
+            onend: function() {
+                console.log('Playback finished.');
+                sound.unload(); // Unload the sound to prevent replay
+            }
+        });
+
+        const corruption = new Howl({
+            src: ['https://theprojectofficial.github.io/stuff/corruption.ogg'], 
+            volume: 0.7,  
+        });
+
+        document.addEventListener('click', () => {
+            clicked.play();
+        });
         
         // Start the loop by playing audio1
-        
-        start.play();
+        //var audio1 = new Howl({
+                //src: ['https://theprojectofficial.github.io/stuff/nnintro.ogg'],
+                //volume: 0.7, // Set volume to 0.7
+                //onload: hajimaru(),
+                //onend: function() {
+                    // When audio1 finishes, play audio2
+                    //audio2.play();
+            //}
+        //});
+
+        var audio1 = new Howl({
+                src: ['https://theprojectofficial.github.io/new/audio/audioX.ogg'],
+                volume: 0.7, // Set volume to 0.7
+                onload: hajimaru(),
+                onend: function() {
+                    audio2.play();
+            }
+        });
+
+        //start.play();
+        audio1.play();
 
         // PLAY IN LAST HOUR
-        //audio1.play();
+        function hajimaru() {
+            $(document).ready(function () {
+            $('#starfield-container').starfield({
+                starColor: "rgba(255,255,255,0.8)", 
+                background: "rgba(0,0,0,1)", 
+                mouseMove: true, 
+                fps: 30, 
+                speed: -5, 
+                quantity: 1000, 
+                ratio: 100
+            });
+        });
+        }
 
         // Example of timeRemaining (this would come from your timer logic)
         var timeRemaining = 25000; // 25 seconds for this example
@@ -54,7 +239,7 @@
         // Function to check if timeRemaining is less than or equal to 30000 (30 seconds) and fade audio2
         function checkAndFadeAudio() {
             if (timeRemaining <= 30000) {
-                audio2.fade(0.7, 0, 10000); // Fade audio2 from volume 0.7 to 0 in 10 seconds
+                audio2.fade(0.7, 0, 13000); // Fade audio2 from volume 0.7 to 0 in 10 seconds
             }
         }
 
@@ -63,19 +248,31 @@
         }
     </script>
     <script>
-        $(document).ready(function() {
-            console.log("Initializing starfield...");
+        // STARFIELDS
 
-            $('#starfield-container').starfield({
+        function StarfieldRemover() {
+            const Remover = document.getElementById('starfield-container');
+            if (Remover) {
+                Remover.remove(); 
+            }
+        }
+
+        function fadeOutElement() {
+            var element = document.getElementById('body');
+            element.classList.add('fadeOutElement');
+        }
+
+        function StarfieldShaker() {
+            $('#starfield-shake').starfield({
                 starColor: "rgba(255,255,255,0.8)", // Color of the stars
                 bgColor: "rgba(0,0,0,1)", // Use 'background' instead of 'bgColor'
                 mouseMove: true, // Enable mouse move effect
                 fps: 30, // Frame per second
-                speed: -15, // Speed of stars
+                speed: -30, // Speed of stars
                 quantity: 500, // Number of stars
                 ratio: 200 // Star distance ratio
             });
-        });
+        }
 
     </script>
     <style>
@@ -89,8 +286,7 @@
         }
 
         body {
-
-            /* background: linear-gradient(180deg, #000, #300); */
+            background-color: #000;
             font-family: "ABR", sans-serif;
             height: 100vh;
             overflow: hidden;
@@ -102,7 +298,39 @@
             flex-direction: column;
         }
 
+        .toastify {
+            font-family: 'ABR';
+            color: #FFF;
+        }
+
+        #flashElement {
+            width: 200px;
+            height: 200px;
+            background-color: lightblue;
+            opacity: 0; /* Initially hidden */
+            margin: 20px;
+            transition: opacity 0.2s ease-in-out, background-color 0.2s ease-in-out;
+        }
+
         #starfield-container {
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .active #starfield-container {
+            opacity: 1;
+            transition: 4s 8s opacity;
+        }
+
+        .active {
+            opacity: 1;
+        }
+
+        #starfield-containerIntro {
             position: absolute;
             top: 0;
             left: 0;
@@ -123,21 +351,25 @@
         }
 
         html {
-            /* cursor: url("res/cursor/cursor.png"), pointer; */
+            cursor: url("res/cursor/cursor.png"), pointer;
 
-            -webkit-touch-callout: none;
+            -webkit-touch-callout: text;
             /* iOS Safari */
-            -webkit-user-select: none;
+            -webkit-user-select: text;
             /* Safari */
-            -khtml-user-select: none;
+            -khtml-user-select: text;
             /* Konqueror HTML */
-            -moz-user-select: none;
+            -moz-user-select: text;
             /* Firefox */
-            -ms-user-select: none;
+            -ms-user-select: text;
             /* Internet Explorer/Edge */
-            user-select: none;
+            user-select: text;
             /* Non-prefixed version, currently
             supported by Chrome and Opera */
+        }
+
+        .animated {
+            animation: popUp 3s ease-out;
         }
 
         a {
@@ -145,17 +377,17 @@
         }
 
         #colorlay {
+            background: linear-gradient(0deg, #F01 35%, #F00 40%, #F00 45%, #C01 50%, #F00 55%, #F30 60%, #E02 65%, #F20 70%);
             position: fixed;
             left: -200%;
             top: -200%;
             right: -200%;
             bottom: -200%;
             z-index: 100000;
-            /*  background: linear-gradient(0deg, #F20 35%, #F10 40%, #C01 45%, #F00 50%, #D10 55%, #E02 60%, #F20 65%); */
-            background: linear-gradient(0deg, #F20 35%, #FF6600 40%, #F10 45%, #C01 50%, #F00 55%, #D10 60%, #E02 65%, #FF6600 70%);
             mix-blend-mode: multiply;
             pointer-events: none;
-            animation: 3s rot linear infinite;
+            /* animation: 3s rot linear infinite; */
+            animation: 2.5s rot linear infinite;
         }
 
         #whitelay {
@@ -172,8 +404,12 @@
         }
 
         @keyframes rot {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         #starfield { 
@@ -194,14 +430,13 @@
         #timeblock {
             background-color: rgba(30,30,30,0.4);
             display: block;
-            width: 85vw;
-            scale: 1.05;
-            margin-top: -0.315vw;
+            width: 50vw;
+            scale: 1;
+            margin-top: -0.320vw;
             box-shadow: 0px 0px 64px rgba(255,255,255,0.7);
             border: 0.2vw solid #FFF;
-            transform: translateY(100vh); /* Initially off-screen */
+            transform: translateY(50vh); /* Initially off-screen */
             transition: transform 1s ease-in-out;
-            animation: popUp 0.75s ease-out forwards;
             display: flex;
             flex-direction: column-reverse;
             align-items: center;
@@ -209,44 +444,72 @@
         }
 
         .startAnimation {
-            animation: popUp 0.75s ease-out forwards;
+            opacity: 0;
         }
 
         .active #timeblock {
-            transform: translateY(0); /* Bring it into view */
+             /* transform: translateY(0); */
         }
 
         #addendum {
             background-color: #FFF;
             color: #000;
             text-align: center;
-            scale: 1.05;
+            scale: 1;
             display: block;
-            width: 84.8vw;
+            width: 49.8vw;
             margin-top: -1.25vw;
             box-shadow: 0px 0px 64px rgba(255,255,255,0.7);
             font-family: ABR;
             padding: 0 0.25vw;
-            /* animation: popUp2 0.25s ease-out forwards; */
+            /*animation: popUp2 2s ease-out forwards; */
             font-size: 1vw;
             transform: translateY(100vh); /* Initially off-screen */
-            transition: transform 1s ease-in-out;
+            /* transition: transform 1s ease-in-out; */
         }
 
         .active #addendum {
-            transform: translateY(0); /* Bring it into view */
+            /* transfor7m: translateY(0); */
+        }
+
+        .stackX {
+            position: absolute;
+            box-shadow: 0px 0px 64px rgba(255,255,255,0.3);
+            font-size: 2vw;
+            color: #000;
+            border: 0.2vw solid #FFF;
+            width: 110.8%;
+            top: -2.5vw;
+            left: 44.32%;
+            transform: translateX(-50%);
+            text-align: left;
+        }
+
+        .keyX {
+            background-color: #FFF;
+            font-family: ABR;
+            font-size: 2vw;
+            display: inline-block;
+            width: 10vw;
+            height: 3vw;
+            text-align: center;
+            padding-bottom: 0.3vw;
+            box-shadow: 0px 0px 64px rgba(255,255,255,0.3);
+            color: #000;
+            line-height: 3.2vw;
         }
 
         .stack {
             position: absolute;
-            box-shadow: 0px 0px 64px rgba(255,255,255,0.7);
+            box-shadow: 0px 0px 64px rgba(255,255,255,0.3);
             font-size: 2vw;
-            color: #F00;
+            color: #000;
             border: 0.2vw solid #FFF;
-            width: 100%;
-            top: -3.55vw; /* Adjust this value to move it above */
-            left: 50%;
-            transform: translateX(-50%);
+            width: 110.8%;
+            top: -2.4vw; 
+            left: -3.8vw;
+            transform: translateX(-0%);
+            transform: translateY(-100%);
             text-align: left;
         }
 
@@ -265,7 +528,17 @@
 
         @keyframes popUp2 {
             0% {
-                transform: translateY(1000%); 
+                transform: translateY(1500%); 
+
+            }
+            100% {
+                transform: translateY(-50%); 
+            }
+        }
+
+        @keyframes popUpTimeblock {
+            0% {
+                transform: translateY(500%); 
 
             }
             100% {
@@ -275,11 +548,12 @@
 
         @keyframes popUp {
             0% {
-                transform: translateY(500%); 
-
+                transform: translateY(300%); 
+                opacity: 1;
             }
             100% {
-                transform: translateY(0); 
+                transform: translateY(0);
+                opacity: 1;
             }
         }
 
@@ -312,6 +586,33 @@
             animation: ShadowMoveLoop 9.5s linear alternate infinite;
         }
 
+        @keyframes FadeIn {
+            0% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes introFadeIn {
+            0% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
         @keyframes ShadowMoveLoop {
             0%   { text-shadow: -8px -12px 16px rgba(255,255,255, 0.2), 3px 9px 8px rgba(255,255,255, 0.2), -14px 8px 13px rgba(255,255,255, 0.2), 9px -2px 5px rgba(255,255,255, 0.2); }
             10%  { text-shadow: -2px -16px 16px rgba(255,255,255, 0.2), 6px 2px 8px rgba(255,255,255, 0.2), -12px 5px 13px rgba(255,255,255, 0.2), 7px -8px 5px rgba(255,255,255, 0.2); }
@@ -326,7 +627,7 @@
             100% { text-shadow: -7px -17px 16px rgba(255,255,255, 0.2), 0px 4px 8px rgba(255,255,255, 0.2), -11px 3px 13px rgba(1,1,1, 0.2), 6px -6px 5px rgba(255,255,255, 0.2); }
         }
 
-        #minutes, #seconds, #ms {
+        #minutes, #seconds, #ms, #hours {
             font-size: 11vw;
         }
 
@@ -340,7 +641,7 @@
         }
 
         #hours {
-            font-size: 11vw;
+            font-size: 8vw;
             color: transparent;
             -webkit-text-stroke: 0.2vw #FAFAFA; 
             text-stroke: 0.2vw #FAFAFA;
@@ -356,16 +657,16 @@
             color: transparent;
             -webkit-text-stroke: 0.2vw #FAFAFA; 
             text-stroke: 0.2vw #FAFAFA;
-            font-size: 11.7vw;
+            font-size: 11vw;
             animation: 9.5s ShadowMoveLoopSec linear alternate infinite;
         }
 
         #seperator {
-            font-size: 11vw;
+            font-size: 10vw;
             color: transparent;
             -webkit-text-stroke: 0.2vw #FAFAFA; 
             text-stroke: 0.2vw #FAFAFA;
-            font-size: 11.7vw;
+            font-size: 11vw;
             animation: 9.5s ShadowMoveLoopSec linear alternate infinite;
         }
 
@@ -373,17 +674,35 @@
             color: transparent;
             -webkit-text-stroke: 0.2vw #FAFAFA; 
             text-stroke: 0.2vw #FAFAFA;
-            font-size: 11.7vw;
+            font-size: 10vw;
             animation: 9.5s ShadowMoveLoopSec linear alternate infinite;
         }
 
         #ms {
             font-size: 4.5vw;
-            opacity: 0.5;
+            opacity: 0.6;
+        }
+
+        #dot {
+            font-size: 4.5vw;
+            opacity: 0.6;
+        }
+
+        body.shrink {
+            transform: scale(0.00); 
+            transition: transform 2s ease-in-out;
+            transform-origin: center center;
+        }
+
+        body.increase {
+            transform: scale(1); 
+            transition: transform 2s ease-in-out;
+            transform-origin: center center;
         }
 
         .move {
-            animation: slightMove 5s ease-in-out infinite;
+            margin-top: -100px;
+            animation: slightMove 7s ease-in-out infinite;
         }
 
         @keyframes slightMove {
@@ -391,11 +710,21 @@
                 transform: translate(0, 0);
             }
             50% {
-                transform: translate(5px, 5px); 
+                transform: translate(5px, 15px); 
             }
             100% {
                 transform: translate(0, 0);
             }
+        }
+
+        #circle {
+            background: radial-gradient(circle, #FFF, #FFF, #FFF);
+            position: fixed; 
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0; 
         }
 
         #description {
@@ -429,17 +758,37 @@
             transition: 1s 0.7s opacity;
         }
 
+        .overlay {
+            position: fixed; 
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+            radial-gradient(circle, rgba(242, 0, 0, 0.1), rgba(241, 80, 0, 0.2)),
+                linear-gradient(0deg, 
+                    rgba(242, 0, 0, 0.1) 30%, 
+                    rgba(241, 80, 0, 0.1) 40%, 
+                    rgba(192, 100, 0, 0.1) 45%, 
+                    rgba(255, 140, 0, 0.1) 50%, 
+                    rgba(209, 120, 0, 0.1) 55%, 
+                    rgba(224, 140, 0, 0.1) 60%, 
+                    rgba(242, 80, 0, 0.1) 70%
+                );
+            z-index: 1; 
+        }
+
         .key {
             background-color: #FFF;
             font-family: ABR;
-            color: #FFF;
+            color: #000;
             font-size: 2vw;
             display: inline-block;
             width: 10vw;
             height: 3vw;
             text-align: center;
             padding-bottom: 0.3vw;
-            box-shadow: 0px 0px 64px rgba(255,255,255,0.7);
+            box-shadow: 0px 0px 64px rgba(255,255,255,0.3);
             color: #000;
             line-height: 3.2vw;
         }
@@ -482,7 +831,6 @@
             line-height: 3.2vw;
         }
 
-        /* Starfield Canvas */
         #starCanvas {
             position: fixed;
             top: 0;
@@ -493,12 +841,17 @@
         }
 
         #timeblock, #addendum, #description {
-            transition: opacity 0.3s ease-out;
+            /* transition: opacity 0.3s ease-out;*/
+            scale: 1;
+            width: 65vw;
         }
 
-        /* Define the fade-out animation */
         .fade-out {
             animation: fadeOut 0.3s ease-out forwards;
+        }
+
+        .fadeOutElement {
+            animation: fadeOut 2s forwards;
         }
 
         @keyframes fadeOut {
@@ -507,22 +860,24 @@
             }
             to {
                 opacity: 0;
-                visibility: hidden;
             }
         }
 
-        .flash {
+        .fade-out {
+            animation: fadeOut 3s forwards; 
+        }
+
+        #flash {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            background-color: white;
+            background: white;
             opacity: 0;
-            pointer-events: none; /* Make sure it doesn't block clicks or interactions */
-            z-index: 9999; /* Ensures the flash is on top of everything */
-            transform: scale(0);
-            transform-origin: center;
+            pointer-events: none;
+            transition: opacity 0.2s ease-out;
+            z-index: 9999;
         }
 
         @keyframes flashAnimation {
@@ -574,6 +929,19 @@
             30%  { transform: translateX(5px) translateY(0px); }
         }
 
+        .animate-offscreen {
+            animation: moveOffScreen 3s forwards;
+        }
+
+        @keyframes moveOffScreen {
+            0% {
+                left: 0;
+            }
+            100% {
+                left: 120%;
+            }
+        }
+
         /* Class to trigger the shake animation */
         .shake {
             animation: shakeII 0.5s ease-in-out infinite;
@@ -588,14 +956,26 @@
             transition: 2s 0.7s opacity;
         }
 
+        #vignette {
+            position: fixed;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 10000;
+            background: radial-gradient(farthest-corner at center, transparent 50%, rgba(255, 0, 0, 0.5) 99%);
+            pointer-events: none;
+            opacity: 0.7; 
+        }
+
         #timeblock, #addendum, #description {
             transition: all 0.3s ease-in-out;
         }
 
         #shakeContainer {
-            opacity: 1;  /* Initially visible */
-            transition: opacity 0.5s ease-in;
-            display: block;  /* Ensure it's displayed from the start */
+            animation: fadeSigma1 1s ease-in-out;
+            display: block;
+            scale: 0.9;
         }
 
         #timeblock, #addendum, #description {
@@ -605,6 +985,43 @@
 
         #shakeContainer span {
             color: #FFF;
+        }
+
+        @keyframes fadeSigma {
+            0% {
+                opacity: 0;
+                /* transform: scale(5); */
+            }
+            100% {
+                opacity: 1;
+                /* transform: scale(1); */
+            }
+        }
+
+        @keyframes fadeSigma1 {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .screen-flash {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 9999;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .screen-flash.active {
+            opacity: 1;
         }
 
         #axis1, #axis2, #axis3, #axis4 {
@@ -644,12 +1061,26 @@
             background-position: 0px 24px;
         }
 
+        #fadeOutContainer {
+            opacity: 1;
+        }
+
+        #fadeText {
+            opacity: 0;
+            visibility: hidden;
+            color: #FFF;
+        }
+
+        #tbc {
+            opacity: 0; 
+        }
+
         .booting #axis1,
         .booting #axis2,
         .booting #axis3,
         .booting #axis4 {
             opacity: 0.2;
-            transition: 3s opacity;
+            transition: 4s opacity;
         }
 
         @keyframes AxisScroll {
@@ -661,64 +1092,253 @@
             }
         }
     </style>
+    <script>
+        function increaseVignetteBy50Percent(duration) {
+                const vignette = document.getElementById('vignette');
+            
+            // Ensure the vignette element exists
+            if (!vignette) return;
+
+            let startOpacity = parseFloat(window.getComputedStyle(vignette).opacity) || 0.7;
+            let targetOpacity = startOpacity * 1.5;  // Increase opacity by 50%
+            if (targetOpacity > 1) targetOpacity = 1; // Limit the opacity to 1 (max value)
+
+            let startTime = null;
+
+            function animateVignette(currentTime) {
+                if (!startTime) startTime = currentTime;
+                let progress = (currentTime - startTime) / duration;  // Normalize the time (0 to 1)
+
+                if (progress < 1) {
+                    // Smoothly increase the opacity by 50%
+                    vignette.style.opacity = startOpacity + (targetOpacity - startOpacity) * progress;
+                    requestAnimationFrame(animateVignette);
+                } else {
+                    // Ensure final opacity is set exactly at the target opacity
+                    vignette.style.opacity = targetOpacity;
+                }
+            }
+
+            // Start the animation
+            requestAnimationFrame(animateVignette);
+        }
+    </script>
 </head>
 <body>
     <img src="res/img/connected.png" alt="Image" class="fade-image" id="image">
-    <div id="colorlay"></div>
     
-    <div id="starfield-container"></div>
-    <!-- <canvas id="starCanvas"></canvas> -->
-
-
-    <div class="move">
-
-        <div id="timeblock">
-            <div id="shakeContainer" class="stack"><div class="key">AURORA</div> <span style="color: #FFF;">DISCONNECTED</span></div>
-            <div id="counter">
-                <!-- MINUTES ONLY <span id="minutes">00</span><span id="separate">:</span><span id="seconds">00</span><span id="ms">.00</span> -->
-                <span id="days">00</span><span id="seperator">:</span><span id="hours">00</span>:<span id="minutes">00</span><span id="seperator">:</span><span id="seconds">00</span><span id="ms">.000</span>
-            </div>
-        </div>
-
-        <div class="startAnimation">
-
-            <!-- Addendum container -->
-            <div id="addendum">
-                Once this timer hits 0, Connections to Aurora will be made. After this happens, there will be a Maintenance to ensure a Safe connection. after a few days, Auroraric Power will be able to be used Again and our servers will be back up.
-            </div>
-                
-            <div id="description">until Aurora is reconnected</div>
-
-        </div>
-    
-    </div>
-    <a href="discord link" id="return">
-        <div id="return">join Discord (Countdown set to 30th instead of 25th, due to Aurora currently having more tension.)</div> 
-    </a>
-
+    <div id="return"></div>
 
     <div id="axis1"></div>
     <div id="axis2"></div>
     <div id="axis3"></div>
     <div id="axis4"></div>
 
+    <!-- 
+    <div id="circle"></div>
+    <div id="vignette"></div>
+    <div id="colorlay"></div>
+    -->
+    <div id="flash"></div>
+    <div id="vignette"></div>
+    <div id="colorlay"></div>
+    <div id="starfield-container"></div>
+    <div id="starfield-shake"></div>
+    <!-- <canvas id="starCanvas"></canvas> -->
+
+    <p id="fadeText">Here is the text that will fade in after the body fades out!</p>
+
+    <div class="move">
+
+        <div id="shakeContainer" class="stack"><div class="key">AURORA</div> <span id="connectedtext" style="color: #FFF; ">DISCONNECTED</span></div>
+        <div id="shakeContainer" class="stackX"><div class="keyX">LINKING</div> <span style="color: #FFF; ">FINALIZING</span></div>
+        <h1></h1>
+        <div class="startAnimation">
+    
+            <div id="timeblock">
+                <!-- <div id="shakeContainer" class="stack"><div class="key">AURORA</div> <span style="color: #FFF;">DISCONNECTED</span></div>
+                <div id="shakeContainer" class="stackX"><div class="keyX">LINKING</div> <span style="color: #FFF;">FINALIZING</span></div> -->
+                <div id="counter">
+                    <!-- MINUTES ONLY <span id="minutes">00</span><span id="separate">:</span><span id="seconds">00</span><span id="ms">.00</span> -->
+                    <span id="hours">00</span><span id="seperator">:</span><span id="minutes">00</span><span id="seperator">:</span><span id="seconds">00</span><span id="dot">.</span><span id="ms">.000</span>
+                </div>
+            </div>
+    
+            <!-- Addendum container -->
+            <div id="addendum">
+                Once this timer hits 0, Connections to Aurora will be made. After this happens, there will be a Maintenance to ensure a Safe connection.
+            </div>
+                    
+            <div id="description">until Aurora is reconnected</div> 
+    </div>
+
+    <div id="flash" class="flash"></div>
+
     <script src="res/js/afst.js"></script>
 
     <script>
-        let oneTwenty = false;
-        let sixtyPlayed = false; // Ensure 60-second audio plays only once
+        //s
+        // etTimeout(showOverlay, 1950);
+
+        let finCall = false;
+
+        let fifty1 = false;
+        let forty1 = false;
+        let thirty1 = false;
+        let twenty1 = false;
+        let ten1 = false;
+        
+        let twoMinPlayed = false;
+        let threeMinPlayed = false;
+
+        let corruptionPlayed = false;
+
+        let one1 = false;
+        let sixtyPlayed = false;
         let fiftyPlayed = false;
-        let fourtyPlayed = false;
+        let fortyPlayed = false;
         let thirtyPlayed = false;
+        let countdownPlayed = false;
+        
         let onetwentyPlayed = false;
-        let countdownPlayed = false; // Ensure countdown from 20 to 1 plays once
         let lastSecond = -1; // Track the last second that triggered a countdown number
+
+        const text = "HOSHISPACE.LINK © 2025";
+        const typingSpeed = 200;
+
+        let index = 0;
+        function typeWriter() {
+            if (index < text.length) {
+                document.getElementById("return").innerHTML += text.charAt(index);
+                index++;
+                setTimeout(typeWriter, typingSpeed);
+            }
+        }
+
+        typeWriter();
+
+        function removeVignette() {
+            const vignette = document.getElementById('vignette');
+            if (vignette) {
+                vignette.remove();
+            }
+        }
+
+        function flash(duration = 1000) {
+            const flashEl = document.getElementById('flash');
+            flashEl.style.opacity = '1';
+            flashTrue = true;
+            setTimeout(() => {
+            flashEl.style.opacity = '0';
+            }, duration);
+        }
+
+        function flashScreen(duration = 1500) {
+            const flash = document.getElementById('flash');
+            if (!flash) {
+                console.warn('No element with id="flash" found.');
+                return;
+            }
+
+            flash.classList.remove('active'); // Reset in case it's already active
+            void flash.offsetWidth; // Force reflow to restart animation
+            flash.classList.add('active');
+
+            setTimeout(() => {
+                flash.classList.remove('active');
+            }, duration);
+        }
+
+        function animateGradient(duration = 3000) {
+            let start = 30; // Initial transparent percentage
+            let end = 100; // Final transparent percentage
+            let current = start;
+            let step = (end - start) / (duration / 16); // Calculate step size per frame
+
+            const vignette = document.getElementById('vignette'); // Target the element
+
+            if (!vignette) {
+                console.error("Element #vignette not found!");
+                return;
+            }
+
+            function updateGradient() {
+                if (current >= end) {
+                    console.log("Animation complete");
+                    return; // Stop when it reaches the end
+                }
+
+                console.log(`Current transparent stop: ${current}%`); // Log current value
+
+                vignette.style.background = `radial-gradient(farthest-corner at center, transparent ${current}%, rgba(255, 0, 0, 1) 100%)`;
+
+                current += step; // Increase percentage
+                requestAnimationFrame(updateGradient); // Continue animation
+            }
+
+            updateGradient();
+        }
+
+        function finalCall() {
+            if (finCall) return; 
+            finCall = true;
     
-        function playOneTwentyCountdown() {
-            if (oneTwenty) return; 
-            oneTwenty = true;
+            final.play();
+        }
+
+        function shrinkEverything() {
+            document.body.classList.add('shrink');
+        }
+        function increaseEverything() {
+            document.body.classList.add('increase');
+            document.body.classList.remove('shrink');
+        }
+
+        function playFifty() {
+            if (fifty1) return; 
+            fifty1 = true;
     
-            let chain = ["number_080", "seconds", "remaining"]; 
+            let chain = ["number_050", "minutes", "remaining"]; 
+            chainSfx(chain);
+        }
+
+        function playForty() {
+            if (forty1) return; 
+            forty1 = true;
+    
+            let chain = ["number_040", "minutes", "remaining"]; 
+            chainSfx(chain);
+        }
+
+        function playThirty() {
+            if (thirty1) return; 
+            thirty1 = true;
+    
+            let chain = ["number_030", "minutes", "remaining"]; 
+            chainSfx(chain);
+        }
+
+        function playTwenty() {
+            if (twenty1) return; 
+            twenty1 = true;
+    
+            let chain = ["number_020", "minutes", "remaining"]; 
+            chainSfx(chain);
+        }
+
+        function playTen() {
+            if (ten1) return; 
+            ten1 = true;
+    
+            let chain = ["number_010", "minutes", "remaining"]; 
+            chainSfx(chain);
+        }
+
+        function play100() {
+            if (one1) return; 
+            one1 = true;
+    
+            let chain = ["number_100", "seconds", "remaining"]; 
             chainSfx(chain);
         }
 
@@ -738,9 +1358,9 @@
             chainSfx(chain);
         }
 
-        function playFourtyCountdown() {
-            if (fourtyPlayed) return; 
-            fourtyPlayed = true;
+        function playFortyCountdown() {
+            if (fortyPlayed) return; 
+            fortyPlayed = true;
     
             let chain = ["number_040", "seconds", "remaining"]; 
             chainSfx(chain);
@@ -751,6 +1371,22 @@
             thirtyPlayed = true;
     
             let chain = ["number_030", "seconds", "remaining"]; 
+            chainSfx(chain);
+        }
+
+        function threeMins() {
+            if (threeMinPlayed) return; 
+            threeMinPlayed = true;
+    
+            let chain = ["number_003", "minutes", "remaining"]; 
+            chainSfx(chain);
+        }
+
+        function twoMins() {
+            if (twenty1) return; 
+            twenty1 = true;
+    
+            let chain = ["number_002", "minutes", "remaining"]; 
             chainSfx(chain);
         }
 
@@ -772,6 +1408,11 @@
                 clearInterval(intervalId); // Stop when all characters are added
             }
             }, 250); // Change the 100 to adjust typing speed (milliseconds)
+        }
+
+        function fadeOut() {
+            const div = document.getElementById('myDiv');
+            div.classList.add('faded'); // Add the 'faded' class to trigger the fade out
         }
 
         // Function to shrink and disappear all elements
@@ -803,6 +1444,63 @@
             }, 300); // matches the duration of the transition
         }
 
+        function removeAllAxes() {
+            document.getElementById("axis1")?.remove();
+            document.getElementById("axis2")?.remove();
+            document.getElementById("axis3")?.remove();
+            document.getElementById("axis4")?.remove();
+        }
+
+        let originalText = "HOSHISPACE.LINK © 2025";
+        let corruptedText = originalText;
+        let corruptionLevel = 0;
+
+        function corruptText(text, level) {
+            const corruptionChars = ['$', '#', '@', '%', '^', '&', '*', '!', '?', '~', '1', '2', '3', '4', '5'];
+            let corrupted = text.split('');
+            
+            // Add corruption by replacing some characters with random ones
+            for (let i = 0; i < level; i++) {
+                const randomIndex = Math.floor(Math.random() * corrupted.length);
+                const randomChar = corruptionChars[Math.floor(Math.random() * corruptionChars.length)];
+                corrupted[randomIndex] = randomChar;
+            }
+
+            return corrupted.join('');
+        }
+
+        function updateText() {
+            if (corruptionLevel <= 5) {
+                corruptedText = corruptText(originalText, corruptionLevel);
+                document.getElementById("return").innerText = corruptedText;
+                corruptionLevel++;
+            }
+        }
+
+        // Run the updateText function every minute (60000 milliseconds)
+        setInterval(updateText, 60000);
+
+        function showOverlay() {
+            // Create the overlay element
+            const overlay = document.createElement('div');
+            overlay.classList.add('overlay');
+
+            // Append it to the body
+            document.body.appendChild(overlay);
+
+            // Show the overlay by changing the display property
+            setTimeout(() => {
+                overlay.style.display = 'block';
+            }, 1000); // Delay to show overlay (1 second in this case)
+        }
+
+        function moveElementOffScreen(elementId) {
+            const el = document.getElementById(elementId);
+            if (el) {
+                el.classList.add('animate-offscreen');
+            }
+        }
+
         // Function to change text to "CONNECTED"
         function fadeInAndConnect() {
             const shakeContainer = document.getElementById('shakeContainer');
@@ -819,6 +1517,12 @@
             statusText.textContent = 'CONNECTED';
         }
 
+        function removeOverlay() {
+            const overlay = document.getElementById('overlay');
+            if (overlay) {
+                overlay.remove();  // Remove the div from the DOM
+            }
+        }
 
         function removeColorlay() {
             const colorlay = document.getElementById('colorlay');
@@ -847,18 +1551,18 @@
 
         function triggerFlash() {
             // Create the flash div
-            const flashDiv = document.createElement('div');
-            flashDiv.classList.add('flash');
+            //const flashDiv = document.createElement('div');
+            //flashDiv.classList.add('flash');
+
+            const elementSigma = document.getElementById('body')
         
             // Append to the body
-            document.body.appendChild(flashDiv);
+            document.body.appendChild(elementSigma);
             
-            // Trigger the animation
-            flashDiv.style.animation = 'flashAnimation 1s ease-out forwards';
+            elementSigma.style.animation = 'flashAnimation 1s ease-out forwards';
             
-            // Remove the flash div after the animation ends
-            flashDiv.addEventListener('animationend', () => {
-                flashDiv.remove();
+            elementSigma.addEventListener('animationend', () => {
+                elementSigma.remove();
             });
         }
     
@@ -866,7 +1570,6 @@
         function chainSfx(chain) {
             let el = chain.shift();
             if (!el) return; // Stop when chain is empty
-    
             new Howl({
                 src: `https://theprojectofficial.github.io/res/audio/sfx/speech_${el}_en.ogg`,
                 autoplay: true,
@@ -882,6 +1585,36 @@
             document.body.style.backgroundImage = "none"; // Remove any gradient or background image
         }
 
+        function animateGradient(duration = 3000) {
+            let start = 30; // Initial transparent percentage
+            let end = 100; // Final transparent percentage
+            let current = start;
+            let step = (end - start) / (duration / 100); // Calculate step size per frame
+
+            const vignette = document.getElementById('vignette'); // Target the element
+
+            if (!vignette) {
+                console.error("Element #vignette not found!");
+                return;
+            }
+
+            function updateGradient() {
+                if (current >= end) {
+                    console.log("Animation complete");
+                    return; // Stop when it reaches the end
+                }
+
+                console.log(`Current transparent stop: ${current}%`); // Log current value
+
+                vignette.style.background = `radial-gradient(farthest-corner at center, transparent ${current}%, rgba(255, 0, 0, 1) 100%)`;
+
+                current += step; // Increase percentage
+                requestAnimationFrame(updateGradient); // Continue animation
+            }
+
+            updateGradient();
+        }
+
         function fadeOutElements() {
             // Select elements you want to fade out
             document.querySelectorAll("#timeblock, #addendum, #description").forEach(el => {
@@ -894,220 +1627,189 @@
             return `number_${num.toString().padStart(3, "0")}`;
         }
 
+        function finalcall() {
+            final.play();
+        }
+
         function fadeInImage() {
             const image = document.getElementById('image');
             image.style.opacity = 1; // Make the image visible with a fade effect
         }
     
         // Set the target date for the countdown (example: 2025, March 5th, 12:00:00)
-        const targetDate = new Date("April 30, 2025 20:00:00").getTime();
+        const targetDate = new Date("April 30, 2025 21:00:00").getTime();
+
+        console.log(timeRemaining);
         
         let fadeInitiated = false;
     
-        // Update the countdown every 10 milliseconds
+        let previousTimeRemaining = targetDate - new Date().getTime(); // ✅ Only set once before the interval
+
         const timerInterval = setInterval(function() {
             const now = new Date().getTime(); // Get current time
-            const timeRemaining = targetDate - now; // Calculate time remaining
+            const timeRemaining = targetDate - now; // ✅ Proper live remaining time
 
-            if (timeRemaining <= 80000 && !oneTwenty) {
-                console.log("Triggering 80-seconds countdown audio...");
-                playOneTwentyCountdown();
+            if (previousTimeRemaining > 3000000 && timeRemaining <= 3000000 && !fifty1) {
+                playFifty();
+                fifty1 = true;
             }
-            
-            if (timeRemaining <= 60000 && !sixtyPlayed) {
-                console.log("Triggering 60-seconds countdown audio...");
+
+            if (previousTimeRemaining > 2400000 && timeRemaining <= 2400000 && !forty1) {
+                playForty();
+                forty1 = true;
+            }
+
+            if (previousTimeRemaining > 1800000 && timeRemaining <= 1800000 && !thirty1) {
+                playThirty();
+                thirty1 = true;
+            }
+
+            if (previousTimeRemaining > 1200000 && timeRemaining <= 1200000 && !twenty1) {
+                playTwenty();
+                twenty1 = true;
+            }
+
+            if (previousTimeRemaining > 600000 && timeRemaining <= 600000 && !ten1) {
+                playTen();
+                ten1 = true;
+            }
+
+            if (previousTimeRemaining > 100000 && timeRemaining <= 100000 && !one1) {
+                play100();
+                one1 = true;
+            }
+
+            if (previousTimeRemaining > 180000 && timeRemaining <= 180000 && !threeMinPlayed) {
+                threeMins();
+                threeMinPlayed = true;
+            }
+
+            if (previousTimeRemaining > 120000 && timeRemaining <= 120000 && !twoMinPlayed) {
+                twoMins();
+                twoMinPlayed = true;
+            }
+
+            if (previousTimeRemaining > 60000 && timeRemaining <= 60000 && !sixtyPlayed) {
+                console.log("Triggering 60-second countdown audio...");
                 playSixtyCountdown();
+                sixtyPlayed = true;
             }
 
-            if (timeRemaining <= 50000 && !fiftyPlayed) {
+            if (previousTimeRemaining > 50000 && timeRemaining <= 50000 && !fiftyPlayed) {
                 console.log("Triggering 50-seconds countdown audio...");
                 playFiftyCountdown();
+                fiftyPlayed = true;
             }
 
-            if (timeRemaining <= 40000 && !fourtyPlayed) {
+            if (previousTimeRemaining > 40000 && timeRemaining <= 40000 && !fortyPlayed) {
                 console.log("Triggering 40-seconds countdown audio...");
-                playFourtyCountdown();
+                playFortyCountdown();
+                fortyPlayed = true;
             }
 
-            if (timeRemaining <= 30000 && !thirtyPlayed) {
+            if (previousTimeRemaining > 30000 && timeRemaining <= 30000 && !thirtyPlayed) {
                 console.log("Triggering 30-seconds countdown audio...");
                 playthirtyCountdown();
-            }
-    
-            if (timeRemaining <= 22000 && !countdownPlayed) {
-                console.log("Triggering countdown from 20 seconds...");
-                playCountdown();
+                thirtyPlayed = true;
             }
 
-            if (timeRemaining <= 5000) {
+            if (previousTimeRemaining > 22000 && timeRemaining <= 22000 && !countdownPlayed) {
+                console.log("Triggering countdown from 20 seconds...");
+                playCountdown();
+                countdownPlayed = true;
+            }
+
+            if (timeRemaining <= 20000) {
                 console.log("Font increase");
                 increaseFontSize();
+                increaseVignetteBy50Percent(2000);
             }
-    
+
+            if (previousTimeRemaining > 16000 && timeRemaining <= 16000) {
+                intense.play();
+            }
+
             if (timeRemaining <= 30000 && !fadeInitiated) {
                 console.log("Successfully checked 30 seconds left");
-    
-                // Initiate the fade out effect for audio2
-                audio2.fade(audio2.volume(), 0, 10000); // Fade audio2 from its current volume to 0 over 10 seconds
-                fadeInitiated = true; // Set the flag to prevent multiple fade executions
+                audio2.fade(audio2.volume(), 0, 10000);
+                fadeInitiated = true;
+            }
+
+            if (timeRemaining <= 6000) {
+                finalCall();
+                //animateGradient();
             }
 
             if (timeRemaining <= 500) {
-                disappearFast();
-                shrinkAndDisappear();
-                //fadeOutStars();
-                //fadeOutElements();
-                document.getElementById("return").classList.add("shake");
+                shrinkEverything();
+                document.getElementById("connectedtext").classList.add("shake");
+                //document.getElementById("return").classList.add("shake");
+                //document.getElementById("timeblock").classList.add("shake");
             }
-    
-            // If the countdown is finished, stop the interval
+
             if (timeRemaining <= 0) {
-                setBackgroundToBlack();
-                removeColorlay();
-                triggerFlash();
-                //startExtremeShake();
+                audio1.stop();
+                audio2.stop();
+                final.stop();
+                removeVignette();
+                $('body').removeClass('active');
 
-                const element = document.getElementById('return');
-                element.style.position = 'absolute';
-                element.style.top = '50%';
-                element.style.left = '0%';
-                element.style.transform = 'translate(-50%, -50%)';
-                element.style.fontSize = "60px";
 
-                resetsnd.play();
+                if (!corruptionPlayed) {
+                    corruption.play();
+                    corruptionPlayed = true;
+                }
+                flashTrue = true;
+                //removeAllAxes();
+                corruptColor();
+                removeOverlay();
+                animateGradient();
 
-                setTimeout(function() {
-                    document.getElementById("return").innerText = "╣┴x⌂ûw♣!ñ◙µ2Ö╣┴x⌂ûw♣!ñ◙µ2Ö╣┴x⌂ûw♣!ñ◙µ2Ö";
-                }, 6044); 
+                flash();
+                setInterval(WelcomeBack, 15000);
+                setInterval(increaseEverything, 15000);
+                moveElementOffScreen('timeblock');
 
-                setTimeout(function() {
-                    document.getElementById("return").innerText = "ò1╒.ê⌠▌(^mò1╒.ê⌠▌(^mò1╒.ê⌠▌(^mm╒┴yò1╒╒▌(^m";
-                }, 6577); 
-
-                setTimeout(function() {
-                    document.getElementById("return").innerText = "m╒┴yò1╒╒▌(^mm╒┴yò1╒╒▌(^mm╒┴yò1╒╒▌(^m";
-                    document.getElementById("return").innerText = "m╒┴y(^mm╒┴yò1╒╒▌(^mm╒┴yò(^mm╒┴y▌(^m";
-                    document.getElementById("return").innerText = "m╒┴yò1╒╒▌(^mm╒┴yò1╒╒▌(^mm╒┴yò1╒╒▌(^m";
-                    document.getElementById("return").innerText = "m╒┴y(^mm╒┴yò1╒╒▌(^mm╒┴yò(^mm╒┴y▌(^m";
-                    document.getElementById("return").innerText = "m╒┴yò1╒╒▌(^mm╒┴yò1╒╒▌(^mm╒┴yò1╒╒▌(^m";
-                    document.getElementById("return").innerText = "m╒┴y(^mm╒┴yò1╒╒▌(^mm╒┴yò(^mm╒┴y▌(^m";
-                    document.getElementById("return").innerText = "m╒┴yò1╒╒▌(^mm╒┴yò1╒╒▌(^mm╒┴yò1╒╒▌(^m";
-                    document.getElementById("return").innerText = "m╒┴y(^mm╒┴yò1╒╒▌(^mm╒┴yò(^mm╒┴y▌(^m";
-                }, 6944); 
-
-                setTimeout(function() {
-                    document.getElementById("return").innerText = "┴yMƒ╒δ₧9óm¥Ω┴yMƒ╒δ₧9óm¥Ω┴yMƒ╒δ₧9óm¥Ω";
-                }, 7511); 
-
-                setTimeout(function() {
-                    document.getElementById("return").innerText = "⌠▌(^mò1╒.ê⌠▌(^m⌠▌(^mò1╒.ê⌠▌(^m⌠▌(^mò1╒.ê⌠▌(^m";
-                }, 7811); 
-
-                setTimeout(function() {
-                    document.getElementById("return").innerText = "┴yMƒ╒δ₧9ó┴yMƒ╒δ₧9ó┴yMƒ╒δ₧9ó┴yMƒ╒δ₧9ó";
-                }, 8011);
-
-                setTimeout(function() {
-                    document.getElementById("return").innerText = "yò1╒╒▌(^mm╒┴yó┴yMƒ╒δ₧9yò1╒╒▌(^mm╒┴yó";
-                }, 8111); 
-
-                setTimeout(function() {
-                    document.getElementById("return").innerText = "y(^mò1╒.ê⌠▌(^m⌠▌(^mò1ƒ╒δ(^mò1╒.ê⌠▌(^m⌠▌(^mò1▌";
-                    document.getElementById("return").innerText = "╣┴x⌂ûw♣!ñ◙µ2Ö╣┴x⌂ûw♣!ñ◙µ2Ö╣┴x⌂ûw♣!ñ◙µ2Ö";
-                    document.getElementById("return").innerText = "ò1╒.ê⌠▌(^mò1╒.ê⌠▌(^mò1╒.ê⌠▌(^mm╒┴yò1╒╒▌(^m";
-                    document.getElementById("return").innerText = "m╒┴yò1╒╒▌(^mm╒┴yò1╒╒▌(^mm╒┴yò1╒╒▌(^m";
-                }, 8411); 
-
-                setTimeout(function() {
-                    document.getElementById("return").innerText = "(^mm╒┴yò1╒╒▌(^mm╒┴yò1╒╒▌(^m";
-                }, 8511); 
-
-                setTimeout(function() {
-                    document.getElementById("return").innerText = "^mm╒┴yò1╒╒▌(^";
-                }, 8711); 
-
-                setTimeout(function() {
-                    document.getElementById("return").innerText = "";
-                }, 8811); 
-
-                setTimeout(function() {
-                    document.getElementById("return").innerText = "?";
-                }, 9011); 
-
-                setTimeout(function() {
-                    document.getElementById("return").innerText = "??";
-                }, 10001); 
-
-                setTimeout(function() {
-                    document.getElementById("return").innerText = "???";
-                }, 11011); 
-
-                setTimeout(function() {
-                    document.getElementById("return").innerText = "??";
-                }, 13500); 
-
-                setTimeout(function() {
-                    document.getElementById("return").innerText = "?";
-                }, 13500); 
-
-                setTimeout(function() {
-                    document.getElementById("return").innerText = "";
-                }, 13750); 
-
-                setTimeout(() => {
-                    //fadeOutStarsToNothing();
-                    fadeInImage();
-                    document.getElementById("return").innerText = "";
-                    console.log("14 seconds passed, now calling fadeInAndConnect...");
-                    //startTypingAnimation();
-
-                    // Create the div and span elements
-                    //const div = document.createElement('div');
-                    //div.classList.add('connected'); // Add the 'key' class to the div
-
-                   // const span = document.createElement('span');
-                    //span.style.color = '#FFF'; // Apply the style directly
-                    //span.style = "box-shadow: 0px 0px 64px rgba(255,255,255,0.7);"
-
-                    // Set the inner HTML of the div and span
-                    //div.innerHTML = 'AURORA';
-                    //span.textContent = 'CONNECTED';
-
-                    // Append the span inside the div
-                    //div.appendChild(span);
-
-                    // Append the div to a container element in the DOM (e.g., the body or a specific div)
-                    //document.body.appendChild(div);
-                }, 14000);
-
-                setTimeout(function() {
-                    window.location.href = ""; 
-                }, 25000);
-
-                clearInterval(timerInterval); // Stop the timer
-                document.getElementById("counter").innerHTML = "???";
+                document.getElementById("counter").innerHTML = "0:00:001";
                 return;
             }
-    
-           // Calculate minutes, seconds, and milliseconds
-            //const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-            //const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
-            //const milliseconds = timeRemaining % 1000; // Ensures milliseconds range from 0 to 999
 
-            const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24)); // Calculate the number of days
-            const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)); // Calculate hours remaining
-            const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60)); // Calculate minutes remaining
-            const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000); // Calculate seconds remaining
-            const milliseconds = timeRemaining % 1000; // Calculate milliseconds remaining
+            previousTimeRemaining = timeRemaining; // ✅ Update for next tick
 
-            // Update the countdown display
-            document.getElementById("days").textContent = String(days).padStart(2, '0'); // Render days
+            const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+            const milliseconds = timeRemaining % 1000;
+
             document.getElementById("hours").textContent = String(hours).padStart(2, '0');
-            document.getElementById("minutes").textContent = String(minutes).padStart(2, '0');
+            document.getElementById("minutes").textContent = String(minutes).padStart(2, '');
             document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
-            document.getElementById("ms").textContent = String(milliseconds).padStart(3, '0'); // Adjusted for 3-digit display
+            document.getElementById("ms").textContent = String(milliseconds).padStart(3, '0');
 
-        }, 10); // Update every 10ms for precision
+        }, 10);
+
+        let timeoutSet = false;
+        function WelcomeBack() {
+            // Check if the timeout has already been set
+            if (!timeoutSet) {
+                // Play the birds sound (make sure the 'birds' sound is defined)
+                birds.play();
+
+                // Apply fadeOut to the body
+                document.body.style.animation = 'fadeOut 2s forwards';
+
+                // After the body fades out, fade in the text
+                setTimeout(function() {
+                    // Apply fadeIn to the text
+                    const textElement = document.getElementById('fadeText');
+                    if (textElement) {
+                        textElement.style.animation = 'fadeIn 2s forwards';  // Fade in the text
+                    }
+                }, 2000); // Wait for 2 seconds (fadeOut duration)
+                
+                timeoutSet = true;  // Mark that the timeout has been set
+            }
+        }
     
         // Activate the appearance of #timeblock and #addendum by adding the 'active' class
         const addActiveClass = (elementId, delay) => {
@@ -1120,9 +1822,9 @@
         addActiveClass('active', 500); // Add 'active' class after 500ms
         addActiveClass('booting', 1000); // Add 'booting' class after 1000ms
 
-        let size = 11; // Starting font-size in vw
+        let size = 9.45 // Starting font-size in vw
         let msSize = 4.5;
-        const maxSize = 15; // Target font-size in vw
+        const maxSize = 12; // Target font-size in vw
         const msMaxSize = 6;
         let interval = null; // Store interval reference
 
@@ -1135,8 +1837,8 @@
                     clearInterval(interval);
                     interval = null; // Reset interval reference
                 } else {
-                    size += 0.05; // Slower increase
-                    msSize += 0.03;
+                    size += 0.01; // Slower increase
+                    msSize += 0.01;
                     
                     document.getElementById("minutes").style.fontSize = `${size}vw`;
                     document.getElementById("seconds").style.fontSize = `${size + 0.7}vw`;
@@ -1171,132 +1873,5 @@
         }
 
     </script>    
-    <script>
-        const canvas = document.getElementById('starCanvas');
-        const ctx = canvas.getContext('2d');
-
-        // Function to initiate fading out of all stars to nothing
-        function fadeOutStarsToNothing() {
-            // Gradually reduce the opacity of each star to 0
-            let fadeInterval = setInterval(() => {
-                stars.forEach(star => {
-                    star.fadeOut -= 0.05; // Gradually decrease opacity
-                    if (star.fadeOut <= 0) {
-                        star.fadeOut = 0; // Ensure opacity doesn't go below 0
-                    }
-                });
-
-                // If all stars are fully faded out, stop the interval
-                if (stars.every(star => star.fadeOut === 0)) {
-                    clearInterval(fadeInterval); // Stop the fade-out process
-                }
-            }, 50); // Fade out every 50 milliseconds
-        }
-
-        // Function to change star color to black and add shaking effect
-        function makeStarsBlackAndShake() {
-            // Add shake effect to each star with extreme shake
-            stars.forEach(star => {
-                const shakeX = (Math.random() - 0.5) * 100;  // Increased horizontal shake range
-                const shakeY = (Math.random() - 0.5) * 100;  // Increased vertical shake range
-        
-                star.x += shakeX;
-                star.y += shakeY;
-            });
-        }
-
-        // Resize canvas to cover the entire window
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
-
-        // Get the user's position (this could be mouse position or a fixed point)
-        let userX = canvas.width / 2;
-        let userY = canvas.height / 2;
-
-        // Initial star color
-        let starColor = "rgba(255, 255, 255, 0.8)";
-
-        // Generate stars
-        const stars = [];
-        for (let i = 0; i < 200; i++) {
-            let x = Math.random() * canvas.width;
-            let y = Math.random() * canvas.height;
-            let angle = Math.atan2(y - userY, x - userX); // Calculate angle from user position
-            let speed = (Math.random() * 100 + 100) * 500; // Increase speed multiplier for faster movement
-
-            stars.push({
-                x,
-                y,
-                angle,
-                speed,
-                fadeOut: Math.random() * 0.5 + 0.5, // Random opacity for each star
-            });
-        }
-
-        // Function to fade out all stars
-        function fadeOutStars() {
-            stars.forEach(star => {
-                star.fadeOut -= 0.01; // Gradually decrease opacity
-                if (star.fadeOut < 0) star.fadeOut = 0; // Ensure opacity doesn't go below 0
-            });
-        }
-
-        // Function to trigger extreme shake
-        function startExtremeShake() {
-            // Trigger extreme shake
-            makeStarsBlackAndShake();
-        
-            // Optionally, you can trigger this with a set interval to keep shaking stars
-            setInterval(makeStarsBlackAndShake, 50); // Shake every 50 milliseconds for continuous shaking
-        }
-
-        // Function to animate the stars
-        function animateStars() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear canvas for smoother animation
-            ctx.strokeStyle = starColor; // Use the dynamic star color (black if set)
-            ctx.lineWidth = 2;
-            ctx.shadowBlur = 8;
-            ctx.shadowColor = "rgba(255, 255, 255, 0.5)";
-
-            stars.forEach(star => {
-                // Move stars away from the user's position (increase speed multiplier)
-                star.x += Math.cos(star.angle) * star.speed * 1.5; // Increase speed
-                star.y += Math.sin(star.angle) * star.speed * 1.5;
-
-                // Apply fade-out effect
-                ctx.globalAlpha = star.fadeOut; // Set the opacity of the star
-
-                // Draw the star as a line (not a dot)
-                let endX = star.x + Math.cos(star.angle) * 8; // Increase streak length
-                let endY = star.y + Math.sin(star.angle) * 8;
-
-                ctx.beginPath();
-                ctx.moveTo(star.x, star.y);
-                ctx.lineTo(endX, endY); // Draw line from the star's position
-                ctx.stroke();
-
-                // Reset star if it goes off the canvas
-                if (star.x < 0 || star.x > canvas.width || star.y < 0 || star.y > canvas.height) {
-                    let angle = Math.random() * Math.PI * 2;
-                    let speed = (Math.random() * 3 + 1.5) * 2; // Reset with increased speed
-                    star.x = userX + Math.cos(angle) * 50;
-                    star.y = userY + Math.sin(angle) * 50;
-                    star.angle = angle;
-                    star.speed = speed;
-                    star.fadeOut = Math.random() * 0.5 + 0.5; // Reset the opacity when the star is reset
-                }
-            });
-
-            // Smooth the animation with requestAnimationFrame
-            requestAnimationFrame(animateStars);
-        }
-
-        // Call the function to start animating the stars
-        animateStars();
-    </script>
 </body>
 </html>
