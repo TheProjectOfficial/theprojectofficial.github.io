@@ -1,0 +1,505 @@
+<html>
+  <head>
+    <title>HOSHI</title>
+    <meta name="description" content="Unlock Aurora. Unlock the rest.">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://theprojectofficial.github.io/res/img/hoshi%E2%80%91round%E2%80%91favicon.png">
+    <link rel="shortcut icon" href="https://theprojectofficial.github.io/res/img/hoshi%E2%80%91round%E2%80%91favicon.png">
+    <meta name="apple-mobile-web-app-title" content="HOSHI">
+    <meta name="application-name" content="HOSHI">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="res/js/countdownsimple.js"></script>
+    <script>
+      $(document).ready(function() {
+        //if (getCookie("SEEN-WARNING") != "One") {
+          //window.location = "/warning";
+        //}
+        $('#whitever').html($('#colorver').html());
+        $('#bypass-stall').click(function() {
+          jumpeditself = false;
+          JumpStart();
+        });
+        var ost = new Howl({
+          src: 'https://theprojectofficial.github.io/stuff/kmb.ogg',
+          autoplay: true,
+          volume: 0.5,
+          loop: true
+        });
+        $(document).ready(function(){
+            ost.play();
+        });
+      });
+    </script>
+    <style>
+      @font-face {
+        font-family: "Heading";
+        src: url("./res/font/heading.woff");
+      }
+
+      @font-face {
+        font-family: ABR;
+        src: url("https://tm.systemspace.network/az2_maintenance/stuff/abr.ttf");
+      }
+
+      @font-face {
+        font-family: PPRO;
+        src: url("https://theprojectofficial.github.io/stuff/PragmataPro.ttf");
+      }
+
+      html {
+        -webkit-touch-callout: none;
+        /* iOS Safari */
+        -webkit-user-select: none;
+        /* Safari */
+        -khtml-user-select: none;
+        /* Konqueror HTML */
+        -moz-user-select: none;
+        /* Firefox */
+        -ms-user-select: none;
+        /* Internet Explorer/Edge */
+        user-select: none;
+        /* Non-prefixed version, currently
+                                          supported by Chrome and Opera */
+      }
+
+      body {
+        background-color: #000;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+      }
+
+      #countdown {
+        color: F;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      #colorswipe,
+      #colorswipe2 {
+        height: 4px;
+        position: fixed;
+        left: -2vw;
+        right: -2vw;
+        top: calc(50% - 2px);
+        transform: rotate(-0.5deg);
+        background-color: #FFF;
+        box-shadow: 0px 0px 22px #888;
+        animation: 10s colorbob infinite alternate ease-in-out;
+        z-index: 1;
+      }
+
+      #colorswipe2 {
+        animation-duration: 14s;
+        opacity: 0.25;
+      }
+
+      @keyframes colorbob {
+        0% {
+          transform: rotate(-0.5deg) translateY(-6px);
+        }
+
+        25% {
+          transform: rotate(0.5deg) translateY(0px);
+        }
+
+        50% {
+          transform: rotate(-0.5deg) translateY(6px);
+        }
+
+        75% {
+          transform: rotate(0.5deg) translateY(0px);
+        }
+
+        100% {
+          transform: rotate(-0.5deg) translateY(-6px);
+        }
+      }
+
+      #ident {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        text-align: center;
+        font-family: PPRO;
+        color: #111;
+        font-size: 400px;
+        z-index: 0;
+        filter: blur(5px);
+        font-weight: 900;
+      }
+
+      #ident::after {
+        content: "";
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(to bottom, transparent 25%, rgba(0, 0, 0, 0.8) 50%, transparent 75%);
+      }
+
+      #colorlay {
+        position: fixed;
+        left: 0;
+        top: 0;
+        right: -600%;
+        bottom: 0;
+        z-index: 10;
+        background: linear-gradient(to right, #00DEFF 0%, #00FF72 20%, #0066FF 40%, #00FFF6 60%, #3000FF 80%, #00DEFF 100%);
+        background-size: 50% 100%;
+        mix-blend-mode: multiply;
+        pointer-events: none;
+        transform: translateX(0);
+        animation: 10s scrole linear infinite;
+      }
+
+      @keyframes scrole {
+        from {
+          transform: translateX(0);
+        }
+
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      #fuckyouchrome {
+        position: fixed;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        background: #000;
+        pointer-events: none;
+      }
+
+      .lifestatus,
+      .pmrstatus {
+        font-size: 1.5em;
+        position: fixed;
+        left: 1em;
+        right: 1em;
+        top: 1em;
+        color: #FFF;
+        text-shadow: 0px 0px 8px #FFF;
+        font-family: PPRO;
+        pointer-events: none;
+      }
+
+      .lifestatus div,
+      .pmrstatus div {
+        display: inline-block;
+      }
+
+      .pmrstatus {
+        text-align: right;
+      }
+
+      .countdown {
+        text-align: center;
+      }
+
+      #colorver {
+        z-index: 2;
+        position: fixed;
+      }
+
+      #whitever {
+        z-index: 20;
+        position: fixed;
+      }
+
+      #colorver .white {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      #whitever .color {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .bg {
+        background-color: #FFF;
+        color: #000;
+        text-shadow: none;
+        box-shadow: 0px 0px 8px #FFF;
+        padding: 0 0.1em;
+      }
+
+      .border {
+        border: 1px solid #FFF;
+        box-shadow: 0px 0px 8px #FFF, inset 0px 0px 8px #FFF;
+        padding: 0 0.1em;
+      }
+
+      #tsuki {
+        position: fixed;
+        left: 50%;
+        top: 1.25em;
+        height: 2.5em;
+        transform: translateX(-50%);
+        opacity: 0.15;
+      }
+
+      .explanation {
+        position: fixed;
+        left: 0.5em;
+        right: 0.5em;
+        bottom: 1em;
+        text-align: center;
+        font-size: 1em;
+        color: #FFF;
+        text-shadow: 0px 0px 8px #FFF;
+        font-family: PPRO;
+        pointer-events: none;
+      }
+
+      .explanation h1 {
+        font-size: 1.75em;
+        margin-bottom: -0.2em;
+      }
+
+      .explanation h2 {
+        font-size: 0.9em;
+        font-weight: 500;
+        text-shadow: 0px 0px 8px #888;
+      }
+
+      .explanation p {
+        font-size: 0.8em;
+        font-weight: 500;
+        text-shadow: none;
+        color: #444;
+        width: 60em;
+        margin-left: 50%;
+        transform: translateX(-50%);
+        max-width: 100%;
+        text-align: justify;
+      }
+
+      .chat {
+        position: fixed;
+        bottom: 1em;
+        right: 1em;
+        font-size: 1.1em;
+        color: #FFF;
+        text-shadow: 0px 0px 8px #FFF;
+        font-family: PPRO;
+        border: 1px solid #FFF;
+        box-shadow: 0px 0px 8px #FFF, inset 0px 0px 8px #FFF;
+        padding: 0 0.1em;
+        transition: 0.1s background-color, 0.1s color;
+      }
+
+      .chat:hover {
+        background-color: #FFF;
+        color: #000;
+      }
+
+      .chat.disabled {
+        opacity: 0.5;
+        box-shadow: none;
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="colorswipe"></div>
+    <div id="colorswipe2"></div>
+    <div id="ident">?</div>
+    <div id="colorver">
+      <div class="lifestatus">
+        <div class="white">AURORA</div>
+        <div class="color border">CONNECTING</div>
+      </div>
+      <div class="pmrstatus">
+        <div class="white">TRANSFER</div>
+        <div class="color bg">ONLINE & ACTIVE</div>
+      </div>
+      <img id="tsuki" class="white" src="https://theprojectofficial.github.io/stuff/hoshiwhite.png">
+      <div class="explanation">
+        <h1 class="color">Auroraric Reconnection Active</h1>
+        <h2 class="white">Only basic Auroraic standards, such as souls, the Representative, anchors and communications, are loaded with linked Aurora yet.</b></h2>
+        <p class="white">Project Ribbon Protocol (PRP) is an interface which allows the Ribbon user (the Representative) to create a hybrid System of linked Aurora, merged with and hard to differentiate from a host System using unlinked "fake" Aurora. Our protocol has split up the enlargement of this "zone" of linked Aurora content into phases, so that HOSHI may test the waters before loading in too much Aurora.</p>
+        <p class="white">Since no data can be passed through this zone's Ribbon, registrations and other mutations cannot be processed. Please, come back later. We will remind you when they become available. Active Zone Three will be able to accept such data again.</p>
+
+        <h2 class="white">Expected date for this event to finish <br>05.05.2025 20:00:00 (8pm)</h2>
+      </div>
+      <a href="https://discord.gg/E958uMVzzF" class="chat white disabled">SERVER IN MAINTENANCE MODE</a>
+    </div>
+    <div id="whitever">
+      <div class="lifestatus">
+        <div class="white">AURORA</div>
+        <div class="color border">CONNECTING</div>
+      </div>
+      <div class="pmrstatus">
+        <div class="white">TRANSFER</div>
+        <div class="color bg">ONLINE & ACTIVE</div>
+      </div>
+      <img id="tsuki" class="white" src="https://theprojectofficial.github.io/stuff/hoshiwhite.png">
+      <div class="explanation">
+        <h1 class="color">Active Zone Two</h1>
+        <h2 class="white">Only basic Auroraic standards, such as souls, the Representative, anchors and communications, are loaded with linked Aurora yet.</h2>
+        <p class="white">Active Zone is an interface which allows the Ribbon user (the Representative) to create a hybrid System of linked Aurora, merged with and hard to differentiate from a host System using unlinked "fake" Aurora. Our protocol has split up the enlargement of this "zone" of linked Aurora content into phases, so that TSUKI may test the waters before loading in too much Aurora.</p>
+        <p class="white">Since no data can be passed through this zone's Ribbon, registrations and other mutations cannot be processed. Please, come back later. We will remind you when they become available. Active Zone Three will be able to accept such data again.</p>
+
+        <h2 class="white">Expected date for this event to finish <br>05.05.2025 20:00:00 (8pm)</h2>
+      </div>
+      <a href="https://discord.gg/E958uMVzzF" class="chat white disabled">SERVER IN MAINTENANCE MODE</a>
+    </div>
+    <div id="colorlay"></div>
+    <div id="fuckyouchrome"></div>
+    <style>
+      #stalled-start-behind {
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        position: fixed;
+        background-color: rgba(0, 0, 0, 0.98);
+        z-index: 900000000;
+      }
+
+      #stalled-start-behind.qr {
+        opacity: 0;
+        pointer-events: none;
+        transition: 0.2s opacity;
+      }
+
+      #stalled-start {
+        left: 10vh;
+        top: 10vh;
+        bottom: 10vh;
+        right: 10vh;
+        position: fixed;
+        background-color: #000;
+        box-shadow: 0px 8px 128px #000;
+        z-index: 900000001;
+        text-align: center;
+        padding: 5vh;
+        color: #FFF;
+        animation: InWowZoom 0.5s 1s backwards;
+        cursor: pointer;
+        transition: 0.4s transform, 0.4s box-shadow;
+      }
+
+      #stalled-start:hover {
+        transform: scale(1.01);
+        box-shadow: 0px 0px 4px rgba(255, 255, 255, 0.01), 0px 8px 128px #000;
+      }
+
+      #stalled-start:active {
+        transform: scale(0.95);
+        box-shadow: 0px 0px 12px rgba(255, 255, 255, 0.2), 0px 8px 128px #000;
+        transition: 0.1s transform, 0.1s box-shadow;
+      }
+
+      @keyframes InWowZoom {
+        from {
+          opacity: 0;
+          transform: scale(1.1);
+        }
+
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      @keyframes Uppe {
+        from {
+          opacity: 0;
+          bottom: -2vh;
+        }
+
+        to {
+          opacity: 1;
+          bottom: 5vh;
+        }
+      }
+
+      #centermelol {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      #stalled-start img {
+        height: 20vh;
+      }
+
+      #stalled-start h1 {
+        font-family: "Heading", sans-serif;
+        font-size: 6vh;
+      }
+
+      #stalled-start h2 {
+        margin-top: 3vh;
+        font-family: "Heading", sans-serif;
+        font-size: 3vh;
+      }
+
+      #bypass-stall {
+        position: fixed;
+        left: 50%;
+        bottom: 5vh;
+        transform: translate(-50%, -50%);
+        font-family: "Tiny", sans-serif;
+        font-size: 2.5vh;
+        color: #111;
+        cursor: pointer;
+        z-index: 9000000005;
+        animation: Uppe 0.5s 1s backwards;
+      }
+
+      #bypass-stall:hover {
+        color: #333;
+      }
+
+      #stalled-start.nomore {
+        transform: scale(0.8);
+        opacity: 0;
+        pointer-events: none;
+        transition: 0.2s transform, 0.2s opacity;
+      }
+
+      #stalled-start.nomore+#stalled-start-behind {
+        opacity: 0;
+        pointer-events: none;
+        transition: 0.4s opacity;
+      }
+
+      #stalled-start.nomore~#bypass-stall {
+        opacity: 0;
+        pointer-events: none;
+        transition: 0.2s opacity;
+      }
+    </style>
+    <noscript>
+      <style>
+        #stalled-start-behind {
+          display: none;
+        }
+
+        #stalled-start {
+          display: none;
+        }
+
+        #bypass-stall {
+          display: none;
+        }
+      </style>
+    </noscript>
+  </body>
+</html>
