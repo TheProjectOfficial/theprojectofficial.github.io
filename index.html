@@ -18,10 +18,10 @@
     <title>HOSHI</title>
     <script>
         function request() {
-            fetch('http://localhost/loader2.php', {
+            fetch('https://api.hoshispace.fwh.is/loader2.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: 'type=unlink'
+            body: 'type=connect11'
         })
         .then(response => response.json())
             .then(data => {
@@ -156,8 +156,17 @@
 
         var birds = new Howl({
             src: ['https://theprojectofficial.github.io/stuff/birds.ogg'],
-            volume: 0.7, // Set volume to 0.7
-            loop: false
+            volume: 0.7, 
+            loop: false, 
+            onend: function() {
+            // Fade out the body
+            document.body.style.transition = 'opacity 2s ease-out';
+            document.body.style.opacity = '0';
+
+            setTimeout(function() {
+                window.location.href = 'aftermath.html'; 
+            }, 5000);
+            }
         });
 
         var failed = new Howl({
@@ -480,7 +489,7 @@
             border: 0.2vw solid #FFF;
             width: 110.8%;
             top: -2.5vw;
-            left: 44.32%;
+            left: 44.2%;
             transform: translateX(-50%);
             text-align: left;
         }
@@ -507,7 +516,7 @@
             border: 0.2vw solid #FFF;
             width: 110.8%;
             top: -2.4vw; 
-            left: -3.8vw;
+            left: -3vw;
             transform: translateX(-0%);
             transform: translateY(-100%);
             text-align: left;
@@ -627,7 +636,7 @@
             100% { text-shadow: -7px -17px 16px rgba(255,255,255, 0.2), 0px 4px 8px rgba(255,255,255, 0.2), -11px 3px 13px rgba(1,1,1, 0.2), 6px -6px 5px rgba(255,255,255, 0.2); }
         }
 
-        #minutes, #seconds, #ms, #hours {
+        #minutes, #seconds, #ms {
             font-size: 11vw;
         }
 
@@ -641,7 +650,7 @@
         }
 
         #hours {
-            font-size: 8vw;
+            font-size: 11vw;
             color: transparent;
             -webkit-text-stroke: 0.2vw #FAFAFA; 
             text-stroke: 0.2vw #FAFAFA;
@@ -650,14 +659,14 @@
         }
 
         #minutes {
-            font-size: 11vw;
+            font-size: 10vw;
         }
 
         #seconds {
             color: transparent;
             -webkit-text-stroke: 0.2vw #FAFAFA; 
             text-stroke: 0.2vw #FAFAFA;
-            font-size: 11vw;
+            font-size: 10vw;
             animation: 9.5s ShadowMoveLoopSec linear alternate infinite;
         }
 
@@ -690,7 +699,7 @@
 
         body.shrink {
             transform: scale(0.00); 
-            transition: transform 2s ease-in-out;
+            transition: transform 0.5s ease-in-out;
             transform-origin: center center;
         }
 
@@ -831,6 +840,7 @@
             line-height: 3.2vw;
         }
 
+        /* Starfield Canvas */
         #starCanvas {
             position: fixed;
             top: 0;
@@ -842,10 +852,9 @@
 
         #timeblock, #addendum, #description {
             /* transition: opacity 0.3s ease-out;*/
-            scale: 1;
-            width: 65vw;
         }
 
+        /* Define the fade-out animation */
         .fade-out {
             animation: fadeOut 0.3s ease-out forwards;
         }
@@ -1160,7 +1169,7 @@
                 <div id="shakeContainer" class="stackX"><div class="keyX">LINKING</div> <span style="color: #FFF;">FINALIZING</span></div> -->
                 <div id="counter">
                     <!-- MINUTES ONLY <span id="minutes">00</span><span id="separate">:</span><span id="seconds">00</span><span id="ms">.00</span> -->
-                    <span id="hours">00</span><span id="seperator">:</span><span id="minutes">00</span><span id="seperator">:</span><span id="seconds">00</span><span id="dot">.</span><span id="ms">.000</span>
+                    <span id="minutes">00</span><span id="seperator">:</span><span id="seconds">00</span><span id="dot">.</span><span id="ms">.000</span>
                 </div>
             </div>
     
@@ -1637,9 +1646,7 @@
         }
     
         // Set the target date for the countdown (example: 2025, March 5th, 12:00:00)
-        const targetDate = new Date("April 30, 2025 21:00:00").getTime();
-
-        console.log(timeRemaining);
+        const targetDate = new Date("April 30, 2025 19:00:00").getTime();
         
         let fadeInitiated = false;
     
@@ -1741,7 +1748,6 @@
             }
 
             if (timeRemaining <= 500) {
-                shrinkEverything();
                 document.getElementById("connectedtext").classList.add("shake");
                 //document.getElementById("return").classList.add("shake");
                 //document.getElementById("timeblock").classList.add("shake");
@@ -1753,7 +1759,7 @@
                 final.stop();
                 removeVignette();
                 $('body').removeClass('active');
-
+                shrinkEverything();
 
                 if (!corruptionPlayed) {
                     corruption.play();
@@ -1766,6 +1772,39 @@
                 animateGradient();
 
                 flash();
+                setTimeout(() => {
+                    // Fade out all elements except the text
+                    document.querySelectorAll("body > *:not(#toBeContinuedText)").forEach(el => {
+                        el.style.transition = "opacity 2s ease-in-out";
+                        el.style.opacity = "0";
+                    });
+
+                    const toBeContinuedText = document.createElement('div');
+                    toBeContinuedText.id = "toBeContinuedText";
+                    toBeContinuedText.textContent = "To Be Continued";
+                    toBeContinuedText.style.position = "fixed";
+                    toBeContinuedText.style.top = "50%";
+                    toBeContinuedText.style.left = "50%";
+                    toBeContinuedText.style.transform = "translate(-50%, -50%)";
+                    toBeContinuedText.style.fontSize = "50px";
+                    toBeContinuedText.style.color = "#FFF";
+                    toBeContinuedText.style.textRendering = "optimizeLegibility";
+                    toBeContinuedText.style.fontFamily = "ABR, sans-serif"; /* Ensure consistent font */
+                    toBeContinuedText.style.mozOsxFontSmoothing = "grayscale";
+                    toBeContinuedText.style.webkitFontSmoothing = "antialiased";
+                    toBeContinuedText.style.mozOsxFontSmoothing = "grayscale";
+                    toBeContinuedText.style.opacity = "0";
+                    toBeContinuedText.style.transition = "opacity 2s ease-in-out";
+                    toBeContinuedText.style.textRendering = "optimizeLegibility";
+                    toBeContinuedText.style.webkitFontSmoothing = "antialiased";
+                    toBeContinuedText.style.mozOsxFontSmoothing = "grayscale";
+                    document.body.appendChild(toBeContinuedText);
+
+                    // Fade in the text
+                    setTimeout(() => {
+                        toBeContinuedText.style.opacity = "1";
+                    }, 100);
+                }, 1500);
                 setInterval(WelcomeBack, 15000);
                 setInterval(increaseEverything, 15000);
                 moveElementOffScreen('timeblock');
@@ -1776,12 +1815,10 @@
 
             previousTimeRemaining = timeRemaining; // ✅ Update for next tick
 
-            const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
             const milliseconds = timeRemaining % 1000;
 
-            document.getElementById("hours").textContent = String(hours).padStart(2, '0');
             document.getElementById("minutes").textContent = String(minutes).padStart(2, '');
             document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
             document.getElementById("ms").textContent = String(milliseconds).padStart(3, '0');
@@ -1792,20 +1829,19 @@
         function WelcomeBack() {
             // Check if the timeout has already been set
             if (!timeoutSet) {
-                // Play the birds sound (make sure the 'birds' sound is defined)
                 birds.play();
 
                 // Apply fadeOut to the body
-                document.body.style.animation = 'fadeOut 2s forwards';
+                //document.body.style.animation = 'fadeOut 2s forwards';
 
                 // After the body fades out, fade in the text
-                setTimeout(function() {
+                //setTimeout(function() {
                     // Apply fadeIn to the text
-                    const textElement = document.getElementById('fadeText');
-                    if (textElement) {
-                        textElement.style.animation = 'fadeIn 2s forwards';  // Fade in the text
-                    }
-                }, 2000); // Wait for 2 seconds (fadeOut duration)
+                    //const textElement = document.getElementById('fadeText');
+                    //if (textElement) {
+                        //textElement.style.animation = 'fadeIn 2s forwards';  // Fade in the text
+                    //}
+                //}, 2000); // Wait for 2 seconds (fadeOut duration)
                 
                 timeoutSet = true;  // Mark that the timeout has been set
             }
