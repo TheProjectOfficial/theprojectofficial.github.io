@@ -1,108 +1,285 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>HOSHI</title>
-    <link rel="icon" href="res/img/icons/hoshi‑round‑favicon.png">
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <link rel="stylesheet" href="res/css/common.css">
-    <link rel="stylesheet" href="res/css/cursor.css">
-    <link rel="stylesheet" href="res/css/checkbox.css">
-    <link rel="stylesheet" href="res/css/scanlines.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
-    <script src="res/js/audio/home.js"></script>
-    <script src="res/js/cookies.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function(event) { 
-            var ogg = new Howl({
-                src: ['https://theprojectofficial.github.io/new/audio/exode.ogg'],
-                loop: true
-            });
-
-            ogg.volume(0.5);
-            ogg.play();
-            ogg.fade(0, 0.3, 5000);
-        });
-    </script>
-    <style>
-        body {
-            min-height: 100vh;
-            width: 100%;
-            background: #000;
-            color: white;
-            position: absolute;
-            left: 0;
-            top: 0;
-            padding: 5em !important;
-            overflow: hidden;
-            text-align: center;
-        }
-
-        #back {
-            background-color: rgba(0,0,0,0.5);
-            border: 1px solid #FFF;
-            box-shadow: 0px 6px #FFF, 0px 0px 16px #FFF;
-            width: 10em;
-            font-family: Arial, sans-serif;
-            font-size: 2em;
-            cursor: pointer;
-            position: fixed;
-            bottom: 2em;
-            right: 2em;
-            transition: 0.5s;
-            text-align: center;
-            padding: 10px;
-        }
-
-        #back:hover {
-            box-shadow: 0px 2px #FFF, 0px 0px 64px #FFF;
-            bottom: 2.2em;
-        }
-
-        h1 {
-            font-size: 64px;
-            font-family: "Heading";
-            margin: 20px 0;
-        }
-
-        p {
-            max-width: 1500px;
-            font-family: "Paragraph";
-            margin: auto;
-            margin: 1px;
-            text-align: left;
-            font-size: 16px;
-            line-height: 1.6;
-        }
-    </style>
-    <script>
-        // Function to set a cookie
-        function setCookie(name, value, days) {
-            let date = new Date();
-            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000)); // Set expiration date
-            let expires = "expires=" + date.toUTCString();
-            document.cookie = name + "=" + value + ";" + expires + ";path=/";
-        }
-
-        // Function to handle button click and set the cookie
-        function setUserCookie() {
-            setCookie("SEEN‑WARNING", "true", 365);  // Set cookie with value "true" for 7 days
-            alert("Cookie has been set!");
-        }
-    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warning</title>
+    <link rel="stylesheet" href="https://theprojectofficial.github.io/test/res/css/scanlines.css">
 </head>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+<script>
+    var ogg = new Howl({
+        src: ['https://theprojectofficial.github.io/new/audio/exode.ogg'],
+        volume: 0.3,
+        loop: true
+    });
+    var checked = new Howl({
+        src: ['https://theprojectofficial.github.io/stuff/checked.ogg'],
+        volume: 1,
+        loop: false
+    });
+    var back = new Howl({
+        src: ['https://theprojectofficial.github.io/stuff/finished.ogg'],
+        volume: 1,
+        loop: false
+    });
+
+    ogg.play();
+</script>
+<style>
+    @font-face {
+        font-family: "Heading";
+        src: url("https://theprojectofficial.github.io/stuff/heading.ttf");
+    }
+
+    @font-face {
+        font-family: "Paragraph";
+        src: url("https://theprojectofficial.github.io/stuff/paragraph.ttf");
+    }
+
+    html {
+        background-color: #000;
+        color: #FFF;
+        font-family: "Paragraph", sans-serif;
+        font-size: 16px;
+        cursor: url("https://classic.systemspace.network/res/img/ui/cursor.png"), default;
+    }
+
+    *::-moz-selection {
+        color: #000;
+        background-color: #FFF;
+    }
+
+    *::selection {
+        color: #000;
+        background-color: #FFF;
+    }
+
+    /* Scrollbars */
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0);
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 1);
+    }
+
+    body {
+        background: #000;
+        color: #FFF;
+        animation: fadeIn 1s ease-in-out;
+        padding: 5em !important;
+        overflow: hidden;
+    }
+
+    #sigma {
+        color: #555;
+    }
+
+    #sigma:hover {
+        color: #FFF;
+    }
+
+    .padded {
+        background-color: #000;
+        color: #FFF;
+        padding-left: 2vw;
+        padding-top: 2vw;
+        padding-right: 2vw;
+    }
+
+    .back {
+        position: relative;
+        display: inline-block;
+        background-color: rgba(0,0,0,0.5);
+        color: #FFF;
+        border: 1px solid #FFF;
+        box-shadow: 0px 6px #FFF, 0px 0px 16px #FFF;
+        width: 10em;
+        font-family: Heading;
+        font-size: 2em;
+        cursor: pointer;
+        transition: 0.5s;
+        text-align: center;
+        top: 0;
+    }
+
+    .back:hover {
+        box-shadow: 0px 2px #FFF, 0px 0px 64px #FFF;
+        top: 4px;
+    }
+
+    #read {
+        color: #888;
+        position: absolute;
+        left: 1em;
+        bottom: 1em;
+        font-family: "Paragraph", sans-serif;
+        transition: 0.25s color, 0.25s transform, 0.25s text-shadow;
+        cursor: pointer;
+    }
+
+    #read:hover {
+        color: #BBB;
+    }
+
+    .miss #read {
+        color: #F44;
+        transform: scale(1.2) translateX(1.5em);
+        text-shadow: 0px 0px 8px #822;
+    }
+
+    #read.checked {
+        color: #FFF;
+        pointer-events: none;
+        content: "☒ ";
+    }
+
+    #read::before {
+        content: "☐ ";
+    }
+
+    #read.checked::before {
+        content: "☒ ";
+    }
+
+    #buttons {
+        position: absolute;
+        right: 1.7em;
+        bottom: 2em;
+    }
+
+    #checkboxContainer {
+        position: absolute;
+        left: 4.3em;
+        bottom: 2em;
+        width: 100%;
+    }
+
+    .back.disabled {
+        background-color: rgba(0, 0, 0, 0.3);
+        color: #666;
+        cursor: not-allowed;
+        border: 1px solid #666;
+        box-shadow: none;
+    }
+
+    #sigma:hover h5 {
+        color: white;
+    }
+
+    /* Fade-in animation */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes fadeOut {
+        from {
+            opacity: 1; 
+        }
+        to {
+            opacity: 0; 
+        }
+    }
+
+
+    @keyframes flyToButton {
+        0% {
+            transform: translate(0, 0);
+        }
+        100% {
+            transform: translate(calc(100vw - 3.4em), 0);
+            opacity: 0;
+        }
+    }
+
+    @keyframes enableButton {
+        0% {
+            transform: scale(0.8);
+            opacity: 0.5;
+        }
+        100% {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+</style>
 <body>
-    <h1 style="text-align: left;">READ THIS</h1>
-    <p>TEST WARNING</p>
+    <div style="white-space: nowrap;">
+        <img src="https://classic.systemspace.network/res/img/others/warningbw.png" alt="" style="vertical-align: middle; display: inline-block;">
+        <h1 style="font-family: Heading; display: inline-block; vertical-align: middle; font-size: 70px;">WARNING</h1>
+    </div>
+    <h2 style="font-family: Paragraph;">The HOSHI Project Warning</h2>
+    <p style="font-family: Paragraph;">Please Read!</p>
+    <p style="font-family: Paragraph;">All content mentioned on this website is purely Fictional and should not be taken for granted. Aurora does NOT exist. <br>This Project is inspired on The TSUKI Project, which was up during 2017, which was later discontinued because of an Incident. Just so you know, this website does <span style="color: red;">NOT ENDORSE SUICIDE</span> this is just purely fictional. Suicide is not required for anything inside this website. Even if The TSUKI Project had to do with Reincarnation etc.</p>
 
-    <label class="checkbox-container">
-        <input type="checkbox" class="checkbox">
-        <span class="checkmark"></span>
-        <span class="label-text">Check me!</span>
-    </label>   
+    <p style="font-family: Paragraph; font-weight: bold;">Thank you for reading this.</p>
 
-    <a href="javascript:window.history.back();">
-        <button onclick="setUserCookie()" class="back">Continiue!</button>
-    </a>
+    <h2 style="font-family: Paragraph;">TL;DR</h2>
+    <p style="font-family: Paragraph;">This shit is not real, purely fictional. <br>And don't commit Suicide, please. <br>This is <span style="color: red;">NOT The TSUKI Project.</span></p>
+
+    <h5 style="color: #822;"><span style="color: #F44;">Date For Auroraric Reconnection: 30th April, 2025 at 21:00 European Time.</span></h5> 
+
+    <div id="checkboxContainer">
+        <div id="read" class="read">I've read and confirm the above</div>
+    </div>
+
+    <div id="buttons">
+        <button class="back disabled" id="acknowledgeWarning" disabled>CONTINUE</button>
+    </div>
+
+    <script>
+        function copyToClipboard() {
+            // Get the text inside the h5 element
+            var copyText = document.getElementById("messageText").innerText;
+            
+            // Use the Clipboard API to copy the text
+            navigator.clipboard.writeText(copyText).then(() => {
+                alert("Copied to clipboard!");
+            }).catch(err => {
+                alert("Error copying text: " + err);
+            });
+        }
+
+        document.getElementById("read").onclick = function() {
+            checked.play();
+            var button = document.getElementById("acknowledgeWarning");
+            var container = document.getElementById("checkboxContainer");
+
+            // Trigger the fly animation for the read div
+            container.style.animation = "flyToButton 1s forwards";
+            setTimeout(() => {
+                button.classList.remove("disabled");
+                button.disabled = false;
+                button.style.animation = "enableButton 0.5s forwards";
+            }, 500);
+        };
+
+        document.getElementById("acknowledgeWarning").onclick = function() {
+            back.play();
+            document.body.style.animation = 'fadeOut 0.5s ease-in-out';
+            setTimeout(() => {
+                    if (!this.disabled) {
+                    const currentTime = new Date().getTime();
+                    const expirationTime = 6 * 30 * 24 * 60 * 60 * 1000;
+                    localStorage.setItem("warningSeen", "true");
+                    localStorage.setItem("warningTimestamp", currentTime);
+                    localStorage.setItem("warningExpiration", currentTime + expirationTime);
+                    window.location.href = "index.html";
+                }
+            }, 500);
+        };
+    </script>
 </body>
 </html>
