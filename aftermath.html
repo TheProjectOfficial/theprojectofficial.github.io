@@ -10,9 +10,32 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="res/js/countdownsimple.js"></script>
     <script>
+  
+
+      
+      $(document).ready(function() {
+        //if (getCookie("SEEN-WARNING") != "One") {
+          //window.location = "/warning";
+        //}
+        $('#whitever').html($('#colorver').html());
+        $('#bypass-stall').click(function() {
+          jumpeditself = false;
+          JumpStart();
+        });
+        var ost = new Howl({
+          src: 'https://theprojectofficial.github.io/stuff/kmb.ogg',
+          autoplay: true,
+          volume: 0.5,
+          loop: true
+        });
+        $(document).ready(function(){
+            ost.play();
+        });
+      });
+
       const targetTime = new Date("2025-05-09T20:00:00Z"); // UTC time
-const now = new Date();
-const timeUntil = targetTime - now;
+      const now = new Date();
+      const timeUntil = targetTime - now;
 
 if (timeUntil > 0) {
   setTimeout(() => {
@@ -37,27 +60,6 @@ if (timeUntil > 0) {
     }, stepTime);
   }, timeUntil);
 }
-
-      
-      $(document).ready(function() {
-        //if (getCookie("SEEN-WARNING") != "One") {
-          //window.location = "/warning";
-        //}
-        $('#whitever').html($('#colorver').html());
-        $('#bypass-stall').click(function() {
-          jumpeditself = false;
-          JumpStart();
-        });
-        var ost = new Howl({
-          src: 'https://theprojectofficial.github.io/stuff/kmb.ogg',
-          autoplay: true,
-          volume: 0.5,
-          loop: true
-        });
-        $(document).ready(function(){
-            ost.play();
-        });
-      });
     </script>
     <style>
       @font-face {
