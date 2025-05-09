@@ -10,6 +10,35 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="res/js/countdownsimple.js"></script>
     <script>
+      const targetTime = new Date("2025-05-09T20:00:00Z"); // UTC time
+const now = new Date();
+const timeUntil = targetTime - now;
+
+if (timeUntil > 0) {
+  setTimeout(() => {
+    // Trigger fade out
+    document.body.classList.add("fadeout");
+
+    // Fade out audio
+    const fadeDuration = 5000;
+    const fadeSteps = 20;
+    const stepTime = fadeDuration / fadeSteps;
+    let currentStep = 0;
+
+    const fadeAudio = setInterval(() => {
+      if (currentStep >= fadeSteps) {
+        clearInterval(fadeAudio);
+        ost.stop();
+        window.location.href = "index.html";
+      } else {
+        ost.volume(0.5 * (1 - currentStep / fadeSteps));
+        currentStep++;
+      }
+    }, stepTime);
+  }, timeUntil);
+}
+
+      
       $(document).ready(function() {
         //if (getCookie("SEEN-WARNING") != "One") {
           //window.location = "/warning";
@@ -70,6 +99,11 @@
         margin: 0;
         padding: 0;
       }
+      
+      body.fadeout {
+  transition: opacity 5s ease;
+  opacity: 0;
+}
 
       #countdown {
         color: F;
